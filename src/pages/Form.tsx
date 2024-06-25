@@ -39,20 +39,20 @@ const Form: React.FC = () => {
       <h3>Анкета</h3>
       <h4>Инструкция по заполнению Анкеты: </h4>
       <ul>
-        <li>1)На заполнение Анкеты и Теста понадобится около 20-30 минут.</li>
+        <li>1) На заполнение Анкеты и Теста понадобится около 20-30 минут.</li>
         <li>
-          2)Чем точнее вы ответите на вопросы, тем эффективнее будет результат
+          2) Чем точнее вы ответите на вопросы, тем эффективнее будет результат
           (вопрос доформулировать).
         </li>
         <li>
-          3)Вместо ФИО вы можете написать псевдоним (имя киногероя, кумира и
+          3) Вместо ФИО вы можете написать псевдоним (имя киногероя, кумира и
           т.п.).
         </li>
       </ul>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         {/* ФИО */}
         <div>
-          <label htmlFor="fullName">ФИО:</label>
+          <label htmlFor="fullName">ФИО: </label>
           <input
             type="text"
             id="fullName"
@@ -63,7 +63,7 @@ const Form: React.FC = () => {
 
         {/* Пол */}
         <div>
-          <label htmlFor="gender">Пол:</label>
+          <label htmlFor="gender">Пол: </label>
           <select id="gender" {...register("gender")}>
             <option value="male">Мужской</option>
             <option value="female">Женский</option>
@@ -72,7 +72,7 @@ const Form: React.FC = () => {
 
         {/* Дата рождения */}
         <div>
-          <label htmlFor="dateOfBirth">Дата рождения:</label>
+          <label htmlFor="dateOfBirth">Дата рождения: </label>
           <input
             type="date"
             id="dateOfBirth"
@@ -84,11 +84,11 @@ const Form: React.FC = () => {
 
         {/* Страна и город рождения */}
         <div>
-          <label htmlFor="country">Страна:</label>
+          <label htmlFor="country">Страна: </label>
           <input type="text" id="country" {...register("country")} />
         </div>
         <div>
-          <label htmlFor="city">Город (регион):</label>
+          <label htmlFor="city">Город (регион): </label>
           <input type="text" id="city" {...register("city")} />
         </div>
 
@@ -97,13 +97,13 @@ const Form: React.FC = () => {
 
         {/* Телефон */}
         <div>
-          <label htmlFor="phone">Телефон (WhatsApp):</label>
+          <label htmlFor="phone">Телефон (WhatsApp): </label>
           <input type="tel" id="phone" {...register("phone")} />
         </div>
 
         {/* Telegram */}
         <div>
-          <label htmlFor="telegram">Telegram:</label>
+          <label htmlFor="telegram">Telegram: </label>
           <input
             type="text"
             id="telegram"
@@ -114,7 +114,7 @@ const Form: React.FC = () => {
 
         {/* Email */}
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email: </label>
           <input type="email" id="email" {...register("email")} />
         </div>
 
