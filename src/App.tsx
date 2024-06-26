@@ -1,9 +1,10 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import {  Routes } from "react-router-dom";
+// import "./App.css";
 import Header from "./components/Header";
 import Form from "./pages/Form";
 import { useTelegram } from "./hooks/useTelegram";
 import { useEffect } from "react";
+import './styles/style.scss';
 
 function App() {
   const { onReady } = useTelegram();
@@ -18,7 +19,7 @@ function App() {
         <Header />
         <Form />
         <Routes>
-          <Route path='/' element={<Form />} />
+          {/* <Route path='/' element={<Form />} /> */}
           {/* <Route path={"/form"} element={<Form />} /> */}
         </Routes>
       </div>

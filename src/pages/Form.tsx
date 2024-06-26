@@ -36,91 +36,107 @@ const Form: React.FC = () => {
   };
   return (
     <>
-      <h3>Анкета</h3>
-      <h4>Инструкция по заполнению Анкеты: </h4>
-      <ul>
-        <li>1) На заполнение Анкеты и Теста понадобится около 20-30 минут.</li>
-        <li>
-          2) Чем точнее вы ответите на вопросы, тем эффективнее будет результат
-          (вопрос доформулировать).
-        </li>
-        <li>
-          3) Вместо ФИО вы можете написать псевдоним (имя киногероя, кумира и
-          т.п.).
-        </li>
-      </ul>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        {/* ФИО */}
-        <div>
-          <label htmlFor="fullName">ФИО: </label>
-          <input
-            type="text"
-            id="fullName"
-            {...register("fullName", { required: true })}
-          />
-          {errors.fullName && <span>Пожалуйста, введите ФИО</span>}
-        </div>
+      <div className="container">
+        <h2>Анкета</h2>
+        <h3>Инструкция по заполнению Анкеты: </h3>
+        <ul>
+          <li>
+            1) На заполнение Анкеты и Теста понадобится около 20-30 минут.
+          </li>
+          <li>
+            2) Чем точнее вы ответите на вопросы, тем эффективнее будет
+            результат (вопрос доформулировать).
+          </li>
+          <li>
+            3) Вместо ФИО вы можете написать псевдоним (имя киногероя, кумира и
+            т.п.).
+          </li>
+        </ul>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          {/* ФИО */}
+          <h3>Общие данные</h3>
+          <div>
+            <label htmlFor="fullName">ФИО: </label>
+            <input
+              type="text"
+              id="fullName"
+              {...register("fullName", { required: true })}
+            />
+            {errors.fullName && <div> Пожалуйста, введите ФИО</div>}
+          </div>
 
-        {/* Пол */}
-        <div>
-          <label htmlFor="gender">Пол: </label>
-          <select id="gender" {...register("gender")}>
-            <option value="male">Мужской</option>
-            <option value="female">Женский</option>
-          </select>
-        </div>
+          {/* Пол */}
+          <div>
+            <label htmlFor="gender">Пол: </label>
+            <select id="gender" {...register("gender")}>
+              <option value="male">Мужской</option>
+              <option value="female">Женский</option>
+            </select>
+          </div>
 
-        {/* Дата рождения */}
-        <div>
-          <label htmlFor="dateOfBirth">Дата рождения: </label>
-          <input
-            type="date"
-            id="dateOfBirth"
-            {...register("dateOfBirth", { required: true })}
-          />
-          {errors.dateOfBirth && <span>Пожалуйста, введите дату рождения</span>}
-          {dateOfBirth && <span>Возраст: {age} лет</span>}
-        </div>
+          {/* Дата рождения */}
+          <div>
+            <label htmlFor="dateOfBirth">Дата рождения: </label>
+            <input
+              type="date"
+              id="dateOfBirth"
+              {...register("dateOfBirth", { required: true })}
+            />
+            {errors.dateOfBirth && <div>Пожалуйста, введите дату рождения</div>}
+            {dateOfBirth && <div>Возраст: {age} лет</div>}
+          </div>
 
-        {/* Страна и город рождения */}
-        <div>
-          <label htmlFor="country">Страна: </label>
-          <input type="text" id="country" {...register("country")} />
-        </div>
-        <div>
-          <label htmlFor="city">Город (регион): </label>
-          <input type="text" id="city" {...register("city")} />
-        </div>
+          {/* Страна и город рождения */}
+          <div>
+            <label htmlFor="country">Страна: </label>
+            <input
+              type="text"
+              id="country"
+              {...register("country", { required: true })}
+            />
+            {errors.country && <div>Пожалуйста, введите страну</div>}
+          </div>
 
-        {/* Контактные данные */}
-        <h4>Контактные данные:</h4>
+          <div>
+            <label htmlFor="city">Город (регион): </label>
+            <input
+              type="text"
+              id="city"
+              {...register("city", { required: true })}
+            />
+            {errors.city && <div>Пожалуйста, введите город</div>}
+          </div>
 
-        {/* Телефон */}
-        <div>
-          <label htmlFor="phone">Телефон (WhatsApp): </label>
-          <input type="tel" id="phone" {...register("phone")} />
-        </div>
+          {/* Контактные данные */}
+          <h4>Контактные данные:</h4>
 
-        {/* Telegram */}
-        <div>
-          <label htmlFor="telegram">Telegram: </label>
-          <input
-            type="text"
-            id="telegram"
-            {...register("telegram")}
-            placeholder="@телеграм"
-          />
-        </div>
+          {/* Телефон */}
+          <div>
+            <label htmlFor="phone">Телефон (WhatsApp): </label>
+            <input type="tel" id="phone" {...register("phone")} />
+          </div>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="email">Email: </label>
-          <input type="email" id="email" {...register("email")} />
-        </div>
+          {/* Telegram */}
+          <div>
+            <label htmlFor="telegram">Telegram: </label>
+            <input
+              type="text"
+              id="telegram"
+              {...register("telegram")}
+              placeholder="@телеграм"
+            />
+          </div>
 
-        {/* Кнопка отправки */}
-        <button type="submit">Отправить</button>
-      </form>
+          {/* Email */}
+          <div>
+            <label htmlFor="email">Email: </label>
+            <input type="email" id="email" {...register("email")} />
+          </div>
+
+          {/* Кнопка отправки */}
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
     </>
   );
 };
