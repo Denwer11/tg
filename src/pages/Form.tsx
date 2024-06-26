@@ -1,16 +1,28 @@
+import { useState } from 'react';
 import { useForm } from "react-hook-form";
+import ReactJson from "react-json-pretty";
 
 type FormData = {
   fullName: string;
   gender: "male" | "female";
   dateOfBirth: string;
+  countryCity: CountryCity;
+  contacts: Contacts;
+};
+
+type CountryCity = {
   country: string;
   city: string;
+}
+
+type Contacts = {
   phone?: string;
   telegram?: string;
   email?: string;
 };
+
 const Form: React.FC = () => {
+  const [formData, setFormData] = useState<FormData | null>(null);
   const {
     register,
     handleSubmit,
@@ -19,7 +31,6 @@ const Form: React.FC = () => {
   } = useForm<FormData>({
     defaultValues: {
       gender: "male",
-      country: "Россия",
     },
   });
   const dateOfBirth = watch("dateOfBirth");
@@ -32,8 +43,9 @@ const Form: React.FC = () => {
     : null;
 
   const onSubmit: (data: FormData) => void = (data) => {
-    console.log(data);
+    setFormData(data);
   };
+
   return (
     <>
       <div className="container">
@@ -92,9 +104,11 @@ const Form: React.FC = () => {
             <input
               type="text"
               id="country"
-              {...register("country", { required: true })}
+              {...register("countryCity.country", { required: true })}
             />
-            {errors.country && <div>Пожалуйста, введите страну</div>}
+            {errors.countryCity?.country && (
+              <div>Пожалуйста, введите страну</div>
+            )}
           </div>
 
           <div>
@@ -102,9 +116,9 @@ const Form: React.FC = () => {
             <input
               type="text"
               id="city"
-              {...register("city", { required: true })}
+              {...register("countryCity.city", { required: true })}
             />
-            {errors.city && <div>Пожалуйста, введите город</div>}
+            {errors.countryCity?.city && <div>Пожалуйста, введите город</div>}
           </div>
 
           {/* Контактные данные */}
@@ -113,7 +127,12 @@ const Form: React.FC = () => {
           {/* Телефон */}
           <div>
             <label htmlFor="phone">Телефон (WhatsApp): </label>
-            <input type="tel" id="phone" {...register("phone")} />
+            <input
+              type="tel"
+              id="phone"
+              placeholder="+79999999999"
+              {...register("contacts.phone")}
+            />
           </div>
 
           {/* Telegram */}
@@ -122,7 +141,7 @@ const Form: React.FC = () => {
             <input
               type="text"
               id="telegram"
-              {...register("telegram")}
+              {...register("contacts.telegram")}
               placeholder="@телеграм"
             />
           </div>
@@ -130,12 +149,13 @@ const Form: React.FC = () => {
           {/* Email */}
           <div>
             <label htmlFor="email">Email: </label>
-            <input type="email" id="email" {...register("email")} />
+            <input type="email" id="email" placeholder='email@email.com'{...register("contacts.email")} />
           </div>
 
           {/* Кнопка отправки */}
           <button type="submit">Отправить</button>
         </form>
+        {formData && <div>{<ReactJson data={formData} />}</div>}
       </div>
     </>
   );
