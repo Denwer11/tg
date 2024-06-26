@@ -18,13 +18,16 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--tg-theme-bg-color);
+//   background-color: var(--tg-theme-bg-color);
 }
 
 ul {
   list-style-type: none;
+  padding-left: 0px;
 }
-
+label{
+    display: block;
+}
 .header {
   text-align: center;
   margin: 10px 0;
