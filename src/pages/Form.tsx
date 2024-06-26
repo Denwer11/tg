@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import ReactJson from "react-json-pretty";
 import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
@@ -14,12 +14,7 @@ type FormData = {
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormData>({
+  const methods = useForm<FormData>({
     defaultValues: {
       generalInfo: { gender: "male" },
       currentMaritalStatus: {
@@ -50,15 +45,20 @@ const Form: React.FC = () => {
             т.п.).
           </li>
         </ul>
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          <GeneralInfoForm
-            control={control}
-            register={register}
-            errors={errors}
-          />
-          <MaritalStatusForm control={control} errors={errors} />
-          {/* Кнопка отправки */}
-          <button type="submit">Отправить</button>
+        <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
+          <FormProvider {...methods}>
+            <GeneralInfoForm
+              control={methods.control}
+              register={methods.register}
+              errors={methods.formState.errors}
+            />
+            <MaritalStatusForm
+              control={methods.control}
+              errors={methods.formState.errors}
+            />
+            {/* Кнопка отправки */}
+            <button type="submit">Отправить</button>
+          </FormProvider>
         </form>
         {formData && <div>{<ReactJson data={formData} />}</div>}
       </div>
