@@ -1,46 +1,32 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactJson from "react-json-pretty";
+import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
+import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
+import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.types";
+import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
 
 type FormData = {
-  fullName: string;
-  gender: "male" | "female";
-  dateOfBirth: string;
-  countryCity: CountryCity;
-  contacts: Contacts;
-};
-
-type CountryCity = {
-  country: string;
-  city: string;
-}
-
-type Contacts = {
-  phone?: string;
-  telegram?: string;
-  email?: string;
+  generalInfo: GeneralInfo;
+  currentMaritalStatus: CurrentMaritalStatus;
 };
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
+
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      gender: "male",
+      generalInfo: { gender: "male" },
+      currentMaritalStatus: {
+        maritalStatus: "живу без партнера",
+      },
     },
   });
-  const dateOfBirth = watch("dateOfBirth");
-
-  const age = dateOfBirth
-    ? Math.floor(
-        (new Date().getTime() - new Date(dateOfBirth).getTime()) /
-          (1000 * 60 * 60 * 24 * 365.25)
-      )
-    : null;
 
   const onSubmit: (data: FormData) => void = (data) => {
     setFormData(data);
@@ -65,93 +51,12 @@ const Form: React.FC = () => {
           </li>
         </ul>
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          {/* ФИО */}
-          <h3>Общие данные</h3>
-          <div>
-            <label htmlFor="fullName">ФИО: </label>
-            <input
-              type="text"
-              id="fullName"
-              {...register("fullName", { required: true })}
-            />
-            {errors.fullName && <div> Пожалуйста, введите ФИО</div>}
-          </div>
-
-          {/* Пол */}
-          <div>
-            <label htmlFor="gender">Пол: </label>
-            <select id="gender" {...register("gender")}>
-              <option value="male">Мужской</option>
-              <option value="female">Женский</option>
-            </select>
-          </div>
-
-          {/* Дата рождения */}
-          <div>
-            <label htmlFor="dateOfBirth">Дата рождения: </label>
-            <input
-              type="date"
-              id="dateOfBirth"
-              {...register("dateOfBirth", { required: true })}
-            />
-            {errors.dateOfBirth && <div>Пожалуйста, введите дату рождения</div>}
-            {dateOfBirth && <div>Возраст: {age} лет</div>}
-          </div>
-
-          {/* Страна и город рождения */}
-          <div>
-            <label htmlFor="country">Страна: </label>
-            <input
-              type="text"
-              id="country"
-              {...register("countryCity.country", { required: true })}
-            />
-            {errors.countryCity?.country && (
-              <div>Пожалуйста, введите страну</div>
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="city">Город (регион): </label>
-            <input
-              type="text"
-              id="city"
-              {...register("countryCity.city", { required: true })}
-            />
-            {errors.countryCity?.city && <div>Пожалуйста, введите город</div>}
-          </div>
-
-          {/* Контактные данные */}
-          <h4>Контактные данные:</h4>
-
-          {/* Телефон */}
-          <div>
-            <label htmlFor="phone">Телефон (WhatsApp): </label>
-            <input
-              type="tel"
-              id="phone"
-              placeholder="+79999999999"
-              {...register("contacts.phone")}
-            />
-          </div>
-
-          {/* Telegram */}
-          <div>
-            <label htmlFor="telegram">Telegram: </label>
-            <input
-              type="text"
-              id="telegram"
-              {...register("contacts.telegram")}
-              placeholder="@телеграм"
-            />
-          </div>
-
-          {/* Email */}
-          <div>
-            <label htmlFor="email">Email: </label>
-            <input type="email" id="email" placeholder='email@email.com'{...register("contacts.email")} />
-          </div>
-
+          <GeneralInfoForm
+            control={control}
+            register={register}
+            errors={errors}
+          />
+          <MaritalStatusForm control={control} errors={errors} />
           {/* Кнопка отправки */}
           <button type="submit">Отправить</button>
         </form>

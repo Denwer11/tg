@@ -15,10 +15,13 @@
   padding: 2rem;
   text-align: start;
 }
-
+.App{
+   background-color: rgb(43, 43, 43);
+}
 body {
   font-family: "Roboto", sans-serif;
   background-color: var(--tg-theme-bg-color);
+  background-color: #fff;
 }
 
 ul {
@@ -30,7 +33,6 @@ label {
 }
 .header {
   text-align: center;
-  margin: 10px 0;
 }
 .container {
   min-height: 100vh;
@@ -73,7 +75,9 @@ option {
   font-size: 16px;
   color: var(--tg-theme-bg-color);
 }
-
+input:not(#dateOfBirth){
+  width: 95%;
+}
 input::placeholder,
 textarea::placeholder {
   color: var(--tg-theme-text-placeholder);

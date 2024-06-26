@@ -1,0 +1,79 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
+import {
+  Control,
+  Controller,
+  FieldErrors,
+} from "react-hook-form";
+import PartnerFields from "./PartnerFields/PartnerFields";
+
+interface MaritalStatusFormProps {
+  control: Control<any>;
+  errors: FieldErrors<any>;
+}
+
+const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
+  control,
+  errors,
+}) => {
+  const [showPartnerFields, setShowPartnerFields] = useState(false);
+  const [showOtherMaritalStatus, setShowOtherMaritalStatus] = useState(false);
+
+  const handleMaritalStatusChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedValue = event.target.value;
+    setShowPartnerFields(selectedValue !== "живу без партнера");
+    setShowOtherMaritalStatus(selectedValue === "иное");
+  };
+
+  // const { watch } = useFormContext();
+  // const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
+
+  return (
+    <>
+      <h4>Актуальное семейное положение:</h4>
+      <label htmlFor="maritalStatus">Семейное положение: </label>
+      <Controller
+        name="currentMaritalStatus.maritalStatus"
+        control={control}
+        render={({ field }) => (
+          <select
+            id="maritalStatus"
+            {...field}
+            onChange={handleMaritalStatusChange}
+          >
+            <option value="живу без партнера">Живу без партнера</option>
+            <option value="в гражданском браке">В гражданском браке</option>
+            <option value="в браке, но вместе не живем">
+              В браке, но вместе не живем
+            </option>
+            <option value="в разводе">В разводе</option>
+            <option value="вдова(ец)">Вдова(ец)</option>
+            <option value="в браке">В браке</option>
+            <option value="иное">Иное</option>
+          </select>
+        )}
+      />
+      {showOtherMaritalStatus && (
+        <Controller
+          name="currentMaritalStatus.otherMaritalStatus"
+          control={control}
+          render={({ field }) => (
+            <input type="text" id="otherMaritalStatus" {...field} />
+          )}
+        />
+      )}
+      {errors.maritalStatus && <span>Поле обязательно для заполнения</span>}
+
+      {showPartnerFields && (
+        <PartnerFields
+          control={control}
+          errors={errors}
+        />
+      )}
+    </>
+  );
+};
+
+export default MaritalStatusForm;
