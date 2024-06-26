@@ -1,13 +1,13 @@
-// :root {
-//   --tg-theme-bg-color: #f2f2f2; /* Основной фоновый цвет */
-//   --tg-theme-text-primary: #222; /* Основной цвет текста */
-//   --tg-theme-text-secondary: #333; /* Вторичный цвет текста */
-//   --tg-theme-text-placeholder: #888; /* Цвет placeholder'а */
-//   --tg-theme-button-primary: #0084ff; /* Основной цвет кнопки */
-//   --tg-theme-button-primary-hover: #006acc; /* Hover-эффект кнопки */
-//   --tg-theme-border-color: #ddd; /* Цвет границы */
-//   --tg-theme-error-color: #d9534f; /* Цвет ошибок */
-// }
+:root {
+  //   --tg-theme-bg-color: #f2f2f2; /* Основной фоновый цвет */
+  //   --tg-theme-text-primary: #222; /* Основной цвет текста */
+  //   --tg-theme-text-secondary: #333; /* Вторичный цвет текста */
+  --tg-theme-text-placeholder: #888; /* Цвет placeholder'а */
+  // --tg-theme-button-primary: #0084ff; /* Основной цвет кнопки */
+  // --tg-theme-button-primary-hover: #006acc; /* Hover-эффект кнопки */
+  --tg-theme-border-color: #ddd; /* Цвет границы */
+  --tg-theme-error-color: #d9534f; /* Цвет ошибок */
+}
 
 #root {
   max-width: 1280px;
@@ -25,8 +25,8 @@ ul {
   list-style-type: none;
   padding-left: 0px;
 }
-label{
-    display: block;
+label {
+  display: block;
 }
 .header {
   text-align: center;
@@ -48,7 +48,6 @@ h3,
 h5,
 h6 {
   font-weight: 500;
-  color: var(--tg-theme-text-primary);
   text-align: center;
 }
 
@@ -61,18 +60,18 @@ form {
 label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: var(--tg-theme-text-secondary);
 }
 
 input,
 select,
-textarea {
+textarea,
+option {
   padding: 10px;
   border: 1px solid var(--tg-theme-border-color);
   border-radius: 4px;
   margin-bottom: 10px;
   font-size: 16px;
-  color: var(--tg-theme-text-primary);
+  color: var(--tg-theme-text-color);
 }
 
 input::placeholder,
@@ -81,7 +80,7 @@ textarea::placeholder {
 }
 
 button[type="submit"] {
-  background-color: var(--tg-theme-button-primary);
+  background-color: var(--tg-theme-button-color);
   color: #fff;
   padding: 12px 20px;
   border: none;
@@ -89,6 +88,7 @@ button[type="submit"] {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  color: var(--tg-theme-button-text-color);
 }
 
 button[type="submit"]:hover {
