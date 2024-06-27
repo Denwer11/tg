@@ -1,5 +1,4 @@
 import {  Routes } from "react-router-dom";
-// import "./App.css";
 import Header from "./components/Header";
 import Form from "./pages/Form";
 import { useTelegram } from "./hooks/useTelegram";

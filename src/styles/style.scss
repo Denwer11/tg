@@ -173,8 +173,8 @@ button[type="submit"]:hover {
 }
 
 /* Мобильные стили */
-// @media (max-width: 600px) {
-//   .container {
-//     width: 90%;
-//   }
-// }
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+  }
+}
