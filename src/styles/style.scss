@@ -152,7 +152,6 @@ textarea::placeholder {
 
 button[type="submit"] {
   background-color: var(--tg-theme-button-color);
-  color: #fff;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
@@ -174,8 +173,8 @@ button[type="submit"]:hover {
 }
 
 /* Мобильные стили */
-@media (max-width: 600px) {
-  .container {
-    width: 90%;
-  }
-}
+// @media (max-width: 600px) {
+//   .container {
+//     width: 90%;
+//   }
+// }
