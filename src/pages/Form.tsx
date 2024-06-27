@@ -51,10 +51,12 @@ const Form: React.FC = () => {
               control={methods.control}
               register={methods.register}
               errors={methods.formState.errors}
+              methods={methods}
             />
             <MaritalStatusForm
               control={methods.control}
               errors={methods.formState.errors}
+              methods={methods}
             />
             {/* Кнопка отправки */}
             <button type="submit">Отправить</button>

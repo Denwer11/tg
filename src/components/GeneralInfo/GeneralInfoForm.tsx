@@ -10,11 +10,13 @@ interface GeneralInfoFormProps {
   control: Control<any>;
   register: UseFormRegister<any>;
   errors: FieldErrors<any>;
+  methods: any;
 }
 
 const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
   control,
   errors,
+  methods,
 }) => {
   return (
     <>
@@ -27,7 +29,9 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
           rules={{ required: true }}
           render={({ field }) => <input type="text" id="fullName" {...field} />}
         />
-        {errors.fullName && <div> Пожалуйста, введите ФИО</div>}
+        {methods.FormState.errors.fullName && (
+          <div> Пожалуйста, введите ФИО</div>
+        )}
       </div>
 
       {/* Пол */}
@@ -50,7 +54,9 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
             <input type="date" id="dateOfBirth" {...field} />
           )}
         />
-        {errors.dateOfBirth && <div>Пожалуйста, введите дату рождения</div>}
+        {methods.FormState.errors.dateOfBirth && (
+          <div>Пожалуйста, введите дату рождения</div>
+        )}
       </div>
 
       {/* Страна и город рождения */}
@@ -62,7 +68,9 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
           rules={{ required: true }}
           render={({ field }) => <input type="text" id="country" {...field} />}
         />
-        {errors.country && <div>Пожалуйста, введите страну</div>}
+        {methods.FormState.errors.country && (
+          <div>Пожалуйста, введите страну</div>
+        )}
       </div>
 
       <div>
@@ -73,7 +81,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
           rules={{ required: true }}
           render={({ field }) => <input type="text" id="city" {...field} />}
         />
-        {errors.city && <div>Пожалуйста, введите город</div>}
+        {methods.FormState.errors.city && <div>Пожалуйста, введите город</div>}
       </div>
 
       {/* Контактные данные */}

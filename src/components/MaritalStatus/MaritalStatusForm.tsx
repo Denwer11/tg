@@ -4,20 +4,26 @@ import {
   Control,
   Controller,
   FieldErrors,
+  useFormContext,
 } from "react-hook-form";
 import PartnerFields from "./PartnerFields/PartnerFields";
 
 interface MaritalStatusFormProps {
   control: Control<any>;
   errors: FieldErrors<any>;
+  methods: any;
 }
 
 const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
   control,
   errors,
+  methods,
 }) => {
   const [showPartnerFields, setShowPartnerFields] = useState(false);
   const [showOtherMaritalStatus, setShowOtherMaritalStatus] = useState(false);
+
+  const { watch, setValue } = useFormContext();
+  const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
 
   const handleMaritalStatusChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -25,10 +31,8 @@ const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
     const selectedValue = event.target.value;
     setShowPartnerFields(selectedValue !== "живу без партнера");
     setShowOtherMaritalStatus(selectedValue === "иное");
+    setValue("currentMaritalStatus.maritalStatus", selectedValue);
   };
-
-  // const { watch } = useFormContext();
-  // const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
 
   return (
     <>
@@ -55,6 +59,7 @@ const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
           </select>
         )}
       />
+
       {showOtherMaritalStatus && (
         <Controller
           name="currentMaritalStatus.otherMaritalStatus"
@@ -64,12 +69,16 @@ const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
           )}
         />
       )}
-      {errors.maritalStatus && <span>Поле обязательно для заполнения</span>}
+      {methods.FormState.errors.maritalStatus && (
+        <span>Поле обязательно для заполнения</span>
+      )}
 
       {showPartnerFields && (
         <PartnerFields
           control={control}
           errors={errors}
+          methods={methods}
+          maritalStatus={maritalStatusToPartner}
         />
       )}
     </>
