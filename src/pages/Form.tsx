@@ -6,7 +6,7 @@ import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
 import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.types";
 import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
 import { ParentFamily } from "../components/ParentFamily/ParentFamily.types";
-import ParentFamilyForm from "../components/ParentFamily/ParentFamilyForm";
+// import ParentFamilyForm from "../components/ParentFamily/ParentFamilyForm";
 
 export type FormData = {
   generalInfo: GeneralInfo;
