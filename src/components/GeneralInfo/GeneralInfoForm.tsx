@@ -1,13 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from '../../pages/Form';
-// import { GeneralInfo } from "./GeneralInfo.types";
 
 const GeneralInfoForm: React.FC = () => {
   const {
     control,
     formState: { errors },
+    watch
   } = useFormContext<FormData>();
+
+  const dateOfBirth = watch("generalInfo.dateOfBirth"); 
+  const age = dateOfBirth
+    ? Math.floor(
+        (new Date().getTime() - new Date(dateOfBirth).getTime()) /
+          (1000 * 60 * 60 * 24 * 365.25)
+      )
+    : null;
 
   return (
     <>
@@ -46,6 +54,7 @@ const GeneralInfoForm: React.FC = () => {
         {errors.generalInfo?.dateOfBirth && (
           <div>Пожалуйста, введите дату рождения</div>
         )}
+        {dateOfBirth && <div>Возраст: {age} лет</div>}
       </div>
 
       {/* Страна и город рождения */}
