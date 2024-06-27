@@ -1,28 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Control,
-  Controller,
-  FieldErrors,
-  useFormContext,
-} from "react-hook-form";
-import { useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { FormData } from "../../../pages/Form";
+import { useState } from 'react';
 
-interface PartnerFieldsProps {
-  control: Control<any>;
-  errors: FieldErrors<any>;
-  maritalStatus: string;
-  methods: any;
-}
+const PartnerFields: React.FC = () => {
+  const {
+    control,
+    formState: { errors },
+    watch,
+    setValue,
+  } = useFormContext<FormData>();
 
-const PartnerFields: React.FC<PartnerFieldsProps> = ({
-  control,
-  errors,
-  maritalStatus,
-  methods,
-}) => {
   const [showOtherOccupation, setShowOtherOccupation] = useState(false);
-
-  const { setValue } = useFormContext();
 
   const handlePartnerOccupationChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -31,6 +20,8 @@ const PartnerFields: React.FC<PartnerFieldsProps> = ({
     setShowOtherOccupation(selectedValue === "свой вариант");
     setValue("currentMaritalStatus.partnerOccupation", selectedValue);
   };
+
+  const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
 
   return (
     <>
@@ -44,7 +35,7 @@ const PartnerFields: React.FC<PartnerFieldsProps> = ({
         )}
       />
 
-      {methods.FormState.errors.partnerAge && (
+      {errors.currentMaritalStatus?.partnerAge && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="partnerOccupation">Сфера деятельности партнера:</label>
@@ -53,7 +44,9 @@ const PartnerFields: React.FC<PartnerFieldsProps> = ({
         control={control}
         rules={{ required: true }}
         defaultValue={
-          maritalStatus === "живу без партнера" ? undefined : "не работает"
+          maritalStatusToPartner === "живу без партнера"
+            ? undefined
+            : "не работает"
         }
         render={({ field }) => (
           <select
@@ -68,7 +61,7 @@ const PartnerFields: React.FC<PartnerFieldsProps> = ({
           </select>
         )}
       />
-      {methods.FormState.errors.partnerOccupation && (
+      {errors.currentMaritalStatus?.partnerOccupation && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -91,7 +84,7 @@ const PartnerFields: React.FC<PartnerFieldsProps> = ({
           <input type="text" id="partnerProfession" {...field} />
         )}
       />
-      {methods.FormState.errors.partnerProfession && (
+      {errors.currentMaritalStatus?.partnerProfession && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

@@ -1,29 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
-import {
-  Control,
-  Controller,
-  FieldErrors,
-  useFormContext,
-} from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 import PartnerFields from "./PartnerFields/PartnerFields";
+import { FormData } from "../../pages/Form";
 
-interface MaritalStatusFormProps {
-  control: Control<any>;
-  errors: FieldErrors<any>;
-  methods: any;
-}
+const MaritalStatusForm: React.FC = () => {
+  const {
+    control,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useFormContext<FormData>();
 
-const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
-  control,
-  errors,
-  methods,
-}) => {
   const [showPartnerFields, setShowPartnerFields] = useState(false);
   const [showOtherMaritalStatus, setShowOtherMaritalStatus] = useState(false);
-
-  const { watch, setValue } = useFormContext();
-  const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
 
   const handleMaritalStatusChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -33,7 +23,18 @@ const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
     setShowOtherMaritalStatus(selectedValue === "иное");
     setValue("currentMaritalStatus.maritalStatus", selectedValue);
   };
+  
+  const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
 
+  useEffect(() => {
+    console.log("Статус изменился на:", maritalStatusToPartner);
+    if (maritalStatusToPartner === "живу без партнера") {
+      setValue("currentMaritalStatus.partnerAge", undefined);
+      setValue("currentMaritalStatus.partnerOccupation", undefined);
+      setValue("currentMaritalStatus.otherOccupation", undefined);
+      setValue("currentMaritalStatus.partnerProfession", undefined);
+    }
+  }, [maritalStatusToPartner, setValue]);
   return (
     <>
       <h4>Актуальное семейное положение:</h4>
@@ -59,7 +60,6 @@ const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
           </select>
         )}
       />
-
       {showOtherMaritalStatus && (
         <Controller
           name="currentMaritalStatus.otherMaritalStatus"
@@ -69,18 +69,12 @@ const MaritalStatusForm: React.FC<MaritalStatusFormProps> = ({
           )}
         />
       )}
-      {methods.FormState.errors.maritalStatus && (
+
+      {errors.currentMaritalStatus?.maritalStatus && (
         <span>Поле обязательно для заполнения</span>
       )}
 
-      {showPartnerFields && (
-        <PartnerFields
-          control={control}
-          errors={errors}
-          methods={methods}
-          maritalStatus={maritalStatusToPartner}
-        />
-      )}
+      {showPartnerFields && <PartnerFields />}
     </>
   );
 };

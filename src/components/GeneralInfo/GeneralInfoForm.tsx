@@ -1,23 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Control,
-  Controller,
-  FieldErrors,
-  UseFormRegister,
-} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
+import { FormData } from '../../pages/Form';
+// import { GeneralInfo } from "./GeneralInfo.types";
 
-interface GeneralInfoFormProps {
-  control: Control<any>;
-  register: UseFormRegister<any>;
-  errors: FieldErrors<any>;
-  methods: any;
-}
+const GeneralInfoForm: React.FC = () => {
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<FormData>();
 
-const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
-  control,
-  errors,
-  methods,
-}) => {
   return (
     <>
       <h3>Общие данные</h3>
@@ -29,9 +20,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
           rules={{ required: true }}
           render={({ field }) => <input type="text" id="fullName" {...field} />}
         />
-        {methods.FormState.errors.fullName && (
-          <div> Пожалуйста, введите ФИО</div>
-        )}
+        {errors.generalInfo?.fullName && <div> Пожалуйста, введите ФИО</div>}
       </div>
 
       {/* Пол */}
@@ -54,7 +43,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
             <input type="date" id="dateOfBirth" {...field} />
           )}
         />
-        {methods.FormState.errors.dateOfBirth && (
+        {errors.generalInfo?.dateOfBirth && (
           <div>Пожалуйста, введите дату рождения</div>
         )}
       </div>
@@ -68,7 +57,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
           rules={{ required: true }}
           render={({ field }) => <input type="text" id="country" {...field} />}
         />
-        {methods.FormState.errors.country && (
+        {errors.generalInfo?.countryCity?.country && (
           <div>Пожалуйста, введите страну</div>
         )}
       </div>
@@ -81,7 +70,9 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = ({
           rules={{ required: true }}
           render={({ field }) => <input type="text" id="city" {...field} />}
         />
-        {methods.FormState.errors.city && <div>Пожалуйста, введите город</div>}
+        {errors.generalInfo?.countryCity?.city && (
+          <div>Пожалуйста, введите город</div>
+        )}
       </div>
 
       {/* Контактные данные */}

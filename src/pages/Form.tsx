@@ -6,7 +6,7 @@ import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
 import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.types";
 import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
 
-type FormData = {
+export type FormData = {
   generalInfo: GeneralInfo;
   currentMaritalStatus: CurrentMaritalStatus;
 };
@@ -16,9 +16,27 @@ const Form: React.FC = () => {
 
   const methods = useForm<FormData>({
     defaultValues: {
-      generalInfo: { gender: "male" },
+      generalInfo: {
+        fullName: undefined,
+        gender: "male",
+        dateOfBirth: undefined,
+        countryCity: {
+          country: undefined,
+          city: undefined,
+        },
+        contacts: {
+          phone: undefined,
+          telegram: undefined,
+          email: undefined,
+        },
+      },
       currentMaritalStatus: {
         maritalStatus: "живу без партнера",
+        otherMaritalStatus: undefined,
+        partnerAge: undefined,
+        partnerOccupation: undefined,
+        partnerProfession: undefined,
+        otherOccupation: undefined,
       },
     },
   });
@@ -48,15 +66,8 @@ const Form: React.FC = () => {
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <FormProvider {...methods}>
             <GeneralInfoForm
-              control={methods.control}
-              register={methods.register}
-              errors={methods.formState.errors}
-              methods={methods}
             />
             <MaritalStatusForm
-              control={methods.control}
-              errors={methods.formState.errors}
-              methods={methods}
             />
             {/* Кнопка отправки */}
             <button type="submit">Отправить</button>
