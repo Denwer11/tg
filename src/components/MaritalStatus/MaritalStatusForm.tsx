@@ -23,11 +23,10 @@ const MaritalStatusForm: React.FC = () => {
     setShowOtherMaritalStatus(selectedValue === "иное");
     setValue("currentMaritalStatus.maritalStatus", selectedValue);
   };
-  
+
   const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
 
   useEffect(() => {
-    console.log("Статус изменился на:", maritalStatusToPartner);
     if (maritalStatusToPartner === "живу без партнера") {
       setValue("currentMaritalStatus.partnerAge", undefined);
       setValue("currentMaritalStatus.partnerOccupation", undefined);
@@ -35,6 +34,7 @@ const MaritalStatusForm: React.FC = () => {
       setValue("currentMaritalStatus.partnerProfession", undefined);
     }
   }, [maritalStatusToPartner, setValue]);
+  
   return (
     <>
       <h4>Актуальное семейное положение:</h4>
