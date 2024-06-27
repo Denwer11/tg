@@ -155,7 +155,7 @@ const Form: React.FC = () => {
           <FormProvider {...methods}>
             <GeneralInfoForm />
             <MaritalStatusForm />
-            <ParentFamilyForm />
+            {/* <ParentFamilyForm /> */}
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>

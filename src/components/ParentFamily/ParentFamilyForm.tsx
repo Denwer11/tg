@@ -183,8 +183,8 @@ const ParentFamilyForm: React.FC = () => {
         )}
       />
 
-      <label htmlFor="father.birthYear">Год рождения</label>
       <h4>Отец:</h4>
+      <label htmlFor="father.birthYear">Год рождения</label>
       <Controller
         name="parentFamily.father.birthYear"
         control={control}
