@@ -17,7 +17,7 @@ const Form: React.FC = () => {
   const methods = useForm<FormData>({
     defaultValues: {
       generalInfo: {
-        fullName: undefined,
+        fullName: "",
         gender: "male",
         dateOfBirth: undefined,
         countryCity: {
@@ -37,6 +37,23 @@ const Form: React.FC = () => {
         partnerOccupation: undefined,
         partnerProfession: undefined,
         otherOccupation: undefined,
+        relationshipDuration: "меньше года",
+        relationshipQuality: "очень хорошие",
+        longestRelationshipDuration: undefined,
+        relationshipEndReason: "разрыв по инициативе партнера",
+        numberOfRelationships: undefined,
+        hasChildren: "no",
+        children: [{ gender: "cын", age: undefined }],
+        adoptedChildren: [
+          {
+            gender: undefined,
+            age: undefined,
+            adoptionAge: undefined,
+          },
+        ],
+        relationshipWithChildren: undefined,
+        livingConditions: undefined,
+        livingConditionsSatisfaction: undefined,
       },
     },
   });

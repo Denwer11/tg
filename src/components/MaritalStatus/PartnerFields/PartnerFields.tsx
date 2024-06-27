@@ -2,6 +2,7 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
 import { useState } from 'react';
+import { PartnerOccupationOptions } from '../Options';
 
 const PartnerFields: React.FC = () => {
   const {
@@ -26,15 +27,22 @@ const PartnerFields: React.FC = () => {
   return (
     <>
       <label htmlFor="partnerAge">Возраст партнера:</label>
-      <Controller
-        name="currentMaritalStatus.partnerAge"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <input type="number" id="partnerAge" {...field} />
-        )}
-      />
-
+      <div className="form-age">
+        <Controller
+          name="currentMaritalStatus.partnerAge"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <input
+              type="number"
+              id="partnerAge"
+              {...field}
+              className="input-age"
+            />
+          )}
+        />
+        <span className="span-age"> лет</span>
+      </div>
       {errors.currentMaritalStatus?.partnerAge && (
         <span>Поле обязательно для заполнения</span>
       )}
@@ -54,10 +62,11 @@ const PartnerFields: React.FC = () => {
             {...field}
             onChange={handlePartnerOccupationChange}
           >
-            <option value="не работает">Не работает</option>
-            <option value="учится">Учится</option>
-            <option value="работает">Работает</option>
-            <option value="свой вариант">Свой вариант</option>
+            {PartnerOccupationOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         )}
       />

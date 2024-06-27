@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import PartnerFields from "./PartnerFields/PartnerFields";
 import { FormData } from "../../pages/Form";
+import RelationshipsFields from "./RelationshipsFields/RelationshipsFields";
+import { MaritalStatusOptions } from './Options';
 
 const MaritalStatusForm: React.FC = () => {
   const {
@@ -34,29 +36,26 @@ const MaritalStatusForm: React.FC = () => {
       setValue("currentMaritalStatus.partnerProfession", undefined);
     }
   }, [maritalStatusToPartner, setValue]);
-  
+
   return (
     <>
-      <h4>Актуальное семейное положение:</h4>
+      <h3>Актуальное семейное положение</h3>
       <label htmlFor="maritalStatus">Семейное положение: </label>
       <Controller
         name="currentMaritalStatus.maritalStatus"
         control={control}
+        rules={{ required: true }}
         render={({ field }) => (
           <select
             id="maritalStatus"
             {...field}
             onChange={handleMaritalStatusChange}
           >
-            <option value="живу без партнера">Живу без партнера</option>
-            <option value="в гражданском браке">В гражданском браке</option>
-            <option value="в браке, но вместе не живем">
-              В браке, но вместе не живем
-            </option>
-            <option value="в разводе">В разводе</option>
-            <option value="вдова(ец)">Вдова(ец)</option>
-            <option value="в браке">В браке</option>
-            <option value="иное">Иное</option>
+            {MaritalStatusOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         )}
       />
@@ -64,17 +63,18 @@ const MaritalStatusForm: React.FC = () => {
         <Controller
           name="currentMaritalStatus.otherMaritalStatus"
           control={control}
+          rules={{ required: true }}
           render={({ field }) => (
             <input type="text" id="otherMaritalStatus" {...field} />
           )}
         />
       )}
-
       {errors.currentMaritalStatus?.maritalStatus && (
         <span>Поле обязательно для заполнения</span>
       )}
-
       {showPartnerFields && <PartnerFields />}
+
+      <RelationshipsFields />
     </>
   );
 };
