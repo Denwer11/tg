@@ -5,6 +5,7 @@ import PartnerFields from "./PartnerFields/PartnerFields";
 import { FormData } from "../../pages/Form";
 import RelationshipsFields from "./RelationshipsFields/RelationshipsFields";
 import { MaritalStatusOptions } from './Options';
+import ChildrenFields from './ChildrenFields/ChildrenFields';
 
 const MaritalStatusForm: React.FC = () => {
   const {
@@ -75,6 +76,7 @@ const MaritalStatusForm: React.FC = () => {
       {showPartnerFields && <PartnerFields />}
 
       <RelationshipsFields />
+      <ChildrenFields/>
     </>
   );
 };
