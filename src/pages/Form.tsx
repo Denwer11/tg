@@ -5,10 +5,13 @@ import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
 import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.types";
 import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
+import { ParentFamily } from "../components/ParentFamily/ParentFamily.types";
+import ParentFamilyForm from "../components/ParentFamily/ParentFamilyForm";
 
 export type FormData = {
   generalInfo: GeneralInfo;
   currentMaritalStatus: CurrentMaritalStatus;
+  parentFamily: ParentFamily;
 };
 
 const Form: React.FC = () => {
@@ -17,8 +20,8 @@ const Form: React.FC = () => {
   const methods = useForm<FormData>({
     defaultValues: {
       generalInfo: {
-        fullName: "",
-        gender: "male",
+        fullName: undefined,
+        gender: "мужской",
         dateOfBirth: undefined,
         countryCity: {
           country: undefined,
@@ -30,6 +33,7 @@ const Form: React.FC = () => {
           email: undefined,
         },
       },
+
       currentMaritalStatus: {
         maritalStatus: "живу без партнера",
         otherMaritalStatus: undefined,
@@ -42,8 +46,8 @@ const Form: React.FC = () => {
         longestRelationshipDuration: undefined,
         relationshipEndReason: "разрыв по инициативе партнера",
         numberOfRelationships: undefined,
-        hasChildren: "no",
-        children: [{ gender: "cын", age: undefined }],
+        hasChildren: "нет",
+        children: [{ gender: "сын", age: undefined }],
         adoptedChildren: [
           {
             gender: undefined,
@@ -54,6 +58,68 @@ const Form: React.FC = () => {
         relationshipWithChildren: undefined,
         livingConditions: undefined,
         livingConditionsSatisfaction: undefined,
+      },
+
+      parentFamily: {
+        mother: {
+          birthYear: undefined,
+          profession: undefined,
+          ageAtBirth: undefined,
+          totalChildren: undefined,
+          comment: undefined,
+        },
+        motherRelationship: {
+          rating: "не жила со мной, я воспитывался другим человеком",
+          comment: undefined,
+        },
+        father: {
+          birthYear: undefined,
+          profession: undefined,
+          ageAtBirth: undefined,
+          comment: undefined,
+        },
+        fatherRelationship: {
+          rating: "не жил со мной, я воспитывался другим человеком",
+          comment: undefined,
+        },
+        hasStepmother: "нет",
+        stepmother: {
+          rating:
+            "в моем детстве жили вместе, но громко ругались или имело место эмоциональное или физическое насилие",
+          yearsTogether: undefined,
+          comment: undefined,
+        },
+        hasStepfather: "нет",
+        stepfather: {
+          rating: undefined,
+          yearsTogether: undefined,
+          comment: undefined,
+        },
+        hasDivorce: "нет",
+        divorce: {
+          ageAtDivorce: undefined,
+          whoLivedWith: undefined,
+          emotionalState: undefined,
+        },
+        hasSiblings: "нет",
+        siblings: [
+          {
+            order: undefined,
+            totalSiblings: undefined,
+            siblingsInfo: {
+              relation: "брат",
+              ageDifference: undefined,
+              profession: undefined,
+            },
+            childhoodRelationship: undefined,
+            currentRelationship: undefined,
+          },
+        ],
+        hasParentalOverprotection: "нет",
+        parentalOverprotection: {
+          overprotected: false,
+          perception: undefined,
+        },
       },
     },
   });
@@ -89,7 +155,7 @@ const Form: React.FC = () => {
           <FormProvider {...methods}>
             <GeneralInfoForm />
             <MaritalStatusForm />
-            {/* Кнопка отправки */}
+            <ParentFamilyForm />
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>

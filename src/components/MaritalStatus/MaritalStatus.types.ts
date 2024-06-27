@@ -12,13 +12,13 @@ export type CurrentMaritalStatus = {
   numberOfRelationships: number;
   hasChildren: string;
   children?: Array<{
-    gender?: string;
-    age?: number;
+    gender: "сын" | "дочь";
+    age: number;
   }>;
   adoptedChildren?: Array<{
-    gender?: string;
-    age?: number;
-    adoptionAge?: number;
+    gender: "сын" | "дочь";
+    age: number;
+    adoptionAge: number;
   }>;
   relationshipWithChildren?: string;
   livingConditions: string;

@@ -1,9 +1,9 @@
 export type GeneralInfo = {
   fullName: string;
-  gender: "male" | "female";
+  gender: "мужской" | "женский";
   dateOfBirth: string;
   countryCity: CountryCity;
-  contacts: Contacts;
+  contacts?: Contacts;
 };
 
 export type CountryCity = {

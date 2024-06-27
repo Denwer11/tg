@@ -73,8 +73,8 @@ const MaritalStatusForm: React.FC = () => {
       {errors.currentMaritalStatus?.maritalStatus && (
         <span>Поле обязательно для заполнения</span>
       )}
-      {showPartnerFields && <PartnerFields />}
 
+      {showPartnerFields && <PartnerFields />}
       <RelationshipsFields />
       <ChildrenFields/>
     </>

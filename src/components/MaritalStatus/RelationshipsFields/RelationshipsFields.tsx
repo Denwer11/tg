@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
-import { RelationshipDurationOptions, RelationshipEndReasonOptions, RelationshipQualityOptions } from '../Options';
+import {
+  RelationshipDurationOptions,
+  RelationshipEndReasonOptions,
+  RelationshipQualityOptions,
+} from "../Options";
 
-const RelationshipsFields = () => {
+const RelationshipsFields: React.FC = () => {
   const {
     control,
     formState: { errors },

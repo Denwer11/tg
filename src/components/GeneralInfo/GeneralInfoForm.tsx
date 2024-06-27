@@ -1,22 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from '../../pages/Form';
+import { FormData } from "../../pages/Form";
+import { useEffect } from "react";
 
 const GeneralInfoForm: React.FC = () => {
   const {
     control,
     formState: { errors },
-    watch
+    watch,
+    setValue,
   } = useFormContext<FormData>();
 
-  const dateOfBirth = watch("generalInfo.dateOfBirth"); 
+  const dateOfBirth = watch("generalInfo.dateOfBirth");
   const age = dateOfBirth
     ? Math.floor(
         (new Date().getTime() - new Date(dateOfBirth).getTime()) /
           (1000 * 60 * 60 * 24 * 365.25)
       )
     : null;
+  const contacts = watch("generalInfo.contacts");
 
+  useEffect(() => {
+    const allFieldsUndefined =
+      contacts && Object.values(contacts).every((value) => value === undefined);
+    if (allFieldsUndefined) {
+      setValue("generalInfo.contacts", undefined);
+    }
+  }, [contacts, setValue]);
+  
+  console.log(watch("generalInfo.contacts"));
   return (
     <>
       <h3>Общие данные</h3>
@@ -35,8 +47,8 @@ const GeneralInfoForm: React.FC = () => {
       <div>
         <label htmlFor="gender">Пол: </label>
         <select id="gender">
-          <option value="male">Мужской</option>
-          <option value="female">Женский</option>
+          <option value="мужской">Мужской</option>
+          <option value="женский">Женский</option>
         </select>
       </div>
 

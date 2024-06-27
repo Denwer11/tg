@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
 
-const ChildrenFields = () => {
+const ChildrenFields: React.FC = () => {
   const {
     control,
     formState: { errors },
@@ -19,16 +19,16 @@ const ChildrenFields = () => {
   const addChild = () => {
     setChildren(
       children
-        ? [...children, { gender: "male", age: 0 }]
-        : [{ gender: "", age: 0 }]
+        ? [...children, { gender: "сын", age: 0 }]
+        : [{ gender: "сын", age: 0 }]
     );
   };
 
   const addAdoptedChild = () => {
     setAdoptedChildren(
       adoptedChildren
-        ? [...adoptedChildren, { gender: "male", age: 0, adoptionAge: 0 }]
-        : [{ gender: "", age: 0, adoptionAge: 0 }]
+        ? [...adoptedChildren, { gender: "сын", age: 0, adoptionAge: 0 }]
+        : [{ gender: "сын", age: 0, adoptionAge: 0 }]
     );
   };
 
@@ -40,22 +40,21 @@ const ChildrenFields = () => {
   const hasChildren = watch("currentMaritalStatus.hasChildren");
 
   useEffect(() => {
-    if (hasChildren === "yes") {
-      setValue("currentMaritalStatus.children", [{ gender: "male", age: 0 }]);
+    if (hasChildren === "да") {
+      setValue("currentMaritalStatus.children", [{ gender: "сын", age: 0 }]);
+      setValue("currentMaritalStatus.adoptedChildren", undefined);
     } else if (
       typeof adoptedChildren === "undefined" ||
       adoptedChildren.length === 0
     ) {
       setValue("currentMaritalStatus.adoptedChildren", undefined);
+      setValue("currentMaritalStatus.children", undefined);
     } else {
-      setValue("currentMaritalStatus.children", [
-        { gender: undefined, age: undefined },
-      ]);
-      setValue("currentMaritalStatus.adoptedChildren", [
-        { gender: undefined, age: undefined, adoptionAge: undefined },
-      ]);
+      setValue("currentMaritalStatus.adoptedChildren", undefined);
+      setValue("currentMaritalStatus.children", undefined);
     }
-  }, [hasChildren, setValue]);
+  }, [hasChildren, setValue, adoptedChildren]);
+
   return (
     <>
       <label htmlFor="hasChildren">У вас есть дети или приемные дети?</label>
@@ -70,11 +69,11 @@ const ChildrenFields = () => {
                 type="radio"
                 id="hasChildren-yes"
                 {...field}
-                checked={field.value === "yes"}
-                value="yes"
-                onChange={(e) => {
-                  field.onChange(e);
-                  setShowChildrenDetails(e.target.value === "yes");
+                checked={field.value === "да"}
+                value="да"
+                onChange={() => {
+                  field.onChange("да");
+                  setShowChildrenDetails(true);
                 }}
               />
               <label htmlFor="hasChildren-yes">Да</label>
@@ -82,11 +81,11 @@ const ChildrenFields = () => {
                 type="radio"
                 id="hasChildren-no"
                 {...field}
-                checked={field.value === "no"}
-                value="no"
-                onChange={(e) => {
-                  field.onChange(e);
-                  setShowChildrenDetails(e.target.value === "yes");
+                checked={field.value === "нет"}
+                value="нет"
+                onChange={() => {
+                  field.onChange("нет");
+                  setShowChildrenDetails(false);
                   resetChildrenFields();
                 }}
               />
