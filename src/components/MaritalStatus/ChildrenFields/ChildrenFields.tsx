@@ -102,7 +102,7 @@ const ChildrenFields = () => {
       {showChildrenDetails && (
         <>
           <h4>Ваши дети:</h4>
-          {children?.map((child, index) => (
+          {children?.map((_child, index) => (
             <div key={index}>
               <label htmlFor={`childGender-${index}`}>Пол:</label>
               <Controller
@@ -135,7 +135,7 @@ const ChildrenFields = () => {
             Добавить ребенка
           </button>
           <h4>Приемные дети:</h4>
-          {adoptedChildren?.map((child, index) => (
+          {adoptedChildren?.map((_child, index) => (
             <div key={index}>
               <div>
                 <label htmlFor={`adoptedChildGender-${index}`}>Пол:</label>
