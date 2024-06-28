@@ -1,7 +1,7 @@
-import React from "react";
-import { Controller, useFormContext } from 'react-hook-form';
-import { FormData } from '../../../pages/Form';
-import { SiblingInfo } from '../ParentFamily.types';
+import React, { useEffect } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { FormData } from "../../../pages/Form";
+import { SiblingInfo } from "../ParentFamily.types";
 
 interface AddSiblingsFieldsProps {
   siblings: SiblingInfo[];
@@ -15,7 +15,26 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
   const {
     control,
     formState: { errors },
+    watch,
+    setValue,
   } = useFormContext<FormData>();
+
+  const hasSiblings = watch("parentFamily.hasSiblings");
+
+  useEffect(() => {
+    if (hasSiblings === "да") {
+      setValue("parentFamily.siblings.siblingsInfo", [
+        {
+          relation: "брат",
+          ageDifference: 0,
+          profession: "",
+        },
+      ]);
+    } else {
+      setValue("parentFamily.siblings", undefined);
+    }
+  }, [hasSiblings, setValue]);
+  
   return (
     <>
       <h4>Добавить братьев и сестер:</h4>
