@@ -1,58 +1,78 @@
 export type ParentFamily = {
-  mother: {
-    birthYear: number;
-    profession: string;
-    ageAtBirth: number;
-    totalChildren: number;
-    comment?: string;
-  };
-  motherRelationship: {
-    rating: string;
-    comment?: string;
-  };
-  father: {
-    birthYear: number;
-    profession: string;
-    ageAtBirth: number;
-    comment?: string;
-  };
-  fatherRelationship: {
-    rating: string;
-    comment?: string;
-  };
+  mother: Mother;
+  motherRelationship: MtherRelationship;
+  father: Father;
+  fatherRelationship: FatherRelationship;
   hasStepmother: string;
-  stepmother?: {
-    rating: string;
-    yearsTogether: number;
-    comment?: string;
-  };
+  stepmother?: Stepmother;
   hasStepfather: string;
-  stepfather?: {
-    rating: string;
-    yearsTogether: number;
-    comment?: string;
-  };
+  stepfather?: Stepfather;
   hasDivorce: string;
-  divorce: {
-    ageAtDivorce: number;
-    whoLivedWith: string;
-    emotionalState: number;
-  };
+  divorce?: Divorce;
   hasSiblings: string;
-  siblings?: Array<{
-    order: number;
-    totalSiblings: number;
-    siblingsInfo: {
-      relation: "брат" | "сестра";
-      ageDifference: number;
-      profession: string;
-    };
-    childhoodRelationship: string;
-    currentRelationship: string;
-  }>;
+  siblings?: Sibling;
   hasParentalOverprotection: string;
-  parentalOverprotection: {
-    overprotected: boolean;
-    perception: string;
-  };
+  parentalOverprotection: ParentalOverprotection;
+};
+
+export type Mother = {
+  birthYear: number;
+  profession: string;
+  ageAtBirth: number;
+  totalChildren: number;
+  comment?: string;
+};
+
+export type MtherRelationship = {
+  rating: string;
+  comment?: string;
+};
+
+export type Father = {
+  birthYear: number;
+  profession: string;
+  ageAtBirth: number;
+  comment?: string;
+};
+
+export type FatherRelationship = {
+  rating: string;
+  comment?: string;
+};
+
+export type Stepmother = {
+  rating: string;
+  yearsTogether: number;
+  comment?: string;
+};
+
+export type Stepfather = {
+  rating: string;
+  yearsTogether: number;
+  comment?: string;
+};
+
+export type Divorce = {
+  ageAtDivorce: number;
+  whoLivedWith: string;
+  emotionalState: number;
+};
+
+export type Sibling = {
+  order: number;
+  totalSiblings: number;
+  siblingsInfo: SiblingInfo[];
+  childhoodRelationship: string;
+  currentRelationship: string;
+};
+
+export type ParentalOverprotection = {
+  overprotected: boolean;
+  perception: string;
+};
+
+export type SiblingInfo = {
+  relation: "брат" | "сестра";
+  ageDifference: number;
+  profession: string;
 };

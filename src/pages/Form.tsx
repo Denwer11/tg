@@ -7,6 +7,20 @@ import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.
 import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
 import { ParentFamily } from "../components/ParentFamily/ParentFamily.types";
 import ParentFamilyForm from "../components/ParentFamily/ParentFamilyForm";
+import {
+  defaultContacts,
+  defaultCountryCity,
+} from "../defaultValues/generalInfo";
+import {
+  defaultDivorce,
+  defaultFather,
+  defaultFatherRelationship,
+  defaultMother,
+  defaultMotherRelationship,
+  defaultParentalOverprotection,
+  defaultStepfather,
+  defaultStepmother,
+} from "../defaultValues/parentFamily";
 
 export type FormData = {
   generalInfo: GeneralInfo;
@@ -23,15 +37,8 @@ const Form: React.FC = () => {
         fullName: undefined,
         gender: "мужской",
         dateOfBirth: undefined,
-        countryCity: {
-          country: undefined,
-          city: undefined,
-        },
-        contacts: {
-          phone: undefined,
-          telegram: undefined,
-          email: undefined,
-        },
+        countryCity: defaultCountryCity,
+        contacts: defaultContacts,
       },
 
       currentMaritalStatus: {
@@ -50,7 +57,7 @@ const Form: React.FC = () => {
         children: [{ gender: "сын", age: undefined }],
         adoptedChildren: [
           {
-            gender: undefined,
+            gender: "сын",
             age: undefined,
             adoptionAge: undefined,
           },
@@ -61,65 +68,32 @@ const Form: React.FC = () => {
       },
 
       parentFamily: {
-        mother: {
-          birthYear: undefined,
-          profession: undefined,
-          ageAtBirth: undefined,
-          totalChildren: undefined,
-          comment: undefined,
-        },
-        motherRelationship: {
-          rating: "не жила со мной, я воспитывался другим человеком",
-          comment: undefined,
-        },
-        father: {
-          birthYear: undefined,
-          profession: undefined,
-          ageAtBirth: undefined,
-          comment: undefined,
-        },
-        fatherRelationship: {
-          rating: "не жил со мной, я воспитывался другим человеком",
-          comment: undefined,
-        },
+        mother: defaultMother,
+        motherRelationship: defaultMotherRelationship,
+        father: defaultFather,
+        fatherRelationship: defaultFatherRelationship,
         hasStepmother: "нет",
-        stepmother: {
-          rating:
-            "в моем детстве жили вместе, но громко ругались или имело место эмоциональное или физическое насилие",
-          yearsTogether: undefined,
-          comment: undefined,
-        },
+        stepmother: defaultStepmother,
         hasStepfather: "нет",
-        stepfather: {
-          rating: undefined,
-          yearsTogether: undefined,
-          comment: undefined,
-        },
+        stepfather: defaultStepfather,
         hasDivorce: "нет",
-        divorce: {
-          ageAtDivorce: undefined,
-          whoLivedWith: undefined,
-          emotionalState: undefined,
-        },
+        divorce: defaultDivorce,
         hasSiblings: "нет",
-        siblings: [
-          {
-            order: undefined,
-            totalSiblings: undefined,
-            siblingsInfo: {
+        siblings: {
+          order: undefined,
+          totalSiblings: undefined,
+          siblingsInfo: [
+            {
               relation: "брат",
               ageDifference: undefined,
               profession: undefined,
             },
-            childhoodRelationship: undefined,
-            currentRelationship: undefined,
-          },
-        ],
-        hasParentalOverprotection: "нет",
-        parentalOverprotection: {
-          overprotected: false,
-          perception: undefined,
+          ],
+          childhoodRelationship: "чаще жертвой агрессии братьев/сестер",
+          currentRelationship: "не общаемся, в конфликте",
         },
+        hasParentalOverprotection: "нет",
+        parentalOverprotection: defaultParentalOverprotection,
       },
     },
   });

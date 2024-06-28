@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import PartnerFields from "./PartnerFields/PartnerFields";
+import PartnerFields from "./Partner/PartnerFields";
 import { FormData } from "../../pages/Form";
-import RelationshipsFields from "./RelationshipsFields/RelationshipsFields";
-import { MaritalStatusOptions } from './Options';
-import ChildrenFields from './ChildrenFields/ChildrenFields';
+import RelationshipsFields from "./Relationships/RelationshipsFields";
+import { MaritalStatusOptions } from './options';
+import ChildrenFields from './Children/ChildrenFields';
 
 const MaritalStatusForm: React.FC = () => {
   const {

@@ -5,7 +5,7 @@ import {
   RelationshipDurationOptions,
   RelationshipEndReasonOptions,
   RelationshipQualityOptions,
-} from "../Options";
+} from "../options";
 
 const RelationshipsFields: React.FC = () => {
   const {
