@@ -2,7 +2,7 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
 import { useState } from 'react';
-import { PartnerOccupationOptions } from '../options';
+import { PartnerOccupationOptions } from '../Options';
 
 const PartnerFields: React.FC = () => {
   const {

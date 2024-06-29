@@ -3,7 +3,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import {
   siblingsChildhoodRelationshipOptions,
   siblingsCurrentRelationshipOptions,
-} from "../options";
+} from "../Options";
 import { FormData } from "../../../pages/Form";
 
 const RelationshipFields: React.FC = () => {
@@ -58,9 +58,6 @@ const RelationshipFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.parentFamily?.siblings?.childhoodRelationship && (
-        <span>Поле обязательно для заполнения</span>
-      )}
       {showChildhoodRelationshipCustomField && (
         <div>
           <label htmlFor="siblings.childhoodRelationship.custom">
@@ -104,9 +101,6 @@ const RelationshipFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.parentFamily?.siblings?.currentRelationship && (
-        <span>Поле обязательно для заполнения</span>
-      )}
       {showCurrentRelationshipCustomField && (
         <div>
           <label htmlFor="siblings.childhoodRelationship.custom">

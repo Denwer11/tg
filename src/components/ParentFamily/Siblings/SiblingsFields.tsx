@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
-import { SiblingInfo } from "../ParentFamily.types";
 import AddSiblingsFields from "./AddSiblingsFields";
 import RelationshipFields from "./RelationshipFields";
+import { SiblingInfo } from "../ParentFamily.types";
 
 const SiblingsFields: React.FC = () => {
   const {
     control,
     formState: { errors },
+    watch,
+    setValue,
   } = useFormContext<FormData>();
 
   const [showSiblings, setShowSiblings] = useState(false);
   const [siblings, setSiblings] = useState<SiblingInfo[]>([]);
+
+  const removeSibling = (index: number) => {
+    setSiblings(siblings?.filter((_, i) => i !== index));
+  };
 
   const addSibling = () => {
     setSiblings(
@@ -38,6 +44,16 @@ const SiblingsFields: React.FC = () => {
   const resetSiblingsFields = () => {
     setSiblings([]);
   };
+
+  const hasSiblings = watch("parentFamily.hasSiblings");
+
+  useEffect(() => {
+    if (hasSiblings === "нет") {
+      // setValue("parentFamily.siblings.siblingsInfo", undefined);
+      setValue("parentFamily.siblings", undefined);
+    }
+  }, [hasSiblings, setValue]);
+
   return (
     <>
       <label htmlFor="hasSiblings">Были ли у вас братья и сестры?</label>
@@ -82,7 +98,42 @@ const SiblingsFields: React.FC = () => {
       )}
       {showSiblings && (
         <>
-          <AddSiblingsFields siblings={siblings} addSibling={addSibling} />
+          <label htmlFor="siblings.order">По порядку рождения Вы были №</label>
+          <div className="form-age">
+            <Controller
+              name="parentFamily.siblings.order"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <input
+                  type="number"
+                  id="siblings.order"
+                  className="input-number"
+                  {...field}
+                />
+              )}
+            />
+            <span className="span-age">из</span>
+            <Controller
+              name="parentFamily.siblings.totalSiblings"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <input
+                  type="number"
+                  id="siblings.totalSiblings"
+                  className="input-number"
+                  {...field}
+                />
+              )}
+            />
+            <span className="span-age">детей в семье.</span>
+          </div>
+          <AddSiblingsFields
+            siblings={siblings}
+            addSibling={addSibling}
+            removeSibling={removeSibling}
+          />
           <RelationshipFields />
         </>
       )}

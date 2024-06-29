@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
-import { divorceWhoLivedWithOptions } from "../options";
+import { divorceWhoLivedWithOptions } from "../Options";
 
 const Divorce: React.FC = () => {
   const {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm} from "react-hook-form";
 import ReactJson from "react-json-pretty";
 import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
@@ -17,7 +17,6 @@ import {
   defaultFatherRelationship,
   defaultMother,
   defaultMotherRelationship,
-  defaultParentalOverprotection,
   defaultStepfather,
   defaultStepmother,
 } from "../defaultValues/parentFamily";
@@ -84,7 +83,7 @@ const Form: React.FC = () => {
           totalSiblings: undefined,
           siblingsInfo: [
             {
-              relation: "брат",
+              relation: undefined,
               ageDifference: undefined,
               profession: undefined,
             },
@@ -93,7 +92,24 @@ const Form: React.FC = () => {
           currentRelationship: "не общаемся, в конфликте",
         },
         hasParentalOverprotection: "нет",
-        parentalOverprotection: defaultParentalOverprotection,
+        parentalOverprotection:
+          "очень негативно, как сильное давление, ограничение свободы",
+        relationshipParentsChildhood: {
+          relationshipParents: "жили отдельно и не встречались",
+          comment: undefined,
+        },
+        relationshipParentsNow: {
+          relationshipParents:
+            "Я зависим от их мнения, они активно участвуют в моей жизни (я согласую свои решения, они принимают участие в моих семейных делах, например решениях об отпуске, тратах, детях, я с ними советуюсь по большинству вопросов и нуждаюсь в их одобрении и т.д.)",
+          comment: undefined,
+        },
+        communication: "ежедневно",
+        hasDeaths: "нет",
+        deaths: {
+          whoDied: "брат",
+          myAge: 0,
+          copingWithLoss: "получали поддержку от семьи и друзей",
+        },
       },
     },
   });

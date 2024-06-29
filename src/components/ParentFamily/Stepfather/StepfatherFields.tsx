@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FormData } from "../../../pages/Form";
 import { Controller, useFormContext } from "react-hook-form";
-import { stepfatherRelationshipRatingOptions } from "../options";
+import { stepfatherRelationshipRatingOptions } from "../Options";
 
 const StepfatherFields: React.FC = () => {
   const {
@@ -142,6 +142,7 @@ const StepfatherFields: React.FC = () => {
               />
             )}
           />
+          <span className="span-age"> лет</span>
           {errors.parentFamily?.stepfather?.yearsTogether && (
             <span>Поле обязательно для заполнения</span>
           )}

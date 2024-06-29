@@ -6,11 +6,13 @@ import { SiblingInfo } from "../ParentFamily.types";
 interface AddSiblingsFieldsProps {
   siblings: SiblingInfo[];
   addSibling: () => void;
+  removeSibling: (index: number) => void;
 }
 
 const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
   siblings,
   addSibling,
+  removeSibling
 }) => {
   const {
     control,
@@ -30,11 +32,9 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
           profession: "",
         },
       ]);
-    } else {
-      setValue("parentFamily.siblings", undefined);
     }
   }, [hasSiblings, setValue]);
-  
+
   return (
     <>
       <h4>Добавить братьев и сестер:</h4>
@@ -46,8 +46,8 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
             control={control}
             render={({ field }) => (
               <select id={`siblingRelation-${index}`} {...field}>
-                <option value="brother">Сын</option>
-                <option value="sister">Дочь</option>
+                <option value="брат">Брат</option>
+                <option value="сестра">Сестра</option>
               </select>
             )}
           />
@@ -81,11 +81,21 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
           {errors.parentFamily?.siblings?.siblingsInfo?.[index]?.profession && (
             <span>Поле обязательно для заполнения</span>
           )}
+          <button
+            className="btn-delete"
+            type="button"
+            onClick={() => removeSibling(index)}
+          >
+            Удалить
+          </button>
         </div>
       ))}
       <button type="button" onClick={addSibling}>
         Добавить брата/сестру
       </button>
+      {errors.parentFamily?.siblings?.siblingsInfo && (
+        <span>Поле обязательно для заполнения</span>
+      )}
     </>
   );
 };

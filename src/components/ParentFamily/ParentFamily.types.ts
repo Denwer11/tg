@@ -12,7 +12,18 @@ export type ParentFamily = {
   hasSiblings: string;
   siblings?: Sibling;
   hasParentalOverprotection: string;
-  parentalOverprotection: ParentalOverprotection;
+  parentalOverprotection?: string;
+  relationshipParentsChildhood: RelationshipParentsChildhood;
+  relationshipParentsNow: RelationshipParentsNow;
+  communication: string;
+  hasDeaths: string;
+  deaths?: Deaths;
+};
+
+export type Deaths = {
+  whoDied: string;
+  myAge: number;
+  copingWithLoss: string;
 };
 
 export type Mother = {
@@ -66,9 +77,14 @@ export type Sibling = {
   currentRelationship: string;
 };
 
-export type ParentalOverprotection = {
-  overprotected: boolean;
-  perception: string;
+export type RelationshipParentsChildhood = {
+  relationshipParents: string;
+  comment?: string;
+};
+
+export type RelationshipParentsNow = {
+  relationshipParents: string;
+  comment?: string;
 };
 
 export type SiblingInfo = {

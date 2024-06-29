@@ -9,6 +9,7 @@ const ChildrenFields: React.FC = () => {
     setValue,
     watch,
   } = useFormContext<FormData>();
+
   const [showChildrenDetails, setShowChildrenDetails] = useState(false);
   const [children, setChildren] = useState<
     FormData["currentMaritalStatus"]["children"]
@@ -16,6 +17,7 @@ const ChildrenFields: React.FC = () => {
   const [adoptedChildren, setAdoptedChildren] = useState<
     FormData["currentMaritalStatus"]["adoptedChildren"]
   >([]);
+
   const addChild = () => {
     setChildren(
       children
@@ -30,6 +32,14 @@ const ChildrenFields: React.FC = () => {
         ? [...adoptedChildren, { gender: "сын", age: 0, adoptionAge: 0 }]
         : [{ gender: "сын", age: 0, adoptionAge: 0 }]
     );
+  };
+
+  const removeChild = (index: number) => {
+    setChildren(children?.filter((_, i) => i !== index));
+  };
+
+  const removeAdoptedChild = (index: number) => {
+    setAdoptedChildren(adoptedChildren?.filter((_, i) => i !== index));
   };
 
   const resetChildrenFields = () => {
@@ -54,6 +64,17 @@ const ChildrenFields: React.FC = () => {
       setValue("currentMaritalStatus.children", undefined);
     }
   }, [hasChildren, setValue, adoptedChildren]);
+
+  useEffect(() => {
+    if (
+      hasChildren === "да" &&
+      children?.length === 0 &&
+      adoptedChildren?.length
+    ) {
+      setValue("currentMaritalStatus.hasChildren", "нет");
+      setShowChildrenDetails(false);
+    }
+  }, [hasChildren, children, adoptedChildren, setValue]);
 
   return (
     <>
@@ -128,6 +149,13 @@ const ChildrenFields: React.FC = () => {
                 )}
               />
               <span className="span-age"> лет</span>
+              <button
+                type="button"
+                className="btn-delete"
+                onClick={() => removeChild(index)}
+              >
+                Удалить
+              </button>
             </div>
           ))}
           <button type="button" onClick={addChild}>
@@ -183,6 +211,13 @@ const ChildrenFields: React.FC = () => {
                 />
                 <span className="span-age"> лет</span>
               </div>
+              <button
+                type="button"
+                className="btn-delete"
+                onClick={() => removeAdoptedChild(index)}
+              >
+                Удалить
+              </button>
             </div>
           ))}
           <button type="button" onClick={addAdoptedChild}>

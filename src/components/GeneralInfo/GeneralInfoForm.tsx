@@ -28,7 +28,6 @@ const GeneralInfoForm: React.FC = () => {
     }
   }, [contacts, setValue]);
   
-  console.log(watch("generalInfo.contacts"));
   return (
     <>
       <h3>Общие данные</h3>

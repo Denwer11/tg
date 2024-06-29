@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
-import { motherRelationshipRatingOptions } from "../options";
+import { motherRelationshipRatingOptions } from "../Options";
 import { useEffect } from "react";
 
 const MotherFields: React.FC = () => {
@@ -61,19 +61,22 @@ const MotherFields: React.FC = () => {
       <label htmlFor="mother.ageAtBirth">
         Возраст, в котором она вас родила:
       </label>
-      <Controller
-        name="parentFamily.mother.ageAtBirth"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <input
-            type="number"
-            id="mother.ageAtBirth"
-            {...field}
-            className="input-age"
-          />
-        )}
-      />
+      <div className="form-age">
+        <Controller
+          name="parentFamily.mother.ageAtBirth"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <input
+              type="number"
+              id="mother.ageAtBirth"
+              {...field}
+              className="input-age"
+            />
+          )}
+        />
+        <span className="span-age"> лет</span>
+      </div>
       {errors.parentFamily?.mother?.ageAtBirth && (
         <span>Поле обязательно для заполнения</span>
       )}

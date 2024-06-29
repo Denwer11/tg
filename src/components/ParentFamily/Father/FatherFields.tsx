@@ -1,7 +1,7 @@
 import React from "react";
 import { FormData } from "../../../pages/Form";
 import { Controller, useFormContext } from "react-hook-form";
-import { fatherRelationshipRatingOptions } from "../options";
+import { fatherRelationshipRatingOptions } from "../Options";
 
 const FatherFields: React.FC = () => {
   const {
@@ -42,19 +42,22 @@ const FatherFields: React.FC = () => {
       )}
 
       <label htmlFor="father.ageAtBirth">Возраст, в котором вы родились</label>
-      <Controller
-        name="parentFamily.father.ageAtBirth"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <input
-            id="father.ageAtBirth"
-            type="number"
-            {...field}
-            className="input-age"
-          />
-        )}
-      />
+      <div className="form-age">
+        <Controller
+          name="parentFamily.father.ageAtBirth"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <input
+              id="father.ageAtBirth"
+              type="number"
+              {...field}
+              className="input-age"
+            />
+          )}
+        />
+        <span className="span-age"> лет</span>
+      </div>
       {errors.parentFamily?.father?.ageAtBirth && (
         <span>Поле обязательно для заполнения</span>
       )}
@@ -91,7 +94,7 @@ const FatherFields: React.FC = () => {
         name="parentFamily.fatherRelationship.comment"
         control={control}
         render={({ field }) => (
-          <input id="fatherRelationship.comment" {...field} />
+          <textarea id="fatherRelationship.comment" {...field} />
         )}
       />
     </>
