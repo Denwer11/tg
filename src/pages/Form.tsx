@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormProvider, useForm} from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import ReactJson from "react-json-pretty";
 import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
@@ -20,11 +20,13 @@ import {
   defaultStepfather,
   defaultStepmother,
 } from "../defaultValues/parentFamily";
+import { EducationAndHobbies } from "../components/EducationAndHobbies/EducationAndHobbies.types";
 
 export type FormData = {
   generalInfo: GeneralInfo;
   currentMaritalStatus: CurrentMaritalStatus;
   parentFamily: ParentFamily;
+  educationAndHobbies: EducationAndHobbies;
 };
 
 const Form: React.FC = () => {
@@ -110,6 +112,28 @@ const Form: React.FC = () => {
           myAge: 0,
           copingWithLoss: "получали поддержку от семьи и друзей",
         },
+      },
+
+      educationAndHobbies: {
+        education: undefined,
+        qualification: undefined,
+        currentProfession: undefined,
+        currentProfessionSatisfaction: "очень удовлетворен",
+        longestProfession: undefined,
+        longestProfessionSatisfaction: "очень удовлетворен",
+        isCurrentlyLearning: "нет",
+        learningField: undefined,
+        learningComment: undefined,
+        hobbiesBefore16: undefined,
+        hobbiesNow: undefined,
+        hobbyFrequency: "ежедневно",
+        expertise: undefined,
+        expertiseFrequency: "ежедневно",
+        preferredRest: undefined,
+        restFrequency: "ежедневно",
+        booksAt10: "0-9",
+        readingFrequencyAt10: "ежедневно",
+        currentReadingFrequency: "ежедневно",
       },
     },
   });

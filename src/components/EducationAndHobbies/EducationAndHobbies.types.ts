@@ -1,0 +1,21 @@
+export type EducationAndHobbies = {
+  education: string[];
+  qualification: string;
+  currentProfession: string;
+  currentProfessionSatisfaction: string;
+  longestProfession: string;
+  longestProfessionSatisfaction: string;
+  isCurrentlyLearning: string;
+  learningField: string;
+  learningComment?: string;
+  hobbiesBefore16: string;
+  hobbiesNow: string;
+  hobbyFrequency: string;
+  expertise: string;
+  expertiseFrequency: string;
+  preferredRest: string[];
+  restFrequency: string;
+  booksAt10: string;
+  readingFrequencyAt10: string;
+  currentReadingFrequency: string;
+};
