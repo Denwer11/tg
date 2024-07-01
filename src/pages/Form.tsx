@@ -22,6 +22,9 @@ import {
 } from "../defaultValues/parentFamily";
 import { EducationAndHobbies } from "../components/EducationAndHobbies/EducationAndHobbies.types";
 import { PreferencesAndEnvironment } from "../components/PreferencesAndEnvironment/PreferencesAndEnvironment.types";
+import PreferencesAndEnvironmentForm from "../components/PreferencesAndEnvironment/PreferencesAndEnvironmentForm";
+import EducationAndHobbiesForm from '../components/EducationAndHobbies/EducationAndHobbiesForm';
+// import { Health } from '../components/Health/Health.types';
 
 export type FormData = {
   generalInfo: GeneralInfo;
@@ -29,6 +32,7 @@ export type FormData = {
   parentFamily: ParentFamily;
   educationAndHobbies: EducationAndHobbies;
   preferencesAndEnvironment: PreferencesAndEnvironment;
+  // health: Health;
 };
 
 const Form: React.FC = () => {
@@ -187,6 +191,8 @@ const Form: React.FC = () => {
             <GeneralInfoForm />
             <MaritalStatusForm />
             <ParentFamilyForm />
+            <EducationAndHobbiesForm />
+            <PreferencesAndEnvironmentForm />
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>
