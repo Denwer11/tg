@@ -91,7 +91,7 @@ const ReadingFields: React.FC = () => {
               <input
                 type="text"
                 {...field}
-                id="educationAndHobbies.readingFrequencyAt10.custom"
+                id="readingFrequencyAt10.custom"
               />
             )}
           />

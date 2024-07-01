@@ -21,12 +21,14 @@ import {
   defaultStepmother,
 } from "../defaultValues/parentFamily";
 import { EducationAndHobbies } from "../components/EducationAndHobbies/EducationAndHobbies.types";
+import { PreferencesAndEnvironment } from '../components/PreferencesAndEnvironment/PreferencesAndEnvironment.types';
 
 export type FormData = {
   generalInfo: GeneralInfo;
   currentMaritalStatus: CurrentMaritalStatus;
   parentFamily: ParentFamily;
   educationAndHobbies: EducationAndHobbies;
+  preferencesAndEnvironment: PreferencesAndEnvironment;
 };
 
 const Form: React.FC = () => {

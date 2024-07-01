@@ -8,7 +8,10 @@ const RestFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
+    register,
   } = useFormContext<FormData>();
+
+  const [showOtherPreferredRest, setShowOtherPreferredRest] = useState(false);
 
   const [showRestFrequencyCustomField, setShowRestFrequencyCustomField] =
     useState(false);
@@ -52,12 +55,26 @@ const RestFields: React.FC = () => {
                 <label htmlFor={option}>{option}</label>
               </div>
             ))}
-            <Controller
-              name="educationAndHobbies.preferredRest"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => <textarea {...field} id="preferredRest" />}
+            <input
+              type="checkbox"
+              {...register("educationAndHobbies.preferredRest")}
+              value="ваш вариант"
+              checked={showOtherPreferredRest}
+              onChange={() =>
+                setShowOtherPreferredRest(!showOtherPreferredRest)
+              }
             />
+            <label htmlFor="ваш вариант">ваш вариант</label>
+            {showOtherPreferredRest && (
+              <Controller
+                name="educationAndHobbies.preferredRest"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <textarea {...field} id="preferredRest" />
+                )}
+              />
+            )}
           </div>
         )}
       />
