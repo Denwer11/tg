@@ -21,7 +21,7 @@ import {
   defaultStepmother,
 } from "../defaultValues/parentFamily";
 import { EducationAndHobbies } from "../components/EducationAndHobbies/EducationAndHobbies.types";
-import { PreferencesAndEnvironment } from '../components/PreferencesAndEnvironment/PreferencesAndEnvironment.types';
+import { PreferencesAndEnvironment } from "../components/PreferencesAndEnvironment/PreferencesAndEnvironment.types";
 
 export type FormData = {
   generalInfo: GeneralInfo;
@@ -136,6 +136,21 @@ const Form: React.FC = () => {
         booksAt10: "0-9",
         readingFrequencyAt10: "ежедневно",
         currentReadingFrequency: "ежедневно",
+      },
+
+      preferencesAndEnvironment: {
+        wallDecor: "Искусство (картины, художественные фотографии)",
+        preferredFurniture: "Классическую",
+        dominantColors: "Яркие и насыщенные",
+        regularActivities: undefined,
+        adviceSource: "Интернет",
+        transportAudio: "Свой плейлист",
+        preferredChannels: "Новости",
+        aloneTimeActivities: "Полежать на диване, принять ванну и т.п. релакс",
+        preferredSports: "Индивидуальные виды спорта (бег, плавание)",
+        socialMediaFrequency: "Каждый день",
+        socialMediaDetox:
+          "Это помогает мне быть постоянно на связи и в курсе событий и мне это не мешает",
       },
     },
   });
