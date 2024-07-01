@@ -1,55 +1,68 @@
-// import React, { useState } from "react";
-// import { useController, useForm, useFormContext } from "react-hook-form";
+// import React from "react";
+// import { Controller, useController, useFormContext } from "react-hook-form";
 // import { FormData } from "../../pages/Form";
 
 // const HealthForm: React.FC = () => {
 //   const {
 //     control,
 //     formState: { errors },
-//     setValue,
 //   } = useFormContext<FormData>();
 
 //   const {
-//     field: { value: height, onChange: onHeightChange },
+//     field: { value: heightValue, onChange: onHeightChange },
 //   } = useController<FormData>({
 //     name: "health.height",
 //     defaultValue: 170,
 //   });
 
+//   const height = typeof heightValue === "number" ? heightValue : 170;
+
 //   const {
-//     field: { value: weight, onChange: onWeightChange },
+//     field: { value: weightValue, onChange: onWeightChange },
 //   } = useController<FormData>({
 //     name: "health.weight",
 //     defaultValue: 70,
 //   });
 
+//   const weight = typeof weightValue === "number" ? weightValue : 70;
+
 //   return (
 //     <>
 //       <h3>Здоровье</h3>
 //       <label htmlFor="height">Рост (см):</label>
-//       <input
-//         type="range"
-//         id="height"
-//         min="150"
-//         max="210"
+//       <Controller
+//         name="health.height"
 //         control={control}
 //         rules={{ required: true }}
-//         value={height}
-//         onChange={onHeightChange}
+//         render={({ field }) => (
+//           <input
+//             id="height"
+//             type="range"
+//             min={140}
+//             max={210}
+//             {...field}
+//             onChange={onHeightChange}
+//           ></input>
+//         )}
 //       />
 //       {errors.health?.height && <span>Поле обязательно для заполнения</span>}
 //       <span>{height} см</span>
 
 //       <label htmlFor="weight">Вес (кг):</label>
-//       <input
-//         type="range"
-//         id="weight"
-//         min="40"
-//         max="150"
+//       <Controller
+//         name="health.weight"
 //         control={control}
 //         rules={{ required: true }}
-//         value={weight}
-//         onChange={onWeightChange}
+//         render={({ field }) => (
+//           <input
+//             id="weight"
+//             type="range"
+//             min={30}
+//             max={150}
+//             {...field}
+//             onChange={onWeightChange}
+//           ></input>
+//         )}
 //       />
 //       {errors.health?.weight && <span>Поле обязательно для заполнения</span>}
 //       <span>{weight} кг</span>

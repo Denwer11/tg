@@ -1,4 +1,4 @@
-// export type Health = {
-//   height: number;
-//   weight: number;
-// };
+export type Health = {
+  height: number;
+  weight: number;
+};

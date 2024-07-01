@@ -41,14 +41,22 @@ const RestFields: React.FC = () => {
                   type="checkbox"
                   {...field}
                   value={option}
-                  checked={field.value.includes(option)}
+                  checked={
+                    Array.isArray(field.value) && field.value.includes(option)
+                  }
                   onChange={() => {
-                    if (field.value.includes(option)) {
+                    if (
+                      Array.isArray(field.value) &&
+                      field.value.includes(option)
+                    ) {
                       field.onChange(
                         field.value.filter((val) => val !== option)
                       );
                     } else {
-                      field.onChange([...field.value, option]);
+                      field.onChange([
+                        ...(Array.isArray(field.value) ? field.value : []),
+                        option,
+                      ]);
                     }
                   }}
                 />
