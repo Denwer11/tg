@@ -30,7 +30,6 @@ export const regularActivitiesOptions = [
   "Выставки/музеи",
   "Квесты/ нетворкинги / игры",
   "активная ночная жизнь (клубы, тусовки)",
-  "ваш вариант",
 ];
 
 export const adviceSourceOptions = [

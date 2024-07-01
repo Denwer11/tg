@@ -29,63 +29,69 @@ const RestFields: React.FC = () => {
         Какой вид отдыха вам наиболее предпочтителен? (Как вы восполняете
         ресурсы и силы):
       </label>
-      <Controller
-        name="educationAndHobbies.preferredRest"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <div>
-            {preferredRestOptions.map((option, index) => (
-              <div key={index}>
+      <div className="checkbox-container">
+        <Controller
+          name="educationAndHobbies.preferredRest"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <div>
+              {preferredRestOptions.map((option, index) => (
+                <div key={index}>
+                  <input
+                    id={`preferredRest-${index}`}
+                    type="checkbox"
+                    {...field}
+                    value={option}
+                    checked={
+                      Array.isArray(field.value) && field.value.includes(option)
+                    }
+                    onChange={() => {
+                      if (
+                        Array.isArray(field.value) &&
+                        field.value.includes(option)
+                      ) {
+                        field.onChange(
+                          field.value.filter((val) => val !== option)
+                        );
+                      } else {
+                        field.onChange([
+                          ...(Array.isArray(field.value) ? field.value : []),
+                          option,
+                        ]);
+                      }
+                    }}
+                  />
+                  <label htmlFor={`preferredRest-${index}`}>{option}</label>
+                </div>
+              ))}
+              <div>
                 <input
                   type="checkbox"
-                  {...field}
-                  value={option}
-                  checked={
-                    Array.isArray(field.value) && field.value.includes(option)
+                  id="other-preferredRest"
+                  {...register("educationAndHobbies.preferredRest")}
+                  value="ваш вариант"
+                  checked={showOtherPreferredRest}
+                  onChange={() =>
+                    setShowOtherPreferredRest(!showOtherPreferredRest)
                   }
-                  onChange={() => {
-                    if (
-                      Array.isArray(field.value) &&
-                      field.value.includes(option)
-                    ) {
-                      field.onChange(
-                        field.value.filter((val) => val !== option)
-                      );
-                    } else {
-                      field.onChange([
-                        ...(Array.isArray(field.value) ? field.value : []),
-                        option,
-                      ]);
-                    }
-                  }}
                 />
-                <label htmlFor={option}>{option}</label>
-              </div>
-            ))}
-            <input
-              type="checkbox"
-              {...register("educationAndHobbies.preferredRest")}
-              value="ваш вариант"
-              checked={showOtherPreferredRest}
-              onChange={() =>
-                setShowOtherPreferredRest(!showOtherPreferredRest)
-              }
-            />
-            <label htmlFor="ваш вариант">ваш вариант</label>
-            {showOtherPreferredRest && (
-              <Controller
-                name="educationAndHobbies.preferredRest"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <textarea {...field} id="preferredRest" />
+                <label htmlFor="other-preferredRest">ваш вариант</label>
+                {showOtherPreferredRest && (
+                  <Controller
+                    name="educationAndHobbies.preferredRest"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <textarea {...field} id="other-preferredRest" className='textarea-other' />
+                    )}
+                  />
                 )}
-              />
-            )}
-          </div>
-        )}
-      />
+              </div>
+            </div>
+          )}
+        />
+      </div>
       {errors.educationAndHobbies?.preferredRest && (
         <span>Поле обязательно для заполнения</span>
       )}

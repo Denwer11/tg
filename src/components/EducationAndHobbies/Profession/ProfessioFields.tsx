@@ -13,43 +13,46 @@ const ProfessioFields: React.FC = () => {
   return (
     <>
       <label htmlFor="education">Образование:</label>
-      <Controller
-        name="educationAndHobbies.education"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <div>
-            {educationOptions.map((option, index) => (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  {...field}
-                  value={option}
-                  checked={
-                    Array.isArray(field.value) && field.value.includes(option)
-                  }
-                  onChange={() => {
-                    if (
-                      Array.isArray(field.value) &&
-                      field.value.includes(option)
-                    ) {
-                      field.onChange(
-                        field.value.filter((val) => val !== option)
-                      );
-                    } else {
-                      field.onChange([
-                        ...(Array.isArray(field.value) ? field.value : []),
-                        option,
-                      ]);
+      <div className="checkbox-container">
+        <Controller
+          name="educationAndHobbies.education"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <div>
+              {educationOptions.map((option, index) => (
+                <div key={index}>
+                  <input
+                    type="checkbox"
+                    id={`education-${index}`}
+                    {...field}
+                    value={option}
+                    checked={
+                      Array.isArray(field.value) && field.value.includes(option)
                     }
-                  }}
-                />
-                <label htmlFor={option}>{option}</label>
-              </div>
-            ))}
-          </div>
-        )}
-      />
+                    onChange={() => {
+                      if (
+                        Array.isArray(field.value) &&
+                        field.value.includes(option)
+                      ) {
+                        field.onChange(
+                          field.value.filter((val) => val !== option)
+                        );
+                      } else {
+                        field.onChange([
+                          ...(Array.isArray(field.value) ? field.value : []),
+                          option,
+                        ]);
+                      }
+                    }}
+                  />
+                  <label htmlFor={`education-${index}`}>{option}</label>
+                </div>
+              ))}
+            </div>
+          )}
+        />
+      </div>
       {errors.educationAndHobbies?.education && (
         <span>Поле обязательно для заполнения</span>
       )}

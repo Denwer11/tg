@@ -37,61 +37,71 @@ const LifestyleSurveyFields: React.FC = () => {
       <label htmlFor="regularActivities">
         Какие из следующих мероприятий вы посещаете регулярно?
       </label>
-      <Controller
-        name="preferencesAndEnvironment.regularActivities"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <div>
-            {regularActivitiesOptions.map((option, index) => (
-              <div key={index}>
+      <div className="checkbox-container">
+        <Controller
+          name="preferencesAndEnvironment.regularActivities"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <div>
+              {regularActivitiesOptions.map((option, index) => (
+                <div key={index}>
+                  <input
+                    type="checkbox"
+                    id={`regularActivities-${index}`}
+                    {...field}
+                    value={option}
+                    checked={
+                      Array.isArray(field.value) && field.value.includes(option)
+                    }
+                    onChange={() => {
+                      if (
+                        Array.isArray(field.value) &&
+                        field.value.includes(option)
+                      ) {
+                        field.onChange(
+                          field.value.filter((val) => val !== option)
+                        );
+                      } else {
+                        field.onChange([
+                          ...(Array.isArray(field.value) ? field.value : []),
+                          option,
+                        ]);
+                      }
+                    }}
+                  />
+                  <label htmlFor={`regularActivities-${index}`}>{option}</label>
+                </div>
+              ))}
+              <div>
                 <input
                   type="checkbox"
-                  {...field}
-                  value={option}
-                  checked={
-                    Array.isArray(field.value) && field.value.includes(option)
-                  }
-                  onChange={() => {
-                    if (
-                      Array.isArray(field.value) &&
-                      field.value.includes(option)
-                    ) {
-                      field.onChange(
-                        field.value.filter((val) => val !== option)
-                      );
-                    } else {
-                      field.onChange([
-                        ...(Array.isArray(field.value) ? field.value : []),
-                        option,
-                      ]);
-                    }
-                  }}
+                  {...register("preferencesAndEnvironment.regularActivities")}
+                  value="ваш вариант"
+                  id="other-regularActivities"
+                  checked={showOtherActivity}
+                  onChange={() => setShowOtherActivity(!showOtherActivity)}
                 />
-                <label htmlFor={option}>{option}</label>
-              </div>
-            ))}
-            <input
-              type="checkbox"
-              {...register("preferencesAndEnvironment.regularActivities")}
-              value="ваш вариант"
-              checked={showOtherActivity}
-              onChange={() => setShowOtherActivity(!showOtherActivity)}
-            />
-            <label htmlFor="ваш вариант">ваш вариант</label>
-            {showOtherActivity && (
-              <Controller
-                name="preferencesAndEnvironment.regularActivities"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <input {...field} id="regularActivities" />
+                <label htmlFor="other-regularActivities">ваш вариант</label>
+                {showOtherActivity && (
+                  <Controller
+                    name="preferencesAndEnvironment.regularActivities"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <textarea
+                        {...field}
+                        id="other-regularActivities"
+                        className="textarea-other"
+                      />
+                    )}
+                  />
                 )}
-              />
-            )}
-          </div>
-        )}
-      />
+              </div>
+            </div>
+          )}
+        />
+      </div>
       {errors.preferencesAndEnvironment?.regularActivities && (
         <span>Поле обязательно для заполнения</span>
       )}
