@@ -42,37 +42,18 @@ const Form: React.FC = () => {
   const methods = useForm<FormData>({
     defaultValues: {
       generalInfo: {
-        fullName: undefined,
         gender: "мужской",
-        dateOfBirth: undefined,
         countryCity: defaultCountryCity,
         contacts: defaultContacts,
       },
 
       currentMaritalStatus: {
         maritalStatus: "живу без партнера",
-        otherMaritalStatus: undefined,
-        partnerAge: undefined,
-        partnerOccupation: undefined,
-        partnerProfession: undefined,
-        otherOccupation: undefined,
         relationshipDuration: "меньше года",
         relationshipQuality: "очень хорошие",
-        longestRelationshipDuration: undefined,
         relationshipEndReason: "разрыв по инициативе партнера",
-        numberOfRelationships: undefined,
         hasChildren: "нет",
-        children: [{ gender: "сын", age: undefined }],
-        adoptedChildren: [
-          {
-            gender: "сын",
-            age: undefined,
-            adoptionAge: undefined,
-          },
-        ],
-        relationshipWithChildren: undefined,
-        livingConditions: undefined,
-        livingConditionsSatisfaction: undefined,
+        children: [{ gender: "сын" }],
       },
 
       parentFamily: {
@@ -88,15 +69,6 @@ const Form: React.FC = () => {
         divorce: defaultDivorce,
         hasSiblings: "нет",
         siblings: {
-          order: undefined,
-          totalSiblings: undefined,
-          siblingsInfo: [
-            {
-              relation: undefined,
-              ageDifference: undefined,
-              profession: undefined,
-            },
-          ],
           childhoodRelationship: "чаще жертвой агрессии братьев/сестер",
           currentRelationship: "не общаемся, в конфликте",
         },
@@ -105,12 +77,10 @@ const Form: React.FC = () => {
           "очень негативно, как сильное давление, ограничение свободы",
         relationshipParentsChildhood: {
           relationshipParents: "жили отдельно и не встречались",
-          comment: undefined,
         },
         relationshipParentsNow: {
           relationshipParents:
             "Я зависим от их мнения, они активно участвуют в моей жизни (я согласую свои решения, они принимают участие в моих семейных делах, например решениях об отпуске, тратах, детях, я с ними советуюсь по большинству вопросов и нуждаюсь в их одобрении и т.д.)",
-          comment: undefined,
         },
         communication: "ежедневно",
         hasDeaths: "нет",
@@ -122,21 +92,11 @@ const Form: React.FC = () => {
       },
 
       educationAndHobbies: {
-        education: undefined,
-        qualification: undefined,
-        currentProfession: undefined,
         currentProfessionSatisfaction: "очень удовлетворен",
-        longestProfession: undefined,
         longestProfessionSatisfaction: "очень удовлетворен",
         isCurrentlyLearning: "нет",
-        learningField: undefined,
-        learningComment: undefined,
-        hobbiesBefore16: undefined,
-        hobbiesNow: undefined,
         hobbyFrequency: "ежедневно",
-        expertise: undefined,
         expertiseFrequency: "ежедневно",
-        preferredRest: undefined,
         restFrequency: "ежедневно",
         booksAt10: "0-9",
         readingFrequencyAt10: "ежедневно",
@@ -147,7 +107,6 @@ const Form: React.FC = () => {
         wallDecor: "Искусство (картины, художественные фотографии)",
         preferredFurniture: "Классическую",
         dominantColors: "Яркие и насыщенные",
-        regularActivities: undefined,
         adviceSource: "Интернет",
         transportAudio: "Свой плейлист",
         preferredChannels: "Новости",
@@ -165,59 +124,27 @@ const Form: React.FC = () => {
         hand: "П",
         birthConditions: "естественным путем",
         hasSurgery: "нет",
-        surgery: [
-          {
-            surgeryName: undefined,
-            age: undefined,
-          },
-        ],
         hasIlness: "нет",
-        ilness: [
-          { name: undefined, score: { value: undefined, label: undefined } },
-        ],
         feelingHelplessFrequency: "почти никогда",
         hasDietRestrictions: "нет",
-        dietRestrictions: undefined,
         hasTakingMedication: "нет",
-        takingMedication: undefined,
         hasLostConsciousness: "нет",
-        lostConsciousness: {
-          lostConsciousnessReason: undefined,
-          lostConsciousnessFrequency: undefined,
-          lostConsciousnessAge: undefined,
-        },
         hasPsychiatricHelp: "нет",
-        psychiatricHelp: {
-          psychiatricHelpReason: undefined,
-          psychiatricHelpFrequency: undefined,
-          psychiatricHelpAge: undefined,
-          psychiatricDiagnosis: undefined,
-        },
         hasAlcoholConsumption: "нет",
         alcoholConsumption: {
-          alcoholConsumptionYears: undefined,
-          alcoholConsumptionStartAge: undefined,
           alcoholConsumptionWeekly: 0,
           alcoholConsumptionDynamic: "увеличилось",
         },
         hasSmoking: "нет",
-        smoking: { smokingQuantity: undefined, smokingDynamic: "увеличилось" },
+        smoking: { smokingDynamic: "увеличилось" },
         hasOtherDrugs: "нет",
         otherDrugs: {
-          otherDrugsDetails: undefined,
           otherDrugsDynamic: "увеличилось / добавилось",
         },
         hasFamilyHistory: "нет",
         physicalExercises: {},
-        sleep: {
-          wakeUpTimePreferred: undefined,
-          wakeUpTimeActual: undefined,
-          sleepTimePreferred: undefined,
-          sleepTimeActual: undefined,
-          sleepLatency: undefined,
-        },
         hasDietRegimen: "нет",
-        dietRegimen: { mealTimes: undefined, biggestMeal: 0 },
+        dietRegimen: { biggestMeal: 0 },
         healthRating: 0,
         immunityRating: 0,
       },
@@ -253,11 +180,11 @@ const Form: React.FC = () => {
         </ul>
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <FormProvider {...methods}>
-            {/* <GeneralInfoForm />
+            <GeneralInfoForm />
             <MaritalStatusForm />
             <ParentFamilyForm />
-            <EducationAndHobbiesForm /> */}
-            {/* <PreferencesAndEnvironmentForm /> */}
+            <EducationAndHobbiesForm />
+            <PreferencesAndEnvironmentForm />
             <HealthForm />
             <button type="submit">Отправить</button>
           </FormProvider>
