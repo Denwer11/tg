@@ -23,8 +23,9 @@ import {
 import { EducationAndHobbies } from "../components/EducationAndHobbies/EducationAndHobbies.types";
 import { PreferencesAndEnvironment } from "../components/PreferencesAndEnvironment/PreferencesAndEnvironment.types";
 import PreferencesAndEnvironmentForm from "../components/PreferencesAndEnvironment/PreferencesAndEnvironmentForm";
-import EducationAndHobbiesForm from '../components/EducationAndHobbies/EducationAndHobbiesForm';
-// import { Health } from '../components/Health/Health.types';
+import EducationAndHobbiesForm from "../components/EducationAndHobbies/EducationAndHobbiesForm";
+import { Health } from "../components/Health/Health.types";
+import HealthForm from "../components/Health/HealthForm";
 
 export type FormData = {
   generalInfo: GeneralInfo;
@@ -32,7 +33,7 @@ export type FormData = {
   parentFamily: ParentFamily;
   educationAndHobbies: EducationAndHobbies;
   preferencesAndEnvironment: PreferencesAndEnvironment;
-  // health: Health;
+  health: Health;
 };
 
 const Form: React.FC = () => {
@@ -156,6 +157,70 @@ const Form: React.FC = () => {
         socialMediaDetox:
           "Это помогает мне быть постоянно на связи и в курсе событий и мне это не мешает",
       },
+
+      health: {
+        height: 170,
+        weight: 80,
+        bloodType: "I",
+        hand: "П",
+        birthConditions: "естественным путем",
+        hasSurgery: "нет",
+        surgery: [
+          {
+            surgeryName: undefined,
+            age: undefined,
+          },
+        ],
+        hasIlness: "нет",
+        ilness: [
+          { name: undefined, score: { value: undefined, label: undefined } },
+        ],
+        feelingHelplessFrequency: "почти никогда",
+        hasDietRestrictions: "нет",
+        dietRestrictions: undefined,
+        hasTakingMedication: "нет",
+        takingMedication: undefined,
+        hasLostConsciousness: "нет",
+        lostConsciousness: {
+          lostConsciousnessReason: undefined,
+          lostConsciousnessFrequency: undefined,
+          lostConsciousnessAge: undefined,
+        },
+        hasPsychiatricHelp: "нет",
+        psychiatricHelp: {
+          psychiatricHelpReason: undefined,
+          psychiatricHelpFrequency: undefined,
+          psychiatricHelpAge: undefined,
+          psychiatricDiagnosis: undefined,
+        },
+        hasAlcoholConsumption: "нет",
+        alcoholConsumption: {
+          alcoholConsumptionYears: undefined,
+          alcoholConsumptionStartAge: undefined,
+          alcoholConsumptionWeekly: 0,
+          alcoholConsumptionDynamic: "увеличилось",
+        },
+        hasSmoking: "нет",
+        smoking: { smokingQuantity: undefined, smokingDynamic: "увеличилось" },
+        hasOtherDrugs: "нет",
+        otherDrugs: {
+          otherDrugsDetails: undefined,
+          otherDrugsDynamic: "увеличилось / добавилось",
+        },
+        hasFamilyHistory: "нет",
+        physicalExercises: {},
+        sleep: {
+          wakeUpTimePreferred: undefined,
+          wakeUpTimeActual: undefined,
+          sleepTimePreferred: undefined,
+          sleepTimeActual: undefined,
+          sleepLatency: undefined,
+        },
+        hasDietRegimen: "нет",
+        dietRegimen: { mealTimes: undefined, biggestMeal: 0 },
+        healthRating: 0,
+        immunityRating: 0,
+      },
     },
   });
 
@@ -188,11 +253,12 @@ const Form: React.FC = () => {
         </ul>
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <FormProvider {...methods}>
-            <GeneralInfoForm />
+            {/* <GeneralInfoForm />
             <MaritalStatusForm />
             <ParentFamilyForm />
-            <EducationAndHobbiesForm />
-            <PreferencesAndEnvironmentForm />
+            <EducationAndHobbiesForm /> */}
+            {/* <PreferencesAndEnvironmentForm /> */}
+            <HealthForm />
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>

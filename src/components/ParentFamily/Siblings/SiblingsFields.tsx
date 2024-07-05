@@ -49,7 +49,6 @@ const SiblingsFields: React.FC = () => {
 
   useEffect(() => {
     if (hasSiblings === "нет") {
-      // setValue("parentFamily.siblings.siblingsInfo", undefined);
       setValue("parentFamily.siblings", undefined);
     }
   }, [hasSiblings, setValue]);
