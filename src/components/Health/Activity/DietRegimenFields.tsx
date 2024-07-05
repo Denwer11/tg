@@ -72,6 +72,32 @@ const DietRegimenFields: React.FC = () => {
                 }}
               />
               <label htmlFor="hasDietRegimen-no">Нет</label>
+              <input
+                type="radio"
+                id="hasDietRegimen-chaotically"
+                {...field}
+                checked={field.value === "питаюсь хаотично"}
+                value="питаюсь хаотично"
+                onChange={() => {
+                  field.onChange("питаюсь хаотично");
+                  setShowDietRegimenDetails(false);
+                }}
+              />
+              <label htmlFor="hasDietRegimen-chaotically">
+                Питаюсь хаотично
+              </label>
+              <input
+                type="radio"
+                id="hasDietRegimen-whenAndHow"
+                {...field}
+                checked={field.value === "когда как"}
+                value="когда как"
+                onChange={() => {
+                  field.onChange("когда как");
+                  setShowDietRegimenDetails(false);
+                }}
+              />
+              <label htmlFor="hasDietRegimen-whenAndHow">Когда как</label>
             </>
           )}
         />

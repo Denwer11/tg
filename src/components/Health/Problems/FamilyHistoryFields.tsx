@@ -24,7 +24,8 @@ const FamilyHistoryFields: React.FC = () => {
   return (
     <>
       <label htmlFor="hasFamilyHistory">
-        Был ли у Вас случай, когда требовалась помощь психиатра?
+        Хронические болезни и психиатрические расстройства у ближайших членов
+        семьи:
       </label>
       <div className="radio-container">
         <Controller
@@ -56,6 +57,7 @@ const FamilyHistoryFields: React.FC = () => {
                   setShowFamilyHistoryDetails(false);
                 }}
               />
+              <label htmlFor="hasFamilyHistory-no">Нет</label>
               <input
                 type="radio"
                 id="hasFamilyHistory-dontKnow"
