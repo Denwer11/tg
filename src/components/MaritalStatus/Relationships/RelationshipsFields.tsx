@@ -11,6 +11,7 @@ const RelationshipsFields: React.FC = () => {
   const {
     control,
     formState: { errors },
+    setValue,
   } = useFormContext<FormData>();
 
   const [relationshipEndReasonOther, setRelationshipEndReasonOther] =
@@ -20,7 +21,8 @@ const RelationshipsFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
-    setRelationshipEndReasonOther(selectedValue === "иное");
+    setRelationshipEndReasonOther(selectedValue === "свой вариант");
+    setValue("currentMaritalStatus.relationshipEndReason", event.target.value);
   };
   return (
     <>
