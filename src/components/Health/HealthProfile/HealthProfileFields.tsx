@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Controller, useController, useFormContext } from "react-hook-form";
 import { FormData } from "../../../pages/Form";
-import { birthConditionsOptions, bloodTypeOptions, handOptions } from '../Options';
+import {
+  birthConditionsOptions,
+  bloodTypeOptions,
+  handOptions,
+} from "../Options";
 
 const HealthProfileFields: React.FC = () => {
   const {
@@ -37,12 +42,12 @@ const HealthProfileFields: React.FC = () => {
             min={140}
             max={210}
             {...field}
-            onChange={onHeightChange}
+            onChange={(e) => onHeightChange(e)}
           ></input>
         )}
       />
       {errors.health?.height && <span>Поле обязательно для заполнения</span>}
-      <span>{heightValue} см</span>
+      <span>{heightValue as any} см</span>
       <label htmlFor="weight">Вес (кг):</label>
       <Controller
         name="health.weight"
@@ -55,12 +60,12 @@ const HealthProfileFields: React.FC = () => {
             min={30}
             max={150}
             {...field}
-            onChange={onWeightChange}
+            onChange={(e) => onWeightChange(e)}
           ></input>
         )}
       />
       {errors.health?.weight && <span>Поле обязательно для заполнения</span>}
-      <span>{weightValue} кг</span>
+      <span>{weightValue as any} кг</span>
       <label htmlFor="bloodType">Группа крови:</label>
       <Controller
         name="health.bloodType"
