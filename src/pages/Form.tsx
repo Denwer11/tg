@@ -26,6 +26,7 @@ import PreferencesAndEnvironmentForm from "../components/PreferencesAndEnvironme
 import EducationAndHobbiesForm from "../components/EducationAndHobbies/EducationAndHobbiesForm";
 import { Health } from "../components/Health/Health.types";
 import HealthForm from "../components/Health/HealthForm";
+import FactorsForm from "../components/Factors/FactorsForm";
 
 export type FormData = {
   generalInfo: GeneralInfo;
@@ -189,7 +190,10 @@ const Form: React.FC = () => {
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>
+
         {formData && <div>{<ReactJson data={formData} />}</div>}
+
+        <FactorsForm />
       </div>
     </>
   );
