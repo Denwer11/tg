@@ -1,4 +1,3 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import { useTelegram } from "./hooks/useTelegram";
 import { useEffect } from "react";
@@ -16,11 +15,7 @@ function App() {
     <>
       <div className="App">
         <Header />
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<UserProfileForm />} />
-          </Routes>
-        </HashRouter>
+        <UserProfileForm />
       </div>
     </>
   );
