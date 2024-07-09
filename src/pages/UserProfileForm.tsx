@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import ReactJson from "react-json-pretty";
 import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
@@ -28,6 +28,7 @@ import { Health } from "../components/Health/Health.types";
 import HealthForm from "../components/Health/HealthForm";
 import FactorsForm from "../components/Factors/FactorsForm";
 import PrinciplesForm from "../components/Principles/PrinciplesForm";
+import Consent from "../components/Consent/Consent";
 import { TestData } from "../components/Factors/Factors.types";
 import { PrinciplesData } from "../components/Principles/Principles.types";
 import { questions } from "../components/Principles/PrinciplesQuestions";
@@ -226,50 +227,7 @@ const UserProfileForm: React.FC = () => {
             <HealthForm />
             <FactorsForm />
             <PrinciplesForm />
-            <div className="checkbox-container">
-              <Controller
-                control={methods.control}
-                name="consentForPersonalDataProcessing"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <>
-                    <input
-                      type="checkbox"
-                      id="consentForPersonalDataProcessing"
-                      {...field}
-                      value={String(field.value)}
-                      required
-                    />
-                    <label htmlFor="consentForPersonalDataProcessing">
-                      Согласие на обработку персональных данных
-                    </label>
-                  </>
-                )}
-              />
-            </div>
-            <div className="checkbox-container">
-              <Controller
-                control={methods.control}
-                name="consentForResearchUse"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <>
-                    <input
-                      type="checkbox"
-                      id="consentForResearchUse"
-                      {...field}
-                      value={String(field.value)}
-                      required
-                    />
-                    <label htmlFor="consentForResearchUse">
-                      Согласие на использование этой информации для
-                      исследовательских целей
-                    </label>
-                  </>
-                )}
-              />
-            </div>
-
+            <Consent/>
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>
