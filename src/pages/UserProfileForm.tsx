@@ -232,7 +232,7 @@ const UserProfileForm: React.FC = () => {
                 name="consentForPersonalDataProcessing"
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <label>
+                  <>
                     <input
                       type="checkbox"
                       id="consentForPersonalDataProcessing"
@@ -240,8 +240,10 @@ const UserProfileForm: React.FC = () => {
                       value={String(field.value)}
                       required
                     />
-                    Согласие на обработку персональных данных
-                  </label>
+                    <label htmlFor="consentForPersonalDataProcessing">
+                      Согласие на обработку персональных данных
+                    </label>
+                  </>
                 )}
               />
             </div>
@@ -251,7 +253,7 @@ const UserProfileForm: React.FC = () => {
                 name="consentForResearchUse"
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <label>
+                  <>
                     <input
                       type="checkbox"
                       id="consentForResearchUse"
@@ -259,12 +261,15 @@ const UserProfileForm: React.FC = () => {
                       value={String(field.value)}
                       required
                     />
-                    Согласие на использование этой информации для
-                    исследовательских целей
-                  </label>
+                    <label htmlFor="consentForResearchUse">
+                      Согласие на использование этой информации для
+                      исследовательских целей
+                    </label>
+                  </>
                 )}
               />
             </div>
+
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>
