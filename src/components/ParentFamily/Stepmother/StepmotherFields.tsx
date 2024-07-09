@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/Form";
+import { FormData } from "../../../pages/UserProfileForm";
 import { useState } from "react";
 import { stepmotherRelationshipRatingOptions } from "../Options";
 

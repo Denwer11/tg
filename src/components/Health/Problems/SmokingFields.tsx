@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/Form";
+import { FormData } from "../../../pages/UserProfileForm";
 import { smokingDynamicOptions } from '../Options';
 
 const SmokingFields: React.FC = () => {

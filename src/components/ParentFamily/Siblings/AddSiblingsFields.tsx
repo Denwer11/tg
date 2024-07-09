@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/Form";
+import { FormData } from "../../../pages/UserProfileForm";
 import { SiblingInfo } from "../ParentFamily.types";
 
 interface AddSiblingsFieldsProps {

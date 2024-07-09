@@ -1,5 +1,5 @@
 import React from "react";
-import { FormData } from '../../../pages/Form';
+import { FormData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from 'react-hook-form';
 import { sleepLatencyOptions, timeOptions } from '../Options';
 

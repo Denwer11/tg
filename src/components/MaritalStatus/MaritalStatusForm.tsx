@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import PartnerFields from "./Partner/PartnerFields";
-import { FormData } from "../../pages/Form";
+import { FormData } from "../../pages/UserProfileForm";
 import RelationshipsFields from "./Relationships/RelationshipsFields";
 import { MaritalStatusOptions } from './Options';
 import ChildrenFields from './Children/ChildrenFields';

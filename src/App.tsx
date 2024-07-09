@@ -1,9 +1,9 @@
-import {  Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import Form from "./pages/Form";
 import { useTelegram } from "./hooks/useTelegram";
 import { useEffect } from "react";
-import './styles/style.scss';
+import "./styles/style.scss";
+import UserProfileForm from './pages/UserProfileForm';
 
 function App() {
   const { onReady } = useTelegram();
@@ -16,11 +16,11 @@ function App() {
     <>
       <div className="App">
         <Header />
-        <Form />
-        <Routes>
-          {/* <Route path='/' element={<Form />} /> */}
-          {/* <Route path={"/form"} element={<Form />} /> */}
-        </Routes>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<UserProfileForm />} />
+          </Routes>
+        </HashRouter>
       </div>
     </>
   );

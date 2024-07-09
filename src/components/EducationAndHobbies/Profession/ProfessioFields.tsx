@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/Form";
+import { FormData } from "../../../pages/UserProfileForm";
 import { educationOptions, professionSatisfactionOptions } from "../Options";
 import IsCurrentlyLearningFields from "./IsCurrentlyLearningFields";
 

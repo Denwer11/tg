@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormData } from "../../../pages/Form";
+import { FormData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { booksAt10Options, currentReadingFrequencyOptions, readingFrequencyAt10Options } from '../Options';
 
@@ -21,7 +21,10 @@ const ReadingFields: React.FC = () => {
     setShowReadingFrequencyAt10CustomField(
       event.target.value === "ваш вариант"
     );
-    setValue("educationAndHobbies.readingFrequencyAt10", event.target.value);
+    setValue(
+      "educationAndHobbies.readingFrequencyAt10",
+      event.target.value
+    );
   };
 
   const [

@@ -80,11 +80,7 @@ option {
   color: var(--tg-theme-bg-color);
 }
 
-input:not(
-    #dateOfBirth,
-    .input-age,
-    .input-number
-  ) {
+input:not(#dateOfBirth, .input-age, .input-number) {
   width: 95%;
 }
 
@@ -301,4 +297,15 @@ button[type="submit"]:hover {
   width: 90%;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.scale-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.scale-label {
+  margin-left: 2px;
+  margin-right: 2px;
 }

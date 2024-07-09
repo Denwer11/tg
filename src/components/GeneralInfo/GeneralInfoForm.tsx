@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../pages/Form";
+import { FormData } from "../../pages/UserProfileForm";
 import { useEffect } from "react";
 
 const GeneralInfoForm: React.FC = () => {

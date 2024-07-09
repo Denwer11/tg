@@ -4,7 +4,7 @@ import {
   siblingsChildhoodRelationshipOptions,
   siblingsCurrentRelationshipOptions,
 } from "../Options";
-import { FormData } from "../../../pages/Form";
+import { FormData } from "../../../pages/UserProfileForm";
 
 const RelationshipFields: React.FC = () => {
   const {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from 'react-hook-form';
-import { FormData } from '../../../pages/Form';
+import { FormData } from "../../../pages/UserProfileForm";
 import { dominantColorsOptions, preferredFurnitureOptions, wallDecorOptions } from '../Options';
 
 const HouseFields: React.FC = () => {
