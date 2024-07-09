@@ -28,10 +28,10 @@ import { Health } from "../components/Health/Health.types";
 import HealthForm from "../components/Health/HealthForm";
 import FactorsForm from "../components/Factors/FactorsForm";
 import PrinciplesForm from "../components/Principles/PrinciplesForm";
-import Consent from "../components/Consent/Consent";
 import { TestData } from "../components/Factors/Factors.types";
 import { PrinciplesData } from "../components/Principles/Principles.types";
 import { questions } from "../components/Principles/PrinciplesQuestions";
+import ConsentCheckbox from '../components/Consent/ConsentCheckbox';
 
 export type UserData = {
   profile: FormData;
@@ -227,7 +227,7 @@ const UserProfileForm: React.FC = () => {
             <HealthForm />
             <FactorsForm />
             <PrinciplesForm />
-            <Consent/>
+            <ConsentCheckbox/>
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>

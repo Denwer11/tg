@@ -2,7 +2,7 @@ import React from "react";
 import { Controller, useFormContext } from 'react-hook-form';
 import { UserData } from "../../pages/UserProfileForm";
 
-const Consent: React.FC = () => {
+const ConsentCheckbox: React.FC = () => {
       const {
         control,
         formState: { errors },
@@ -66,4 +66,4 @@ const Consent: React.FC = () => {
   );
 };
 
-export default Consent;
+export default ConsentCheckbox;
