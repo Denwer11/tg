@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 import ReactJson from "react-json-pretty";
 import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
@@ -30,12 +30,14 @@ import FactorsForm from "../components/Factors/FactorsForm";
 import PrinciplesForm from "../components/Principles/PrinciplesForm";
 import { TestData } from "../components/Factors/Factors.types";
 import { PrinciplesData } from "../components/Principles/Principles.types";
-import { questions } from '../components/Principles/PrinciplesQuestions';
+import { questions } from "../components/Principles/PrinciplesQuestions";
 
 export type UserData = {
   profile: FormData;
   factorsTest: TestData;
   principlesTest: PrinciplesData;
+  consentForPersonalDataProcessing: boolean;
+  consentForResearchUse: boolean;
 };
 
 export type FormData = {
@@ -162,11 +164,14 @@ const UserProfileForm: React.FC = () => {
           immunityRating: 0,
         },
       },
-      
+
       principlesTest: questions.reduce((acc, _question, index) => {
         acc[`question-${index + 1}`] = 1;
         return acc;
       }, {} as PrinciplesData),
+
+      consentForPersonalDataProcessing: false,
+      consentForResearchUse: false,
     },
   });
 
@@ -183,6 +188,8 @@ const UserProfileForm: React.FC = () => {
       profile: { ...data.profile },
       factorsTest: result,
       principlesTest: data.principlesTest,
+      consentForPersonalDataProcessing: data.consentForPersonalDataProcessing,
+      consentForResearchUse: data.consentForResearchUse,
     });
   };
 
@@ -219,6 +226,43 @@ const UserProfileForm: React.FC = () => {
             <HealthForm />
             <FactorsForm />
             <PrinciplesForm />
+            <div className="checkbox-container">
+              <Controller
+                control={methods.control}
+                name="consentForPersonalDataProcessing"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <label>
+                    <input
+                      type="checkbox"
+                      id="consentForPersonalDataProcessing"
+                      {...field}
+                      value={String(field.value)}
+                      required
+                    />
+                    Согласие на обработку персональных данных
+                  </label>
+                )}
+              />
+              <Controller
+                control={methods.control}
+                name="consentForResearchUse"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <label>
+                    <input
+                      type="checkbox"
+                      id="consentForResearchUse"
+                      {...field}
+                      value={String(field.value)}
+                      required
+                    />
+                    Согласие на использование этой информации для
+                    исследовательских целей
+                  </label>
+                )}
+              />
+            </div>
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>
