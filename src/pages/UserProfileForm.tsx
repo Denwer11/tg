@@ -244,6 +244,8 @@ const UserProfileForm: React.FC = () => {
                   </label>
                 )}
               />
+            </div>
+            <div className="checkbox-container">
               <Controller
                 control={methods.control}
                 name="consentForResearchUse"
