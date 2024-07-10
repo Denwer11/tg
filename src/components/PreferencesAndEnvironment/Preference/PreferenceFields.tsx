@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   aloneTimeActivitiesOptions,
@@ -12,7 +12,7 @@ const PreferenceFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [
     showPreferredChannelsCustomField,
@@ -23,7 +23,7 @@ const PreferenceFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowPreferredChannelsCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.preferredChannels", event.target.value);
+    setValue("profile.preferencesAndEnvironment.preferredChannels", event.target.value);
   };
 
   const [
@@ -36,7 +36,7 @@ const PreferenceFields: React.FC = () => {
   ) => {
     setShowAloneTimeActivitiesCustomField(event.target.value === "ваш вариант");
     setValue(
-      "preferencesAndEnvironment.aloneTimeActivities",
+      "profile.preferencesAndEnvironment.aloneTimeActivities",
       event.target.value
     );
   };
@@ -48,14 +48,14 @@ const PreferenceFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowPreferredSportsCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.preferredSports", event.target.value);
+    setValue("profile.preferencesAndEnvironment.preferredSports", event.target.value);
   };
 
   return (
     <>
       <label htmlFor="preferredChannels">Какие каналы вы предпочитаете?</label>
       <Controller
-        name="preferencesAndEnvironment.preferredChannels"
+        name="profile.preferencesAndEnvironment.preferredChannels"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -76,7 +76,7 @@ const PreferenceFields: React.FC = () => {
         <div>
           <label htmlFor="preferredChannels.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.preferredChannels"
+            name="profile.preferencesAndEnvironment.preferredChannels"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -85,14 +85,14 @@ const PreferenceFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.preferredChannels && (
+      {errors.profile?.preferencesAndEnvironment?.preferredChannels && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="aloneTimeActivities">
         Как вы предпочитаете проводить время в одиночестве?
       </label>
       <Controller
-        name="preferencesAndEnvironment.aloneTimeActivities"
+        name="profile.preferencesAndEnvironment.aloneTimeActivities"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -113,7 +113,7 @@ const PreferenceFields: React.FC = () => {
         <div>
           <label htmlFor="aloneTimeActivities.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.aloneTimeActivities"
+            name="profile.preferencesAndEnvironment.aloneTimeActivities"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -122,7 +122,7 @@ const PreferenceFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.aloneTimeActivities && (
+      {errors.profile?.preferencesAndEnvironment?.aloneTimeActivities && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -130,7 +130,7 @@ const PreferenceFields: React.FC = () => {
         Какие спортивные активности вы предпочитаете?
       </label>
       <Controller
-        name="preferencesAndEnvironment.preferredSports"
+        name="profile.preferencesAndEnvironment.preferredSports"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -151,7 +151,7 @@ const PreferenceFields: React.FC = () => {
         <div>
           <label htmlFor="preferredSports.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.preferredSports"
+            name="profile.preferencesAndEnvironment.preferredSports"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -160,7 +160,7 @@ const PreferenceFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.preferredSports && (
+      {errors.profile?.preferencesAndEnvironment?.preferredSports && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

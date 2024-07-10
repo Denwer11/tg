@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { mealSizeOptions } from "../Options";
 
 const DietRegimenFields: React.FC = () => {
@@ -9,7 +9,7 @@ const DietRegimenFields: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showDietRegimenDetails, setShowDietRegimenDetails] = useState(false);
 
@@ -28,11 +28,11 @@ const DietRegimenFields: React.FC = () => {
     setMealTimes([...mealTimes, ""]);
   };
 
-  const hasDietRegimen = watch("health.hasDietRegimen");
+  const hasDietRegimen = watch("profile.health.hasDietRegimen");
 
   useEffect(() => {
     if (hasDietRegimen === "нет") {
-      setValue("health.dietRegimen", undefined);
+      setValue("profile.health.dietRegimen", undefined);
     }
   }, [hasDietRegimen, setValue]);
 
@@ -43,7 +43,7 @@ const DietRegimenFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasDietRegimen"
+          name="profile.health.hasDietRegimen"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -125,7 +125,7 @@ const DietRegimenFields: React.FC = () => {
             </button>
             <span className="span-age"></span>
           </div>
-          {errors.health?.dietRegimen?.mealTimes && (
+          {errors.profile?.health?.dietRegimen?.mealTimes && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -133,7 +133,7 @@ const DietRegimenFields: React.FC = () => {
             Выбрать цифру самого большого приема пищи:
           </label>
           <Controller
-            name="health.dietRegimen.biggestMeal"
+            name="profile.health.dietRegimen.biggestMeal"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -146,7 +146,7 @@ const DietRegimenFields: React.FC = () => {
               </select>
             )}
           />
-          {errors.health?.dietRegimen?.biggestMeal && (
+          {errors.profile?.health?.dietRegimen?.biggestMeal && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

@@ -21,13 +21,6 @@ const ParentFamilyForm: React.FC = () => {
       <SiblingsFields />
       <ParentalOverprotectionFields />
       <RelationshipWithParentsFields />
-
-      {/*
-
-          <Button variant="outlined" onClick={() => handleSiblingRemove(index)}>Удалить</Button>
-        </div>
-      ))}
-      <Button variant="contained" onClick={handleSiblingAdd}>Добавить</Button> */}
     </>
   );
 };

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Controller, useController, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import {
   birthConditionsOptions,
   bloodTypeOptions,
@@ -12,19 +12,19 @@ const HealthProfileFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const {
     field: { value: heightValue, onChange: onHeightChange },
-  } = useController<FormData>({
-    name: "health.height",
+  } = useController<UserData>({
+    name: "profile.health.height",
     defaultValue: 170,
   });
 
   const {
     field: { value: weightValue, onChange: onWeightChange },
-  } = useController<FormData>({
-    name: "health.weight",
+  } = useController<UserData>({
+    name: "profile.health.weight",
     defaultValue: 70,
   });
 
@@ -32,7 +32,7 @@ const HealthProfileFields: React.FC = () => {
     <>
       <label htmlFor="height">Рост (см):</label>
       <Controller
-        name="health.height"
+        name="profile.health.height"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -46,11 +46,13 @@ const HealthProfileFields: React.FC = () => {
           ></input>
         )}
       />
-      {errors.health?.height && <span>Поле обязательно для заполнения</span>}
+      {errors.profile?.health?.height && (
+        <span>Поле обязательно для заполнения</span>
+      )}
       <span>{heightValue as any} см</span>
       <label htmlFor="weight">Вес (кг):</label>
       <Controller
-        name="health.weight"
+        name="profile.health.weight"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -64,11 +66,13 @@ const HealthProfileFields: React.FC = () => {
           ></input>
         )}
       />
-      {errors.health?.weight && <span>Поле обязательно для заполнения</span>}
+      {errors.profile?.health?.weight && (
+        <span>Поле обязательно для заполнения</span>
+      )}
       <span>{weightValue as any} кг</span>
       <label htmlFor="bloodType">Группа крови:</label>
       <Controller
-        name="health.bloodType"
+        name="profile.health.bloodType"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -81,10 +85,12 @@ const HealthProfileFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.health?.bloodType && <span>Поле обязательно для заполнения</span>}
+      {errors.profile?.health?.bloodType && (
+        <span>Поле обязательно для заполнения</span>
+      )}
       <label htmlFor="hand">Пишете рукой:</label>
       <Controller
-        name="health.hand"
+        name="profile.health.hand"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -97,10 +103,12 @@ const HealthProfileFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.health?.hand && <span>Поле обязательно для заполнения</span>}
+      {errors.profile?.health?.hand && (
+        <span>Поле обязательно для заполнения</span>
+      )}
       <label htmlFor="birthConditions">Условия рождения:</label>
       <Controller
-        name="health.birthConditions"
+        name="profile.health.birthConditions"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -113,7 +121,7 @@ const HealthProfileFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.health?.birthConditions && (
+      {errors.profile?.health?.birthConditions && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

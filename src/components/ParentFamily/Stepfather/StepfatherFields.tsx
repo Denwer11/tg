@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { stepfatherRelationshipRatingOptions } from "../Options";
 
@@ -9,7 +9,7 @@ const StepfatherFields: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showStepfatherDetails, setShowStepfatherDetails] = useState(false);
   const [showStepfatherCustomField, setShowStepfatherCustomField] =
@@ -19,21 +19,21 @@ const StepfatherFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowStepfatherCustomField(event.target.value === "ваш вариант");
-    setValue("parentFamily.stepfather.rating", event.target.value);
+    setValue("profile.parentFamily.stepfather.rating", event.target.value);
   };
 
-  const hasStepfather = watch("parentFamily.hasStepfather");
+  const hasStepfather = watch("profile.parentFamily.hasStepfather");
 
   useEffect(() => {
     if (hasStepfather === "да") {
-      setValue("parentFamily.stepfather", {
+      setValue("profile.parentFamily.stepfather", {
         rating:
           "в моем детстве жили вместе, но громко ругались или имело место эмоциональное или физическое насилие",
         yearsTogether: 0,
         comment: undefined,
       });
     } else {
-      setValue("parentFamily.stepfather", undefined);
+      setValue("profile.parentFamily.stepfather", undefined);
     }
   }, [hasStepfather, setValue]);
 
@@ -42,7 +42,7 @@ const StepfatherFields: React.FC = () => {
       <label htmlFor="hasStepfather">Был отчим</label>
       <div className="radio-container">
         <Controller
-          name="parentFamily.hasStepfather"
+          name="profile.parentFamily.hasStepfather"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -82,7 +82,7 @@ const StepfatherFields: React.FC = () => {
             Как бы Вы в целом оценили в детстве отношения между Вами и отчимом
           </label>
           <Controller
-            name="parentFamily.stepfather.rating"
+            name="profile.parentFamily.stepfather.rating"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -103,7 +103,7 @@ const StepfatherFields: React.FC = () => {
             <div>
               <label htmlFor="stepfather.rating.custom">Ваш вариант:</label>
               <Controller
-                name="parentFamily.stepfather.rating"
+                name="profile.parentFamily.stepfather.rating"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -112,7 +112,7 @@ const StepfatherFields: React.FC = () => {
               />
             </div>
           )}
-          {errors.parentFamily?.stepfather?.rating && (
+          {errors.profile?.parentFamily?.stepfather?.rating && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -120,7 +120,7 @@ const StepfatherFields: React.FC = () => {
             При необходимости Ваш комментарий
           </label>
           <Controller
-            name="parentFamily.stepfather.comment"
+            name="profile.parentFamily.stepfather.comment"
             control={control}
             render={({ field }) => (
               <textarea id="stepfather.comment" {...field} />
@@ -130,7 +130,7 @@ const StepfatherFields: React.FC = () => {
             Сколько лет вы жили вместе с отчимом?
           </label>
           <Controller
-            name="parentFamily.stepfather.yearsTogether"
+            name="profile.parentFamily.stepfather.yearsTogether"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -143,7 +143,7 @@ const StepfatherFields: React.FC = () => {
             )}
           />
           <span className="span-age"> лет</span>
-          {errors.parentFamily?.stepfather?.yearsTogether && (
+          {errors.profile?.parentFamily?.stepfather?.yearsTogether && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

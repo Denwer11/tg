@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { regularActivitiesOptions, transportAudioOptions } from "../Options";
 
@@ -9,7 +9,7 @@ const LifestyleSurveyFields: React.FC = () => {
     formState: { errors },
     setValue,
     register,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showOtherActivity, setShowOtherActivity] = useState(false);
 
@@ -20,7 +20,7 @@ const LifestyleSurveyFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowwAdviceSourceCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.adviceSource", event.target.value);
+    setValue("profile.preferencesAndEnvironment.adviceSource", event.target.value);
   };
 
   const [showTransportAudioCustomField, setShowTransportAudioCustomField] =
@@ -30,7 +30,7 @@ const LifestyleSurveyFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowTransportAudioCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.transportAudio", event.target.value);
+    setValue("profile.preferencesAndEnvironment.transportAudio", event.target.value);
   };
   return (
     <>
@@ -39,7 +39,7 @@ const LifestyleSurveyFields: React.FC = () => {
       </label>
       <div className="checkbox-container">
         <Controller
-          name="preferencesAndEnvironment.regularActivities"
+          name="profile.preferencesAndEnvironment.regularActivities"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -76,7 +76,9 @@ const LifestyleSurveyFields: React.FC = () => {
               <div>
                 <input
                   type="checkbox"
-                  {...register("preferencesAndEnvironment.regularActivities")}
+                  {...register(
+                    "profile.preferencesAndEnvironment.regularActivities"
+                  )}
                   value="ваш вариант"
                   id="other-regularActivities"
                   checked={showOtherActivity}
@@ -85,7 +87,7 @@ const LifestyleSurveyFields: React.FC = () => {
                 <label htmlFor="other-regularActivities">ваш вариант</label>
                 {showOtherActivity && (
                   <Controller
-                    name="preferencesAndEnvironment.regularActivities"
+                    name="profile.preferencesAndEnvironment.regularActivities"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
@@ -102,7 +104,7 @@ const LifestyleSurveyFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.preferencesAndEnvironment?.regularActivities && (
+      {errors.profile?.preferencesAndEnvironment?.regularActivities && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="adviceSource">
@@ -110,7 +112,7 @@ const LifestyleSurveyFields: React.FC = () => {
         делать?
       </label>
       <Controller
-        name="preferencesAndEnvironment.adviceSource"
+        name="profile.preferencesAndEnvironment.adviceSource"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -131,7 +133,7 @@ const LifestyleSurveyFields: React.FC = () => {
         <div>
           <label htmlFor="adviceSource.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.adviceSource"
+            name="profile.preferencesAndEnvironment.adviceSource"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -140,14 +142,14 @@ const LifestyleSurveyFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.adviceSource && (
+      {errors.profile?.preferencesAndEnvironment?.adviceSource && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="transportAudio">
         Что вы слушаете, когда вы в транспорте или ведете машину?
       </label>
       <Controller
-        name="preferencesAndEnvironment.transportAudio"
+        name="profile.preferencesAndEnvironment.transportAudio"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -168,7 +170,7 @@ const LifestyleSurveyFields: React.FC = () => {
         <div>
           <label htmlFor="transportAudio.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.transportAudio"
+            name="profile.preferencesAndEnvironment.transportAudio"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -177,7 +179,7 @@ const LifestyleSurveyFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.transportAudio && (
+      {errors.profile?.preferencesAndEnvironment?.transportAudio && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

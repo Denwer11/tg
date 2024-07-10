@@ -1,15 +1,15 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 
 const OtherFields: React.FC = () => {
-  const { control } = useFormContext<FormData>();
+  const { control } = useFormContext<UserData>();
 
   return (
     <>
       <label htmlFor="pets">Есть ли у вас домашние животные (и какие)?</label>
       <Controller
-        name="health.pets"
+        name="profile.health.pets"
         control={control}
         render={({ field }) => <input type="text" {...field} id="pets" />}
       />
@@ -18,7 +18,7 @@ const OtherFields: React.FC = () => {
         напишите ниже:
       </label>
       <Controller
-        name="health.additionalInfo"
+        name="profile.health.additionalInfo"
         control={control}
         render={({ field }) => (
           <textarea {...field} id="additionalInfo" className="textarea-other" />

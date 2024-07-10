@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { alcoholConsumptionDynamicOptions, alcoholConsumptionWeeklyOptions } from '../Options';
 
@@ -9,7 +9,7 @@ const AlcoholFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showAlcoholDetails, setShowAlcoholDetails] = useState(false);
 
@@ -25,16 +25,16 @@ const AlcoholFields: React.FC = () => {
       event.target.value === "свой вариант"
     );
     setValue(
-      "health.alcoholConsumption.alcoholConsumptionDynamic",
+      "profile.health.alcoholConsumption.alcoholConsumptionDynamic",
       event.target.value
     );
   };
 
-  const hasAlcoholConsumption = watch("health.hasAlcoholConsumption");
+  const hasAlcoholConsumption = watch("profile.health.hasAlcoholConsumption");
 
   useEffect(() => {
     if (hasAlcoholConsumption === "нет") {
-      setValue("health.alcoholConsumption", undefined);
+      setValue("profile.health.alcoholConsumption", undefined);
     }
   }, [hasAlcoholConsumption, setValue]);
 
@@ -43,7 +43,7 @@ const AlcoholFields: React.FC = () => {
       <label htmlFor="hasAlcoholConsumption">Употребление алкоголя</label>
       <div className="radio-container">
         <Controller
-          name="health.hasAlcoholConsumption"
+          name="profile.health.hasAlcoholConsumption"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -83,7 +83,7 @@ const AlcoholFields: React.FC = () => {
           </label>
           <div className="form-age">
             <Controller
-              name="health.alcoholConsumption.alcoholConsumptionYears"
+              name="profile.health.alcoholConsumption.alcoholConsumptionYears"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -97,7 +97,8 @@ const AlcoholFields: React.FC = () => {
             />
             <span className="span-age"></span>
           </div>
-          {errors.health?.alcoholConsumption?.alcoholConsumptionYears && (
+          {errors.profile?.health?.alcoholConsumption
+            ?.alcoholConsumptionYears && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -106,7 +107,7 @@ const AlcoholFields: React.FC = () => {
           </label>
           <div className="form-age">
             <Controller
-              name="health.alcoholConsumption.alcoholConsumptionStartAge"
+              name="profile.health.alcoholConsumption.alcoholConsumptionStartAge"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -119,7 +120,8 @@ const AlcoholFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.alcoholConsumption?.alcoholConsumptionStartAge && (
+          {errors.profile?.health?.alcoholConsumption
+            ?.alcoholConsumptionStartAge && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -133,7 +135,7 @@ const AlcoholFields: React.FC = () => {
             Сколько порций в неделю в среднем вы принимаете:
           </label>
           <Controller
-            name="health.alcoholConsumption.alcoholConsumptionWeekly"
+            name="profile.health.alcoholConsumption.alcoholConsumptionWeekly"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -149,7 +151,8 @@ const AlcoholFields: React.FC = () => {
               </select>
             )}
           />
-          {errors.health?.alcoholConsumption?.alcoholConsumptionWeekly && (
+          {errors.profile?.health?.alcoholConsumption
+            ?.alcoholConsumptionWeekly && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -157,7 +160,7 @@ const AlcoholFields: React.FC = () => {
             За последние 5 лет какая динамика количества порций:
           </label>
           <Controller
-            name="health.alcoholConsumption.alcoholConsumptionDynamic"
+            name="profile.health.alcoholConsumption.alcoholConsumptionDynamic"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -180,7 +183,7 @@ const AlcoholFields: React.FC = () => {
                 Ваш вариант:
               </label>
               <Controller
-                name="health.alcoholConsumption.alcoholConsumptionDynamic"
+                name="profile.health.alcoholConsumption.alcoholConsumptionDynamic"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -191,18 +194,20 @@ const AlcoholFields: React.FC = () => {
                   />
                 )}
               />
-              {errors.health?.alcoholConsumption?.alcoholConsumptionDynamic && (
+              {errors.profile?.health?.alcoholConsumption
+                ?.alcoholConsumptionDynamic && (
                 <span>Поле обязательно для заполнения</span>
               )}
             </>
           )}
 
-          {errors.health?.alcoholConsumption?.alcoholConsumptionDynamic && (
+          {errors.profile?.health?.alcoholConsumption
+            ?.alcoholConsumptionDynamic && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>
       )}
-      {errors.health?.alcoholConsumption && (
+      {errors.profile?.health?.alcoholConsumption && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

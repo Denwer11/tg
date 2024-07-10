@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { useState } from "react";
 import { stepmotherRelationshipRatingOptions } from "../Options";
 
@@ -8,7 +8,7 @@ const StepmotherFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showStepmotherDetails, setShowStepmotherDetails] = useState(false);
   const [showStepmotherCustomField, setShowStepmotherCustomField] =
@@ -18,7 +18,7 @@ const StepmotherFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowStepmotherCustomField(event.target.value === "ваш вариант");
-    setValue("parentFamily.stepmother.rating", event.target.value);
+    setValue("profile.parentFamily.stepmother.rating", event.target.value);
   };
 
   return (
@@ -26,7 +26,7 @@ const StepmotherFields: React.FC = () => {
       <label htmlFor="hasStepmother">Была мачеха</label>
       <div className="radio-container">
         <Controller
-          name="parentFamily.hasStepmother"
+          name="profile.parentFamily.hasStepmother"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -65,7 +65,7 @@ const StepmotherFields: React.FC = () => {
             Как бы Вы в целом оценили в детстве отношения между Вами и мачехой
           </label>
           <Controller
-            name="parentFamily.stepmother.rating"
+            name="profile.parentFamily.stepmother.rating"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -86,7 +86,7 @@ const StepmotherFields: React.FC = () => {
             <div>
               <label htmlFor="stepmother.rating.custom">Ваш вариант:</label>
               <Controller
-                name="parentFamily.stepmother.rating"
+                name="profile.parentFamily.stepmother.rating"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -95,7 +95,7 @@ const StepmotherFields: React.FC = () => {
               />
             </div>
           )}
-          {errors.parentFamily?.stepmother?.rating && (
+          {errors.profile?.parentFamily?.stepmother?.rating && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -103,7 +103,7 @@ const StepmotherFields: React.FC = () => {
             При необходимости Ваш комментарий
           </label>
           <Controller
-            name="parentFamily.stepmother.comment"
+            name="profile.parentFamily.stepmother.comment"
             control={control}
             render={({ field }) => (
               <textarea id="stepmother.comment" {...field} />
@@ -113,7 +113,7 @@ const StepmotherFields: React.FC = () => {
             Сколько лет вы жили вместе с мачехой?
           </label>
           <Controller
-            name="parentFamily.stepmother.yearsTogether"
+            name="profile.parentFamily.stepmother.yearsTogether"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -126,7 +126,7 @@ const StepmotherFields: React.FC = () => {
             )}
           />
           <span className="span-age"> лет</span>
-          {errors.parentFamily?.stepmother?.yearsTogether && (
+          {errors.profile?.parentFamily?.stepmother?.yearsTogether && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

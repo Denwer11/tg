@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 
 const PsychiatristFields: React.FC = () => {
   const {
@@ -8,16 +8,16 @@ const PsychiatristFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showPsychiatricHelpDetails, setShowPsychiatricHelpDetails] =
     useState(false);
 
-  const hasPsychiatricHelp = watch("health.hasPsychiatricHelp");
+  const hasPsychiatricHelp = watch("profile.health.hasPsychiatricHelp");
 
   useEffect(() => {
     if (hasPsychiatricHelp === "нет") {
-      setValue("health.psychiatricHelp", undefined);
+      setValue("profile.health.psychiatricHelp", undefined);
     }
   }, [hasPsychiatricHelp, setValue]);
 
@@ -28,7 +28,7 @@ const PsychiatristFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasPsychiatricHelp"
+          name="profile.health.hasPsychiatricHelp"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -67,7 +67,7 @@ const PsychiatristFields: React.FC = () => {
             Причина оказания помощи:
           </label>
           <Controller
-            name="health.psychiatricHelp.psychiatricHelpReason"
+            name="profile.health.psychiatricHelp.psychiatricHelpReason"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -78,7 +78,7 @@ const PsychiatristFields: React.FC = () => {
               />
             )}
           />
-          {errors.health?.psychiatricHelp?.psychiatricHelpReason && (
+          {errors.profile?.health?.psychiatricHelp?.psychiatricHelpReason && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -87,7 +87,7 @@ const PsychiatristFields: React.FC = () => {
           </label>
           <div className="form-age">
             <Controller
-              name="health.psychiatricHelp.psychiatricHelpFrequency"
+              name="profile.health.psychiatricHelp.psychiatricHelpFrequency"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -100,14 +100,14 @@ const PsychiatristFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.psychiatricHelp?.psychiatricHelpReason && (
+          {errors.profile?.health?.psychiatricHelp?.psychiatricHelpReason && (
             <span>Поле обязательно для заполнения</span>
           )}
 
           <label htmlFor="psychiatricHelp.psychiatricHelpAge">Возраст:</label>
           <div className="form-age">
             <Controller
-              name="health.psychiatricHelp.psychiatricHelpAge"
+              name="profile.health.psychiatricHelp.psychiatricHelpAge"
               control={control}
               render={({ field }) => (
                 <input
@@ -119,7 +119,7 @@ const PsychiatristFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.psychiatricHelp?.psychiatricHelpAge && (
+          {errors.profile?.health?.psychiatricHelp?.psychiatricHelpAge && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -127,7 +127,7 @@ const PsychiatristFields: React.FC = () => {
             Ставились ли вам психиатрические диагнозы и какие?
           </label>
           <Controller
-            name="health.psychiatricHelp.psychiatricDiagnosis"
+            name="profile.health.psychiatricHelp.psychiatricDiagnosis"
             rules={{ required: true }}
             control={control}
             render={({ field }) => (
@@ -138,12 +138,12 @@ const PsychiatristFields: React.FC = () => {
               />
             )}
           />
-          {errors.health?.psychiatricHelp?.psychiatricDiagnosis && (
+          {errors.profile?.health?.psychiatricHelp?.psychiatricDiagnosis && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>
       )}
-      {errors.health?.psychiatricHelp && (
+      {errors.profile?.health?.psychiatricHelp && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 
 const IsCurrentlyLearningFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showIsCurrentlyLearningDetails, setShowIsCurrentlyLearningDetails] =
     useState(false);
@@ -20,7 +20,7 @@ const IsCurrentlyLearningFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="educationAndHobbies.isCurrentlyLearning"
+          name="profile.educationAndHobbies.isCurrentlyLearning"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -57,7 +57,7 @@ const IsCurrentlyLearningFields: React.FC = () => {
         <>
           <label htmlFor="learningField">В какой сфере?</label>
           <Controller
-            name="educationAndHobbies.learningField"
+            name="profile.educationAndHobbies.learningField"
             control={control}
             render={({ field }) => (
               <div>
@@ -95,19 +95,19 @@ const IsCurrentlyLearningFields: React.FC = () => {
                 ваша мотивация):
               </label>
               <Controller
-                name="educationAndHobbies.learningComment"
+                name="profile.educationAndHobbies.learningComment"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
                   <textarea {...field} id="longestProfession" />
                 )}
               />
-              {errors.educationAndHobbies?.learningComment && (
+              {errors.profile?.educationAndHobbies?.learningComment && (
                 <span>Поле обязательно для заполнения</span>
               )}
             </>
           )}
-          {errors.educationAndHobbies?.learningField && (
+          {errors.profile?.educationAndHobbies?.learningField && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

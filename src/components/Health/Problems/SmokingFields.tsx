@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
-import { smokingDynamicOptions } from '../Options';
+import { UserData } from "../../../pages/UserProfileForm";
+import { smokingDynamicOptions } from "../Options";
 
 const SmokingFields: React.FC = () => {
   const {
@@ -9,7 +9,7 @@ const SmokingFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showSmokingDetails, setShowSmokingDetails] = useState(false);
 
@@ -20,14 +20,14 @@ const SmokingFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowSmokingDynamicCustomField(event.target.value === "свой вариант");
-    setValue("health.smoking.smokingDynamic", event.target.value);
+    setValue("profile.health.smoking.smokingDynamic", event.target.value);
   };
 
-  const hasSmoking = watch("health.hasSmoking");
+  const hasSmoking = watch("profile.health.hasSmoking");
 
   useEffect(() => {
     if (hasSmoking === "нет") {
-      setValue("health.smoking", undefined);
+      setValue("profile.health.smoking", undefined);
     }
   }, [hasSmoking, setValue]);
 
@@ -36,7 +36,7 @@ const SmokingFields: React.FC = () => {
       <label htmlFor="hasSmoking">Курение</label>
       <div className="radio-container">
         <Controller
-          name="health.hasSmoking"
+          name="profile.health.hasSmoking"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -76,7 +76,7 @@ const SmokingFields: React.FC = () => {
           </label>
           <div className="form-age">
             <Controller
-              name="health.smoking.smokingQuantity"
+              name="profile.health.smoking.smokingQuantity"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -89,7 +89,7 @@ const SmokingFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.smoking?.smokingQuantity && (
+          {errors.profile?.health?.smoking?.smokingQuantity && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -97,7 +97,7 @@ const SmokingFields: React.FC = () => {
             За последние 5 лет какая динамика количества сигарет:
           </label>
           <Controller
-            name="health.smoking.smokingDynamic"
+            name="profile.health.smoking.smokingDynamic"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -120,7 +120,7 @@ const SmokingFields: React.FC = () => {
                 Ваш вариант:
               </label>
               <Controller
-                name="health.smoking.smokingDynamic"
+                name="profile.health.smoking.smokingDynamic"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -131,17 +131,19 @@ const SmokingFields: React.FC = () => {
                   />
                 )}
               />
-              {errors.health?.smoking?.smokingDynamic && (
+              {errors.profile?.health?.smoking?.smokingDynamic && (
                 <span>Поле обязательно для заполнения</span>
               )}
             </>
           )}
-          {errors.health?.smoking?.smokingDynamic && (
+          {errors.profile?.health?.smoking?.smokingDynamic && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>
       )}
-      {errors.health?.smoking && <span>Поле обязательно для заполнения</span>}
+      {errors.profile?.health?.smoking && (
+        <span>Поле обязательно для заполнения</span>
+      )}
     </>
   );
 };

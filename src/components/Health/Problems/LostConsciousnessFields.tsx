@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 
 const LostConsciousnessFields: React.FC = () => {
@@ -8,15 +8,15 @@ const LostConsciousnessFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showLostConsciousnessDetails, setShowLostConsciousnessDetails] =
     useState(false);
-  const hasLostConsciousness = watch("health.hasLostConsciousness");
+  const hasLostConsciousness = watch("profile.health.hasLostConsciousness");
 
   useEffect(() => {
     if (hasLostConsciousness === "нет") {
-      setValue("health.lostConsciousness", undefined);
+      setValue("profile.health.lostConsciousness", undefined);
     }
   }, [hasLostConsciousness, setValue]);
   
@@ -27,7 +27,7 @@ const LostConsciousnessFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasLostConsciousness"
+          name="profile.health.hasLostConsciousness"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -66,7 +66,7 @@ const LostConsciousnessFields: React.FC = () => {
             Причина потери сознания:
           </label>
           <Controller
-            name="health.lostConsciousness.lostConsciousnessReason"
+            name="profile.health.lostConsciousness.lostConsciousnessReason"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -77,7 +77,8 @@ const LostConsciousnessFields: React.FC = () => {
               />
             )}
           />
-          {errors.health?.lostConsciousness?.lostConsciousnessReason && (
+          {errors.profile?.health?.lostConsciousness
+            ?.lostConsciousnessReason && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -86,7 +87,7 @@ const LostConsciousnessFields: React.FC = () => {
           </label>
           <div className="form-age">
             <Controller
-              name="health.lostConsciousness.lostConsciousnessFrequency"
+              name="profile.health.lostConsciousness.lostConsciousnessFrequency"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -98,7 +99,8 @@ const LostConsciousnessFields: React.FC = () => {
                 />
               )}
             />
-            {errors.health?.lostConsciousness?.lostConsciousnessFrequency && (
+            {errors.profile?.health?.lostConsciousness
+              ?.lostConsciousnessFrequency && (
               <span>Поле обязательно для заполнения</span>
             )}
           </div>
@@ -107,7 +109,7 @@ const LostConsciousnessFields: React.FC = () => {
           </label>
           <div className="form-age">
             <Controller
-              name="health.lostConsciousness.lostConsciousnessAge"
+              name="profile.health.lostConsciousness.lostConsciousnessAge"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -120,12 +122,12 @@ const LostConsciousnessFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.lostConsciousness?.lostConsciousnessAge && (
+          {errors.profile?.health?.lostConsciousness?.lostConsciousnessAge && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>
       )}
-      {errors.health?.lostConsciousness && (
+      {errors.profile?.health?.lostConsciousness && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { fatherRelationshipRatingOptions } from "../Options";
 
@@ -7,14 +7,14 @@ const FatherFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   return (
     <>
       <h4>Отец:</h4>
       <label htmlFor="father.birthYear">Год рождения</label>
       <Controller
-        name="parentFamily.father.birthYear"
+        name="profile.parentFamily.father.birthYear"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -26,25 +26,25 @@ const FatherFields: React.FC = () => {
           />
         )}
       />
-      {errors.parentFamily?.father?.birthYear && (
+      {errors.profile?.parentFamily?.father?.birthYear && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="father.profession">Профессия</label>
       <Controller
-        name="parentFamily.father.profession"
+        name="profile.parentFamily.father.profession"
         control={control}
         rules={{ required: true }}
         render={({ field }) => <input {...field} id="father.profession" />}
       />
-      {errors.parentFamily?.father?.profession && (
+      {errors.profile?.parentFamily?.father?.profession && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="father.ageAtBirth">Возраст, в котором вы родились</label>
       <div className="form-age">
         <Controller
-          name="parentFamily.father.ageAtBirth"
+          name="profile.parentFamily.father.ageAtBirth"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -58,13 +58,13 @@ const FatherFields: React.FC = () => {
         />
         <span className="span-age"> лет</span>
       </div>
-      {errors.parentFamily?.father?.ageAtBirth && (
+      {errors.profile?.parentFamily?.father?.ageAtBirth && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="father.comment">При необходимости Ваш комментарий</label>
       <Controller
-        name="parentFamily.father.comment"
+        name="profile.parentFamily.father.comment"
         control={control}
         render={({ field }) => <textarea id="father.comment" {...field} />}
       />
@@ -73,7 +73,7 @@ const FatherFields: React.FC = () => {
         Как бы Вы в целом оценили в детстве отношения между Вами и Отцом
       </label>
       <Controller
-        name="parentFamily.fatherRelationship.rating"
+        name="profile.parentFamily.fatherRelationship.rating"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -91,7 +91,7 @@ const FatherFields: React.FC = () => {
         При необходимости Ваш комментарий
       </label>
       <Controller
-        name="parentFamily.fatherRelationship.comment"
+        name="profile.parentFamily.fatherRelationship.comment"
         control={control}
         render={({ field }) => (
           <textarea id="fatherRelationship.comment" {...field} />

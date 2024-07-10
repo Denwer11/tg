@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { useState } from 'react';
 import { PartnerOccupationOptions } from '../Options';
 
@@ -10,7 +10,7 @@ const PartnerFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showOtherOccupation, setShowOtherOccupation] = useState(false);
 
@@ -19,17 +19,19 @@ const PartnerFields: React.FC = () => {
   ) => {
     const selectedValue = event.target.value;
     setShowOtherOccupation(selectedValue === "свой вариант");
-    setValue("currentMaritalStatus.partnerOccupation", selectedValue);
+    setValue("profile.currentMaritalStatus.partnerOccupation", selectedValue);
   };
 
-  const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
+  const maritalStatusToPartner = watch(
+    "profile.currentMaritalStatus.maritalStatus"
+  );
 
   return (
     <>
       <label htmlFor="partnerAge">Возраст партнера:</label>
       <div className="form-age">
         <Controller
-          name="currentMaritalStatus.partnerAge"
+          name="profile.currentMaritalStatus.partnerAge"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -43,12 +45,12 @@ const PartnerFields: React.FC = () => {
         />
         <span className="span-age"> лет</span>
       </div>
-      {errors.currentMaritalStatus?.partnerAge && (
+      {errors.profile?.currentMaritalStatus?.partnerAge && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="partnerOccupation">Сфера деятельности партнера:</label>
       <Controller
-        name="currentMaritalStatus.partnerOccupation"
+        name="profile.currentMaritalStatus.partnerOccupation"
         control={control}
         rules={{ required: true }}
         defaultValue={
@@ -70,13 +72,13 @@ const PartnerFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.currentMaritalStatus?.partnerOccupation && (
+      {errors.profile?.currentMaritalStatus?.partnerOccupation && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       {showOtherOccupation && (
         <Controller
-          name="currentMaritalStatus.otherOccupation"
+          name="profile.currentMaritalStatus.otherOccupation"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -86,14 +88,14 @@ const PartnerFields: React.FC = () => {
       )}
 
       <Controller
-        name="currentMaritalStatus.partnerProfession"
+        name="profile.currentMaritalStatus.partnerProfession"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
           <input type="text" id="partnerProfession" {...field} />
         )}
       />
-      {errors.currentMaritalStatus?.partnerProfession && (
+      {errors.profile?.currentMaritalStatus?.partnerProfession && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

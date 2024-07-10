@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import AddSiblingsFields from "./AddSiblingsFields";
 import RelationshipFields from "./RelationshipFields";
 import { SiblingInfo } from "../ParentFamily.types";
@@ -11,7 +11,7 @@ const SiblingsFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showSiblings, setShowSiblings] = useState(false);
   const [siblings, setSiblings] = useState<SiblingInfo[]>([]);
@@ -45,11 +45,11 @@ const SiblingsFields: React.FC = () => {
     setSiblings([]);
   };
 
-  const hasSiblings = watch("parentFamily.hasSiblings");
+  const hasSiblings = watch("profile.parentFamily.hasSiblings");
 
   useEffect(() => {
     if (hasSiblings === "нет") {
-      setValue("parentFamily.siblings", undefined);
+      setValue("profile.parentFamily.siblings", undefined);
     }
   }, [hasSiblings, setValue]);
 
@@ -58,7 +58,7 @@ const SiblingsFields: React.FC = () => {
       <label htmlFor="hasSiblings">Были ли у вас братья и сестры?</label>
       <div className="radio-container">
         <Controller
-          name="parentFamily.hasSiblings"
+          name="profile.parentFamily.hasSiblings"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -92,7 +92,7 @@ const SiblingsFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.parentFamily?.hasSiblings && (
+      {errors.profile?.parentFamily?.hasSiblings && (
         <span>Поле обязательно для заполнения</span>
       )}
       {showSiblings && (
@@ -100,7 +100,7 @@ const SiblingsFields: React.FC = () => {
           <label htmlFor="siblings.order">По порядку рождения Вы были №</label>
           <div className="form-age">
             <Controller
-              name="parentFamily.siblings.order"
+              name="profile.parentFamily.siblings.order"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -114,7 +114,7 @@ const SiblingsFields: React.FC = () => {
             />
             <span className="span-age">из</span>
             <Controller
-              name="parentFamily.siblings.totalSiblings"
+              name="profile.parentFamily.siblings.totalSiblings"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (

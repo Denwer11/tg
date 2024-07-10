@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { feelingHelplessFrequencyOptions } from "../Options";
 import DietFields from "./DietFields";
 import MedicatiosFields from "./MedicatiosFields";
@@ -10,7 +10,7 @@ const DietAndMedicationsFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [
     showFeelingHelplessFrequencyCustomField,
@@ -23,7 +23,7 @@ const DietAndMedicationsFields: React.FC = () => {
     setShowFeelingHelplessFrequencyCustomField(
       event.target.value === "ваш вариант"
     );
-    setValue("health.feelingHelplessFrequency", event.target.value);
+    setValue("profile.health.feelingHelplessFrequency", event.target.value);
   };
 
   return (
@@ -33,7 +33,7 @@ const DietAndMedicationsFields: React.FC = () => {
         безысходности:
       </label>
       <Controller
-        name="health.feelingHelplessFrequency"
+        name="profile.health.feelingHelplessFrequency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -54,7 +54,7 @@ const DietAndMedicationsFields: React.FC = () => {
         <div>
           <label htmlFor="feelingHelplessFrequency">Ваш вариант:</label>
           <Controller
-            name="health.feelingHelplessFrequency"
+            name="profile.health.feelingHelplessFrequency"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -67,7 +67,7 @@ const DietAndMedicationsFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.health?.feelingHelplessFrequency && (
+      {errors.profile?.health?.feelingHelplessFrequency && (
         <span>Поле обязательно для заполнения</span>
       )}
 

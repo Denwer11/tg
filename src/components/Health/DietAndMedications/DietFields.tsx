@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { dietRestrictionsOptions } from "../Options";
 
 const DietFields: React.FC = () => {
@@ -10,13 +10,13 @@ const DietFields: React.FC = () => {
     register,
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
-  const hasDietRestrictions = watch("health.hasDietRestrictions");
+  const hasDietRestrictions = watch("profile.health.hasDietRestrictions");
 
   useEffect(() => {
     if (hasDietRestrictions === "нет") {
-      setValue("health.dietRestrictions", undefined);
+      setValue("profile.health.dietRestrictions", undefined);
     }
   }, [hasDietRestrictions, setValue]);
 
@@ -33,7 +33,7 @@ const DietFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasDietRestrictions"
+          name="profile.health.hasDietRestrictions"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -71,7 +71,7 @@ const DietFields: React.FC = () => {
           <label htmlFor="dietRestrictions">Ограничения в диете:</label>
           <div className="checkbox-container">
             <Controller
-              name="health.dietRestrictions"
+              name="profile.health.dietRestrictions"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -114,7 +114,7 @@ const DietFields: React.FC = () => {
                     <input
                       type="checkbox"
                       id="other-dietRestrictions"
-                      {...register("health.dietRestrictions")}
+                      {...register("profile.health.dietRestrictions")}
                       value="ваш вариант"
                       checked={showOtherDietRestrictions}
                       onChange={() =>
@@ -124,7 +124,7 @@ const DietFields: React.FC = () => {
                     <label htmlFor="other-dietRestrictions">ваш вариант</label>
                     {showOtherDietRestrictions && (
                       <Controller
-                        name="health.dietRestrictions"
+                        name="profile.health.dietRestrictions"
                         control={control}
                         rules={{ required: true }}
                         render={({ field }) => (
@@ -141,7 +141,7 @@ const DietFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.dietRestrictions && (
+          {errors.profile?.health?.dietRestrictions && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

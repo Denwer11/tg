@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { booksAt10Options, currentReadingFrequencyOptions, readingFrequencyAt10Options } from '../Options';
 
@@ -8,7 +8,7 @@ const ReadingFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [
     showReadingFrequencyAt10CustomField,
@@ -22,7 +22,7 @@ const ReadingFields: React.FC = () => {
       event.target.value === "ваш вариант"
     );
     setValue(
-      "educationAndHobbies.readingFrequencyAt10",
+      "profile.educationAndHobbies.readingFrequencyAt10",
       event.target.value
     );
   };
@@ -38,7 +38,10 @@ const ReadingFields: React.FC = () => {
     setShowCurrentReadingFrequencyCustomField(
       event.target.value === "ваш вариант"
     );
-    setValue("educationAndHobbies.currentReadingFrequency", event.target.value);
+    setValue(
+      "profile.educationAndHobbies.currentReadingFrequency",
+      event.target.value
+    );
   };
   return (
     <>
@@ -46,7 +49,7 @@ const ReadingFields: React.FC = () => {
         Сколько книг было в Вашем доме, когда Вам было 10 лет:
       </label>
       <Controller
-        name="educationAndHobbies.booksAt10"
+        name="profile.educationAndHobbies.booksAt10"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -59,14 +62,14 @@ const ReadingFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.educationAndHobbies?.booksAt10 && (
+      {errors.profile?.educationAndHobbies?.booksAt10 && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="readingFrequencyAt10">
         Как вы читали книги в 10-16 лет?
       </label>
       <Controller
-        name="educationAndHobbies.readingFrequencyAt10"
+        name="profile.educationAndHobbies.readingFrequencyAt10"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -87,27 +90,23 @@ const ReadingFields: React.FC = () => {
         <div>
           <label htmlFor="readingFrequencyAt10.custom">Ваш вариант:</label>
           <Controller
-            name="educationAndHobbies.readingFrequencyAt10"
+            name="profile.educationAndHobbies.readingFrequencyAt10"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <input
-                type="text"
-                {...field}
-                id="readingFrequencyAt10.custom"
-              />
+              <input type="text" {...field} id="readingFrequencyAt10.custom" />
             )}
           />
         </div>
       )}
-      {errors.educationAndHobbies?.readingFrequencyAt10 && (
+      {errors.profile?.educationAndHobbies?.readingFrequencyAt10 && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="currentReadingFrequency">
         Сейчас как часто вы читаете?
       </label>
       <Controller
-        name="educationAndHobbies.currentReadingFrequency"
+        name="profile.educationAndHobbies.currentReadingFrequency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -128,7 +127,7 @@ const ReadingFields: React.FC = () => {
         <div>
           <label htmlFor="currentReadingFrequency.custom">Ваш вариант:</label>
           <Controller
-            name="educationAndHobbies.currentReadingFrequency"
+            name="profile.educationAndHobbies.currentReadingFrequency"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -141,7 +140,7 @@ const ReadingFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.educationAndHobbies?.currentReadingFrequency && (
+      {errors.profile?.educationAndHobbies?.currentReadingFrequency && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

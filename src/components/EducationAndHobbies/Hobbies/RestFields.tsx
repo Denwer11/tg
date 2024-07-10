@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { preferredRestOptions, restFrequencyOptions } from "../Options";
 
 const RestFields: React.FC = () => {
@@ -9,7 +9,7 @@ const RestFields: React.FC = () => {
     formState: { errors },
     setValue,
     register,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showOtherPreferredRest, setShowOtherPreferredRest] = useState(false);
 
@@ -20,7 +20,7 @@ const RestFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowRestFrequencyCustomField(event.target.value === "ваш вариант");
-    setValue("educationAndHobbies.restFrequency", event.target.value);
+    setValue("profile.educationAndHobbies.restFrequency", event.target.value);
   };
 
   return (
@@ -31,7 +31,7 @@ const RestFields: React.FC = () => {
       </label>
       <div className="checkbox-container">
         <Controller
-          name="educationAndHobbies.preferredRest"
+          name="profile.educationAndHobbies.preferredRest"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -69,7 +69,7 @@ const RestFields: React.FC = () => {
                 <input
                   type="checkbox"
                   id="other-preferredRest"
-                  {...register("educationAndHobbies.preferredRest")}
+                  {...register("profile.educationAndHobbies.preferredRest")}
                   value="ваш вариант"
                   checked={showOtherPreferredRest}
                   onChange={() =>
@@ -79,11 +79,15 @@ const RestFields: React.FC = () => {
                 <label htmlFor="other-preferredRest">ваш вариант</label>
                 {showOtherPreferredRest && (
                   <Controller
-                    name="educationAndHobbies.preferredRest"
+                    name="profile.educationAndHobbies.preferredRest"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <textarea {...field} id="other-preferredRest" className='textarea-other' />
+                      <textarea
+                        {...field}
+                        id="other-preferredRest"
+                        className="textarea-other"
+                      />
                     )}
                   />
                 )}
@@ -92,7 +96,7 @@ const RestFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.educationAndHobbies?.preferredRest && (
+      {errors.profile?.educationAndHobbies?.preferredRest && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -100,7 +104,7 @@ const RestFields: React.FC = () => {
         Как часто вы занимаетесь этими видами отдыха?
       </label>
       <Controller
-        name="educationAndHobbies.restFrequency"
+        name="profile.educationAndHobbies.restFrequency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -121,7 +125,7 @@ const RestFields: React.FC = () => {
         <div>
           <label htmlFor="restFrequency.custom">Ваш вариант:</label>
           <Controller
-            name="educationAndHobbies.restFrequency"
+            name="profile.educationAndHobbies.restFrequency"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -134,7 +138,7 @@ const RestFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.educationAndHobbies?.restFrequency && (
+      {errors.profile?.educationAndHobbies?.restFrequency && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

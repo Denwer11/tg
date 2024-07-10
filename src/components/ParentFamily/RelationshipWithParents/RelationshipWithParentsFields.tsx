@@ -1,5 +1,5 @@
 import React from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   communicationOptions,
@@ -12,7 +12,7 @@ const RelationshipWithParentsFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
   
   return (
     <>
@@ -20,7 +20,7 @@ const RelationshipWithParentsFields: React.FC = () => {
         Как бы Вы в целом оценили в вашем детстве отношения между родителями:
       </label>
       <Controller
-        name="parentFamily.relationshipParentsChildhood.relationshipParents"
+        name="profile.parentFamily.relationshipParentsChildhood.relationshipParents"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -36,14 +36,14 @@ const RelationshipWithParentsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.parentFamily?.relationshipParentsChildhood
+      {errors.profile?.parentFamily?.relationshipParentsChildhood
         ?.relationshipParents && <span>Поле обязательно для заполнения</span>}
 
       <label htmlFor="relationshipParentsChildhood.comment">
         Если вы хотите что-то добавить, пожалуйста, опишите это
       </label>
       <Controller
-        name="parentFamily.relationshipParentsChildhood.comment"
+        name="profile.parentFamily.relationshipParentsChildhood.comment"
         control={control}
         render={({ field }) => (
           <input id="relationshipParentsChildhood.comment" {...field} />
@@ -54,7 +54,7 @@ const RelationshipWithParentsFields: React.FC = () => {
         Какие у меня сейчас отношения с родителями:
       </label>
       <Controller
-        name="parentFamily.relationshipParentsNow.relationshipParents"
+        name="profile.parentFamily.relationshipParentsNow.relationshipParents"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -67,15 +67,14 @@ const RelationshipWithParentsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.parentFamily?.relationshipParentsNow?.relationshipParents && (
-        <span>Поле обязательно для заполнения</span>
-      )}
+      {errors.profile?.parentFamily?.relationshipParentsNow
+        ?.relationshipParents && <span>Поле обязательно для заполнения</span>}
 
       <label htmlFor="relationshipParentsNow.comment">
         Если вы хотите что-то добавить, пожалуйста, опишите это
       </label>
       <Controller
-        name="parentFamily.relationshipParentsNow.comment"
+        name="profile.parentFamily.relationshipParentsNow.comment"
         control={control}
         render={({ field }) => (
           <input id="relationshipParentsNow.comment" {...field} />
@@ -86,7 +85,7 @@ const RelationshipWithParentsFields: React.FC = () => {
         Как часто вы общаетесь с родителями?
       </label>
       <Controller
-        name="parentFamily.communication"
+        name="profile.parentFamily.communication"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -99,7 +98,7 @@ const RelationshipWithParentsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.parentFamily?.communication && (
+      {errors.profile?.parentFamily?.communication && (
         <span>Поле обязательно для заполнения</span>
       )}
       <DeathsOfRelativesFields />

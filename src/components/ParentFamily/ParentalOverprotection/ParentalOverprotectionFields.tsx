@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { parentalOverprotectionOptions } from "../Options";
 
 const ParentalOverprotectionFields: React.FC = () => {
@@ -9,7 +9,7 @@ const ParentalOverprotectionFields: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [
     showParentalOverprotectionDetails,
@@ -17,17 +17,17 @@ const ParentalOverprotectionFields: React.FC = () => {
   ] = useState(false);
 
   const hasParentalOverprotection = watch(
-    "parentFamily.hasParentalOverprotection"
+    "profile.parentFamily.hasParentalOverprotection"
   );
 
   useEffect(() => {
     if (hasParentalOverprotection === "да") {
       setValue(
-        "parentFamily.parentalOverprotection",
+        "profile.parentFamily.parentalOverprotection",
         "очень негативно, как сильное давление, ограничение свободы"
       );
     } else {
-      setValue("parentFamily.parentalOverprotection", undefined);
+      setValue("profile.parentFamily.parentalOverprotection", undefined);
     }
   }, [hasParentalOverprotection, setValue]);
 
@@ -38,40 +38,40 @@ const ParentalOverprotectionFields: React.FC = () => {
         вмешивались в повседневную жизнь, указывали мне что есть, носить, каким
         спортом заниматься, с кем дружить и т.д.).
       </label>
-       <div className="radio-container">
-      <Controller
-        name="parentFamily.hasParentalOverprotection"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <>
-            <input
-              type="radio"
-              id="hasParentalOverprotection-yes"
-              {...field}
-              checked={field.value === "да"}
-              value="да"
-              onChange={() => {
-                field.onChange("да");
-                setShowParentalOverprotectionDetails(true);
-              }}
-            />
-            <label htmlFor="hasParentalOverprotection-yes">Да</label>
-            <input
-              type="radio"
-              id="hasParentalOverprotection-no"
-              {...field}
-              checked={field.value === "нет"}
-              value="нет"
-              onChange={() => {
-                field.onChange("нет");
-                setShowParentalOverprotectionDetails(false);
-              }}
-            />
-            <label htmlFor="hasParentalOverprotection-no">Нет</label>
-          </>
-        )}
-      />
+      <div className="radio-container">
+        <Controller
+          name="profile.parentFamily.hasParentalOverprotection"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <>
+              <input
+                type="radio"
+                id="hasParentalOverprotection-yes"
+                {...field}
+                checked={field.value === "да"}
+                value="да"
+                onChange={() => {
+                  field.onChange("да");
+                  setShowParentalOverprotectionDetails(true);
+                }}
+              />
+              <label htmlFor="hasParentalOverprotection-yes">Да</label>
+              <input
+                type="radio"
+                id="hasParentalOverprotection-no"
+                {...field}
+                checked={field.value === "нет"}
+                value="нет"
+                onChange={() => {
+                  field.onChange("нет");
+                  setShowParentalOverprotectionDetails(false);
+                }}
+              />
+              <label htmlFor="hasParentalOverprotection-no">Нет</label>
+            </>
+          )}
+        />
       </div>
 
       {showParentalOverprotectionDetails && (
@@ -80,7 +80,7 @@ const ParentalOverprotectionFields: React.FC = () => {
             Как вы воспринимали гиперопеку родителей?
           </label>
           <Controller
-            name="parentFamily.parentalOverprotection"
+            name="profile.parentFamily.parentalOverprotection"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -93,7 +93,7 @@ const ParentalOverprotectionFields: React.FC = () => {
               </select>
             )}
           />
-          {errors.parentFamily?.parentalOverprotection && (
+          {errors.profile?.parentFamily?.parentalOverprotection && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

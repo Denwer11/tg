@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import {  UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   socialMediaDetoxOptions,
@@ -11,7 +11,7 @@ const SocialMediaFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [
     showSocialMediaFrequencyCustomField,
@@ -25,7 +25,7 @@ const SocialMediaFields: React.FC = () => {
       event.target.value === "ваш вариант"
     );
     setValue(
-      "preferencesAndEnvironment.socialMediaFrequency",
+      "profile.preferencesAndEnvironment.socialMediaFrequency",
       event.target.value
     );
   };
@@ -37,7 +37,7 @@ const SocialMediaFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowSocialMediaDetoxCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.socialMediaDetox", event.target.value);
+    setValue("profile.preferencesAndEnvironment.socialMediaDetox", event.target.value);
   };
 
   return (
@@ -46,7 +46,7 @@ const SocialMediaFields: React.FC = () => {
         Как часто вы пользуетесь социальными сетями?
       </label>
       <Controller
-        name="preferencesAndEnvironment.socialMediaFrequency"
+        name="profile.preferencesAndEnvironment.socialMediaFrequency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -67,7 +67,7 @@ const SocialMediaFields: React.FC = () => {
         <div>
           <label htmlFor="socialMediaFrequency.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.socialMediaFrequency"
+            name="profile.preferencesAndEnvironment.socialMediaFrequency"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -76,7 +76,7 @@ const SocialMediaFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.socialMediaFrequency && (
+      {errors.profile?.preferencesAndEnvironment?.socialMediaFrequency && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -84,7 +84,7 @@ const SocialMediaFields: React.FC = () => {
         Нужен ли вам отдых от социальных сетей и телефона?
       </label>
       <Controller
-        name="preferencesAndEnvironment.socialMediaDetox"
+        name="profile.preferencesAndEnvironment.socialMediaDetox"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -105,7 +105,7 @@ const SocialMediaFields: React.FC = () => {
         <div>
           <label htmlFor="socialMediaDetox.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.socialMediaDetox"
+            name="profile.preferencesAndEnvironment.socialMediaDetox"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -114,7 +114,7 @@ const SocialMediaFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.socialMediaDetox && (
+      {errors.profile?.preferencesAndEnvironment?.socialMediaDetox && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { SiblingInfo } from "../ParentFamily.types";
 
 interface AddSiblingsFieldsProps {
@@ -19,13 +19,13 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
-  const hasSiblings = watch("parentFamily.hasSiblings");
+  const hasSiblings = watch("profile.parentFamily.hasSiblings");
 
   useEffect(() => {
     if (hasSiblings === "да") {
-      setValue("parentFamily.siblings.siblingsInfo", [
+      setValue("profile.parentFamily.siblings.siblingsInfo", [
         {
           relation: "брат",
           ageDifference: 0,
@@ -42,7 +42,7 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
         <div key={index}>
           <label htmlFor={`siblingRelation-${index}`}>Пол:</label>
           <Controller
-            name={`parentFamily.siblings.siblingsInfo.${index}.relation`}
+            name={`profile.parentFamily.siblings.siblingsInfo.${index}.relation`}
             control={control}
             render={({ field }) => (
               <select id={`siblingRelation-${index}`} {...field}>
@@ -56,7 +56,7 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
             Разница в возрасте:
           </label>
           <Controller
-            name={`parentFamily.siblings.siblingsInfo.${index}.ageDifference`}
+            name={`profile.parentFamily.siblings.siblingsInfo.${index}.ageDifference`}
             control={control}
             render={({ field }) => (
               <input
@@ -71,16 +71,15 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
 
           <label htmlFor={`siblingProfession-${index}`}>Его/ее профессия</label>
           <Controller
-            name={`parentFamily.siblings.siblingsInfo.${index}.profession`}
+            name={`profile.parentFamily.siblings.siblingsInfo.${index}.profession`}
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
               <input type="text" id={`siblingProfession-${index}`} {...field} />
             )}
           />
-          {errors.parentFamily?.siblings?.siblingsInfo?.[index]?.profession && (
-            <span>Поле обязательно для заполнения</span>
-          )}
+          {errors.profile?.parentFamily?.siblings?.siblingsInfo?.[index]
+            ?.profession && <span>Поле обязательно для заполнения</span>}
           <button
             className="btn-delete"
             type="button"
@@ -93,7 +92,7 @@ const AddSiblingsFields: React.FC<AddSiblingsFieldsProps> = ({
       <button type="button" onClick={addSibling}>
         Добавить брата/сестру
       </button>
-      {errors.parentFamily?.siblings?.siblingsInfo && (
+      {errors.profile?.parentFamily?.siblings?.siblingsInfo && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

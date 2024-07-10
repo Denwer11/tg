@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { copingWithLossOptions, whoDiedOptions } from "../Options";
 
@@ -9,7 +9,7 @@ const DeathsOfRelativesFields: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showDeathsDetails, setShowDeathsDetails] = useState(false);
   const [showCopingWithLossCustomField, setShowCopingWithLossCustomField] =
@@ -19,14 +19,14 @@ const DeathsOfRelativesFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowCopingWithLossCustomField(event.target.value === "ваш вариант");
-    setValue("parentFamily.deaths.copingWithLoss", event.target.value);
+    setValue("profile.parentFamily.deaths.copingWithLoss", event.target.value);
   };
 
-  const hasDeaths = watch("parentFamily.hasDeaths");
+  const hasDeaths = watch("profile.parentFamily.hasDeaths");
 
   useEffect(() => {
     if (hasDeaths === "нет") {
-      setValue("parentFamily.deaths", undefined);
+      setValue("profile.parentFamily.deaths", undefined);
     }
   }, [hasDeaths, setValue]);
 
@@ -35,7 +35,7 @@ const DeathsOfRelativesFields: React.FC = () => {
       <label htmlFor="hasDeaths">Смерти родителей/братьев/сестер:</label>
       <div className="radio-container">
         <Controller
-          name="parentFamily.hasDeaths"
+          name="profile.parentFamily.hasDeaths"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -73,7 +73,7 @@ const DeathsOfRelativesFields: React.FC = () => {
         <>
           <label htmlFor="deaths.whoDied">Выбор</label>
           <Controller
-            name="parentFamily.deaths.whoDied"
+            name="profile.parentFamily.deaths.whoDied"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -86,14 +86,14 @@ const DeathsOfRelativesFields: React.FC = () => {
               </select>
             )}
           />
-          {errors.parentFamily?.deaths?.whoDied && (
+          {errors.profile?.parentFamily?.deaths?.whoDied && (
             <span>Поле обязательно для заполнения</span>
           )}
 
           <label htmlFor="deaths.myAge">Умер, когда мне было</label>
           <div className="form-age">
             <Controller
-              name="parentFamily.deaths.myAge"
+              name="profile.parentFamily.deaths.myAge"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -107,7 +107,7 @@ const DeathsOfRelativesFields: React.FC = () => {
             />
             <span className="span-age"> лет</span>
           </div>
-          {errors.parentFamily?.deaths?.myAge && (
+          {errors.profile?.parentFamily?.deaths?.myAge && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -115,7 +115,7 @@ const DeathsOfRelativesFields: React.FC = () => {
             Как вы справлялись с потерей близкого человека?
           </label>
           <Controller
-            name="parentFamily.deaths.copingWithLoss"
+            name="profile.parentFamily.deaths.copingWithLoss"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -137,7 +137,7 @@ const DeathsOfRelativesFields: React.FC = () => {
             <div>
               <label htmlFor="deaths.copingWithLoss.custom">Ваш вариант:</label>
               <Controller
-                name="parentFamily.deaths.copingWithLoss"
+                name="profile.parentFamily.deaths.copingWithLoss"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -152,7 +152,7 @@ const DeathsOfRelativesFields: React.FC = () => {
           )}
         </>
       )}
-      {errors.parentFamily?.deaths?.copingWithLoss && (
+      {errors.profile?.parentFamily?.deaths?.copingWithLoss && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from 'react-hook-form';
 import { sleepLatencyOptions } from '../Options';
 
@@ -7,7 +7,7 @@ const SleepFields: React.FC = () => {
       const {
         control,
         formState: { errors },
-      } = useFormContext<FormData>();
+      } = useFormContext<UserData>();
 
   return (
     <>
@@ -16,7 +16,7 @@ const SleepFields: React.FC = () => {
         Время пробуждения (предпочтительное):
       </label>
       <Controller
-        name="health.sleep.wakeUpTimePreferred"
+        name="profile.health.sleep.wakeUpTimePreferred"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -28,7 +28,7 @@ const SleepFields: React.FC = () => {
           />
         )}
       />
-      {errors.health?.sleep?.wakeUpTimePreferred && (
+      {errors.profile?.health?.sleep?.wakeUpTimePreferred && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -36,7 +36,7 @@ const SleepFields: React.FC = () => {
         Время пробуждения (фактическое):
       </label>
       <Controller
-        name="health.sleep.wakeUpTimeActual"
+        name="profile.health.sleep.wakeUpTimeActual"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -48,7 +48,7 @@ const SleepFields: React.FC = () => {
           />
         )}
       />
-      {errors.health?.sleep?.wakeUpTimeActual && (
+      {errors.profile?.health?.sleep?.wakeUpTimeActual && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -56,7 +56,7 @@ const SleepFields: React.FC = () => {
         Время засыпания (предпочтительное):
       </label>
       <Controller
-        name="health.sleep.sleepTimePreferred"
+        name="profile.health.sleep.sleepTimePreferred"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -68,7 +68,7 @@ const SleepFields: React.FC = () => {
           />
         )}
       />
-      {errors.health?.sleep?.sleepTimePreferred && (
+      {errors.profile?.health?.sleep?.sleepTimePreferred && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -76,7 +76,7 @@ const SleepFields: React.FC = () => {
         Время засыпания (фактическое):
       </label>
       <Controller
-        name="health.sleep.sleepTimeActual"
+        name="profile.health.sleep.sleepTimeActual"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -88,7 +88,7 @@ const SleepFields: React.FC = () => {
           />
         )}
       />
-      {errors.health?.sleep?.sleepTimeActual && (
+      {errors.profile?.health?.sleep?.sleepTimeActual && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -96,7 +96,7 @@ const SleepFields: React.FC = () => {
         Среднее время необходимое, чтобы заснуть:
       </label>
       <Controller
-        name="health.sleep.sleepLatency"
+        name="profile.health.sleep.sleepLatency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -109,7 +109,7 @@ const SleepFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.health?.sleep?.sleepLatency && (
+      {errors.profile?.health?.sleep?.sleepLatency && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

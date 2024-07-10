@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { divorceWhoLivedWithOptions } from "../Options";
 
 const Divorce: React.FC = () => {
@@ -9,7 +9,7 @@ const Divorce: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showDivorceDetails, setShowDivorceDetails] = useState(false);
   const [showDivorceCustomField, setShowDivorceCustomField] = useState(false);
@@ -18,20 +18,20 @@ const Divorce: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowDivorceCustomField(event.target.value === "ваш вариант");
-    setValue("parentFamily.divorce.whoLivedWith", event.target.value);
+    setValue("profile.parentFamily.divorce.whoLivedWith", event.target.value);
   };
 
-  const hasDivorce = watch("parentFamily.hasDivorce");
+  const hasDivorce = watch("profile.parentFamily.hasDivorce");
 
   useEffect(() => {
     if (hasDivorce === "да") {
-      setValue("parentFamily.divorce", {
+      setValue("profile.parentFamily.divorce", {
         ageAtDivorce: 0,
         whoLivedWith: "отцом",
         emotionalState: 1,
       });
     } else {
-      setValue("parentFamily.divorce", undefined);
+      setValue("profile.parentFamily.divorce", undefined);
     }
   }, [hasDivorce, setValue]);
 
@@ -40,7 +40,7 @@ const Divorce: React.FC = () => {
       <label htmlFor="hasDivorce">Разводы родителей</label>
       <div className="radio-container">
         <Controller
-          name="parentFamily.hasDivorce"
+          name="profile.parentFamily.hasDivorce"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -79,7 +79,7 @@ const Divorce: React.FC = () => {
             Ваш возраст на момент развода
           </label>
           <Controller
-            name="parentFamily.divorce.ageAtDivorce"
+            name="profile.parentFamily.divorce.ageAtDivorce"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -91,13 +91,13 @@ const Divorce: React.FC = () => {
               />
             )}
           />
-          {errors.parentFamily?.divorce?.ageAtDivorce && (
+          {errors.profile?.parentFamily?.divorce?.ageAtDivorce && (
             <span>Поле обязательно для заполнения</span>
           )}
 
           <label htmlFor="divorce.whoLivedWith">После развода вы жили с:</label>
           <Controller
-            name="parentFamily.divorce.whoLivedWith"
+            name="profile.parentFamily.divorce.whoLivedWith"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -118,7 +118,7 @@ const Divorce: React.FC = () => {
             <div>
               <label htmlFor="divorce.whoLivedWith.custom">Ваш вариант:</label>
               <Controller
-                name="parentFamily.divorce.whoLivedWith"
+                name="profile.parentFamily.divorce.whoLivedWith"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -131,7 +131,7 @@ const Divorce: React.FC = () => {
               />
             </div>
           )}
-          {errors.parentFamily?.divorce?.whoLivedWith && (
+          {errors.profile?.parentFamily?.divorce?.whoLivedWith && (
             <span>Поле обязательно для заполнения</span>
           )}
 
@@ -141,7 +141,7 @@ const Divorce: React.FC = () => {
             болезненно»
           </label>
           <Controller
-            name="parentFamily.divorce.emotionalState"
+            name="profile.parentFamily.divorce.emotionalState"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (

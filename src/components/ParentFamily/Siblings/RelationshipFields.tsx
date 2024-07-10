@@ -4,14 +4,14 @@ import {
   siblingsChildhoodRelationshipOptions,
   siblingsCurrentRelationshipOptions,
 } from "../Options";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 
 const RelationshipFields: React.FC = () => {
   const {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [
     showChildhoodRelationshipCustomField,
@@ -28,20 +28,26 @@ const RelationshipFields: React.FC = () => {
     setShowChildhoodRelationshipCustomField(
       event.target.value === "ваш вариант"
     );
-    setValue("parentFamily.siblings.childhoodRelationship", event.target.value);
+    setValue(
+      "profile.parentFamily.siblings.childhoodRelationship",
+      event.target.value
+    );
   };
   const handleOptionChangeCurrentRelationship = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowCurrentRelationshipCustomField(event.target.value === "ваш вариант");
-    setValue("parentFamily.siblings.currentRelationship", event.target.value);
+    setValue(
+      "profile.parentFamily.siblings.currentRelationship",
+      event.target.value
+    );
   };
 
   return (
     <>
       <label htmlFor="siblings.childhoodRelationship">В детстве я был:</label>
       <Controller
-        name="parentFamily.siblings.childhoodRelationship"
+        name="profile.parentFamily.siblings.childhoodRelationship"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -64,7 +70,7 @@ const RelationshipFields: React.FC = () => {
             Ваш вариант:
           </label>
           <Controller
-            name="parentFamily.siblings.childhoodRelationship"
+            name="profile.parentFamily.siblings.childhoodRelationship"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -77,14 +83,14 @@ const RelationshipFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.parentFamily?.siblings?.childhoodRelationship && (
+      {errors.profile?.parentFamily?.siblings?.childhoodRelationship && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="siblings.currentRelationship">
         Как вы оцениваете свои текущие отношения с братьями и сестрами?
       </label>
       <Controller
-        name="parentFamily.siblings.currentRelationship"
+        name="profile.parentFamily.siblings.currentRelationship"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -107,7 +113,7 @@ const RelationshipFields: React.FC = () => {
             Ваш вариант:
           </label>
           <Controller
-            name="parentFamily.siblings.currentRelationship"
+            name="profile.parentFamily.siblings.currentRelationship"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -120,7 +126,7 @@ const RelationshipFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.parentFamily?.siblings?.currentRelationship && (
+      {errors.profile?.parentFamily?.siblings?.currentRelationship && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

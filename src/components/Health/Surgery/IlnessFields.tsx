@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { ilnessOptions, scoreOptions } from '../Options';
 
@@ -9,15 +9,15 @@ const IlnessFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showIlnessDetails, setShowIlnessDetails] = useState(false);
 
-  const hasIlness = watch("health.hasIlness");
+  const hasIlness = watch("profile.health.hasIlness");
 
   useEffect(() => {
     if (hasIlness === "нет") {
-      setValue("health.ilness", undefined);
+      setValue("profile.health.ilness", undefined);
     }
   }, [hasIlness, setValue]);
 
@@ -26,7 +26,7 @@ const IlnessFields: React.FC = () => {
       <label htmlFor="hasIlness">Хронические болезни:</label>
       <div className="radio-container">
         <Controller
-          name="health.hasIlness"
+          name="profile.health.hasIlness"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -63,7 +63,7 @@ const IlnessFields: React.FC = () => {
         <>
           <div className="checkbox-container">
             <Controller
-              name="health.ilness"
+              name="profile.health.ilness"
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
@@ -164,7 +164,7 @@ const IlnessFields: React.FC = () => {
               )}
             />
           </div>
-          {errors.health?.ilness && (
+          {errors.profile?.health?.ilness && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

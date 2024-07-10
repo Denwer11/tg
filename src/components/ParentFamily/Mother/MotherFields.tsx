@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { motherRelationshipRatingOptions } from "../Options";
 import { useEffect } from "react";
 
@@ -9,20 +9,20 @@ const MotherFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
-  const hasStepmother = watch("parentFamily.hasStepmother");
+  const hasStepmother = watch("profile.parentFamily.hasStepmother");
 
   useEffect(() => {
     if (hasStepmother === "да") {
-      setValue("parentFamily.stepmother", {
+      setValue("profile.parentFamily.stepmother", {
         rating:
           "в моем детстве жили вместе, но громко ругались или имело место эмоциональное или физическое насилие",
         yearsTogether: 0,
         comment: undefined,
       });
     } else {
-      setValue("parentFamily.stepmother", undefined);
+      setValue("profile.parentFamily.stepmother", undefined);
     }
   }, [hasStepmother, setValue]);
 
@@ -31,7 +31,7 @@ const MotherFields: React.FC = () => {
       <h4>Мать:</h4>
       <label htmlFor="mother.birthYear">Год рождения: </label>
       <Controller
-        name="parentFamily.mother.birthYear"
+        name="profile.parentFamily.mother.birthYear"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -43,18 +43,18 @@ const MotherFields: React.FC = () => {
           />
         )}
       />
-      {errors.parentFamily?.mother?.birthYear && (
+      {errors.profile?.parentFamily?.mother?.birthYear && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="mother.profession">Профессия: </label>
       <Controller
-        name="parentFamily.mother.profession"
+        name="profile.parentFamily.mother.profession"
         control={control}
         rules={{ required: true }}
         render={({ field }) => <input id="mother.profession" {...field} />}
       />
-      {errors.parentFamily?.mother?.profession && (
+      {errors.profile?.parentFamily?.mother?.profession && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -63,7 +63,7 @@ const MotherFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="parentFamily.mother.ageAtBirth"
+          name="profile.parentFamily.mother.ageAtBirth"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -77,7 +77,7 @@ const MotherFields: React.FC = () => {
         />
         <span className="span-age"> лет</span>
       </div>
-      {errors.parentFamily?.mother?.ageAtBirth && (
+      {errors.profile?.parentFamily?.mother?.ageAtBirth && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -85,7 +85,7 @@ const MotherFields: React.FC = () => {
         Всего мамой было рождено детей:
       </label>
       <Controller
-        name="parentFamily.mother.totalChildren"
+        name="profile.parentFamily.mother.totalChildren"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -97,13 +97,13 @@ const MotherFields: React.FC = () => {
           />
         )}
       />
-      {errors.parentFamily?.mother?.totalChildren && (
+      {errors.profile?.parentFamily?.mother?.totalChildren && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="mother.comment">При необходимости ваш комментарий:</label>
       <Controller
-        name="parentFamily.mother.comment"
+        name="profile.parentFamily.mother.comment"
         control={control}
         render={({ field }) => <textarea {...field} />}
       />
@@ -112,7 +112,7 @@ const MotherFields: React.FC = () => {
         Как бы Вы в целом оценили в детстве отношения между Вами и мамой
       </label>
       <Controller
-        name="parentFamily.motherRelationship.rating"
+        name="profile.parentFamily.motherRelationship.rating"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -125,7 +125,7 @@ const MotherFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.parentFamily?.motherRelationship?.rating && (
+      {errors.profile?.parentFamily?.motherRelationship?.rating && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -133,7 +133,7 @@ const MotherFields: React.FC = () => {
         При необходимости Ваш комментарий
       </label>
       <Controller
-        name="parentFamily.motherRelationship.comment"
+        name="profile.parentFamily.motherRelationship.comment"
         control={control}
         render={({ field }) => (
           <textarea id="motherRelationship.comment" {...field} />

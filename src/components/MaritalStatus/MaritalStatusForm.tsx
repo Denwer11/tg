@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import PartnerFields from "./Partner/PartnerFields";
-import { FormData } from "../../pages/UserProfileForm";
+import { UserData } from "../../pages/UserProfileForm";
 import RelationshipsFields from "./Relationships/RelationshipsFields";
 import { MaritalStatusOptions } from './Options';
 import ChildrenFields from './Children/ChildrenFields';
@@ -13,7 +13,7 @@ const MaritalStatusForm: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showPartnerFields, setShowPartnerFields] = useState(false);
   const [showOtherMaritalStatus, setShowOtherMaritalStatus] = useState(false);
@@ -24,17 +24,19 @@ const MaritalStatusForm: React.FC = () => {
     const selectedValue = event.target.value;
     setShowPartnerFields(selectedValue !== "живу без партнера");
     setShowOtherMaritalStatus(selectedValue === "иное");
-    setValue("currentMaritalStatus.maritalStatus", selectedValue);
+    setValue("profile.currentMaritalStatus.maritalStatus", selectedValue);
   };
 
-  const maritalStatusToPartner = watch("currentMaritalStatus.maritalStatus");
+  const maritalStatusToPartner = watch(
+    "profile.currentMaritalStatus.maritalStatus"
+  );
 
   useEffect(() => {
     if (maritalStatusToPartner === "живу без партнера") {
-      setValue("currentMaritalStatus.partnerAge", undefined);
-      setValue("currentMaritalStatus.partnerOccupation", undefined);
-      setValue("currentMaritalStatus.otherOccupation", undefined);
-      setValue("currentMaritalStatus.partnerProfession", undefined);
+      setValue("profile.currentMaritalStatus.partnerAge", undefined);
+      setValue("profile.currentMaritalStatus.partnerOccupation", undefined);
+      setValue("profile.currentMaritalStatus.otherOccupation", undefined);
+      setValue("profile.currentMaritalStatus.partnerProfession", undefined);
     }
   }, [maritalStatusToPartner, setValue]);
 
@@ -43,7 +45,7 @@ const MaritalStatusForm: React.FC = () => {
       <h3>Актуальное семейное положение</h3>
       <label htmlFor="maritalStatus">Семейное положение: </label>
       <Controller
-        name="currentMaritalStatus.maritalStatus"
+        name="profile.currentMaritalStatus.maritalStatus"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -62,7 +64,7 @@ const MaritalStatusForm: React.FC = () => {
       />
       {showOtherMaritalStatus && (
         <Controller
-          name="currentMaritalStatus.otherMaritalStatus"
+          name="profile.currentMaritalStatus.otherMaritalStatus"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -70,13 +72,13 @@ const MaritalStatusForm: React.FC = () => {
           )}
         />
       )}
-      {errors.currentMaritalStatus?.maritalStatus && (
+      {errors.profile?.currentMaritalStatus?.maritalStatus && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       {showPartnerFields && <PartnerFields />}
       <RelationshipsFields />
-      <ChildrenFields/>
+      <ChildrenFields />
     </>
   );
 };

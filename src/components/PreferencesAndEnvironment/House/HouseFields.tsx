@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from 'react-hook-form';
-import { FormData } from "../../../pages/UserProfileForm";
+import {  UserData } from "../../../pages/UserProfileForm";
 import { dominantColorsOptions, preferredFurnitureOptions, wallDecorOptions } from '../Options';
 
 const HouseFields: React.FC = () => {
@@ -8,7 +8,7 @@ const HouseFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showWallDecorCustomField, setShowWallDecorCustomField] =
     useState(false);
@@ -17,7 +17,7 @@ const HouseFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowWallDecorCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.wallDecor", event.target.value);
+    setValue("profile.preferencesAndEnvironment.wallDecor", event.target.value);
   };
 
   const [
@@ -30,7 +30,7 @@ const HouseFields: React.FC = () => {
   ) => {
     setShowPreferredFurnitureCustomField(event.target.value === "ваш вариант");
     setValue(
-      "preferencesAndEnvironment.preferredFurniture",
+      "profile.preferencesAndEnvironment.preferredFurniture",
       event.target.value
     );
   };
@@ -42,13 +42,13 @@ const HouseFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowDominantColorsCustomField(event.target.value === "ваш вариант");
-    setValue("preferencesAndEnvironment.dominantColors", event.target.value);
+    setValue("profile.preferencesAndEnvironment.dominantColors", event.target.value);
   };
   return (
     <>
       <label htmlFor="wallDecor">Что висит на стенах у вас дома?</label>
       <Controller
-        name="preferencesAndEnvironment.wallDecor"
+        name="profile.preferencesAndEnvironment.wallDecor"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -69,7 +69,7 @@ const HouseFields: React.FC = () => {
         <div>
           <label htmlFor="wallDecor.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.wallDecor"
+            name="profile.preferencesAndEnvironment.wallDecor"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -78,13 +78,13 @@ const HouseFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.wallDecor && (
+      {errors.profile?.preferencesAndEnvironment?.wallDecor && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="preferredFurniture">Какую мебель вы предпочитаете?</label>
       <Controller
-        name="preferencesAndEnvironment.preferredFurniture"
+        name="profile.preferencesAndEnvironment.preferredFurniture"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -105,7 +105,7 @@ const HouseFields: React.FC = () => {
         <div>
           <label htmlFor="preferredFurniture.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.preferredFurniture"
+            name="profile.preferencesAndEnvironment.preferredFurniture"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -114,7 +114,7 @@ const HouseFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.preferredFurniture && (
+      {errors.profile?.preferencesAndEnvironment?.preferredFurniture && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -122,7 +122,7 @@ const HouseFields: React.FC = () => {
         Какие цвета преобладают в вашем доме?
       </label>
       <Controller
-        name="preferencesAndEnvironment.dominantColors"
+        name="profile.preferencesAndEnvironment.dominantColors"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -143,7 +143,7 @@ const HouseFields: React.FC = () => {
         <div>
           <label htmlFor="dominantColors.custom">Ваш вариант:</label>
           <Controller
-            name="preferencesAndEnvironment.dominantColors"
+            name="profile.preferencesAndEnvironment.dominantColors"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -152,7 +152,7 @@ const HouseFields: React.FC = () => {
           />
         </div>
       )}
-      {errors.preferencesAndEnvironment?.dominantColors && (
+      {errors.profile?.preferencesAndEnvironment?.dominantColors && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

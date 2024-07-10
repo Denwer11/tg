@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 
 const ChildrenFields: React.FC = () => {
   const {
@@ -8,14 +8,14 @@ const ChildrenFields: React.FC = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showChildrenDetails, setShowChildrenDetails] = useState(false);
   const [children, setChildren] = useState<
-    FormData["currentMaritalStatus"]["children"]
+    UserData["profile"]["currentMaritalStatus"]["children"]
   >([]);
   const [adoptedChildren, setAdoptedChildren] = useState<
-    FormData["currentMaritalStatus"]["adoptedChildren"]
+    UserData["profile"]["currentMaritalStatus"]["adoptedChildren"]
   >([]);
 
   const addChild = () => {
@@ -47,21 +47,23 @@ const ChildrenFields: React.FC = () => {
     setAdoptedChildren([]);
   };
 
-  const hasChildren = watch("currentMaritalStatus.hasChildren");
+  const hasChildren = watch("profile.currentMaritalStatus.hasChildren");
 
   useEffect(() => {
     if (hasChildren === "да") {
-      setValue("currentMaritalStatus.children", [{ gender: "сын", age: 0 }]);
-      setValue("currentMaritalStatus.adoptedChildren", undefined);
+      setValue("profile.currentMaritalStatus.children", [
+        { gender: "сын", age: 0 },
+      ]);
+      setValue("profile.currentMaritalStatus.adoptedChildren", undefined);
     } else if (
       typeof adoptedChildren === "undefined" ||
       adoptedChildren.length === 0
     ) {
-      setValue("currentMaritalStatus.adoptedChildren", undefined);
-      setValue("currentMaritalStatus.children", undefined);
+      setValue("profile.currentMaritalStatus.adoptedChildren", undefined);
+      setValue("profile.currentMaritalStatus.children", undefined);
     } else {
-      setValue("currentMaritalStatus.adoptedChildren", undefined);
-      setValue("currentMaritalStatus.children", undefined);
+      setValue("profile.currentMaritalStatus.adoptedChildren", undefined);
+      setValue("profile.currentMaritalStatus.children", undefined);
     }
   }, [hasChildren, setValue, adoptedChildren]);
 
@@ -71,7 +73,7 @@ const ChildrenFields: React.FC = () => {
       children?.length === 0 &&
       adoptedChildren?.length
     ) {
-      setValue("currentMaritalStatus.hasChildren", "нет");
+      setValue("profile.currentMaritalStatus.hasChildren", "нет");
       setShowChildrenDetails(false);
     }
   }, [hasChildren, children, adoptedChildren, setValue]);
@@ -81,7 +83,7 @@ const ChildrenFields: React.FC = () => {
       <label htmlFor="hasChildren">У вас есть дети или приемные дети?</label>
       <div className="radio-container">
         <Controller
-          name="currentMaritalStatus.hasChildren"
+          name="profile.currentMaritalStatus.hasChildren"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -115,7 +117,7 @@ const ChildrenFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.currentMaritalStatus?.hasChildren && (
+      {errors.profile?.currentMaritalStatus?.hasChildren && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -126,7 +128,7 @@ const ChildrenFields: React.FC = () => {
             <div key={index}>
               <label htmlFor={`childGender-${index}`}>Пол:</label>
               <Controller
-                name={`currentMaritalStatus.children.${index}.gender`}
+                name={`profile.currentMaritalStatus.children.${index}.gender`}
                 control={control}
                 render={({ field }) => (
                   <select id={`childGender-${index}`} {...field}>
@@ -137,7 +139,7 @@ const ChildrenFields: React.FC = () => {
               />
               <label htmlFor={`childAge-${index}`}>Возраст:</label>
               <Controller
-                name={`currentMaritalStatus.children.${index}.age`}
+                name={`profile.currentMaritalStatus.children.${index}.age`}
                 control={control}
                 render={({ field }) => (
                   <input
@@ -167,7 +169,7 @@ const ChildrenFields: React.FC = () => {
               <div>
                 <label htmlFor={`adoptedChildGender-${index}`}>Пол:</label>
                 <Controller
-                  name={`currentMaritalStatus.adoptedChildren.${index}.gender`}
+                  name={`profile.currentMaritalStatus.adoptedChildren.${index}.gender`}
                   control={control}
                   render={({ field }) => (
                     <select id={`adoptedChildGender-${index}`} {...field}>
@@ -180,7 +182,7 @@ const ChildrenFields: React.FC = () => {
               <div className="form-age">
                 <label htmlFor={`adoptedChildAge-${index}`}>Возраст:</label>
                 <Controller
-                  name={`currentMaritalStatus.adoptedChildren.${index}.age`}
+                  name={`profile.currentMaritalStatus.adoptedChildren.${index}.age`}
                   control={control}
                   render={({ field }) => (
                     <input
@@ -198,7 +200,7 @@ const ChildrenFields: React.FC = () => {
                   Сколько вам было лет в момент принятия?
                 </label>
                 <Controller
-                  name={`currentMaritalStatus.adoptedChildren.${index}.adoptionAge`}
+                  name={`profile.currentMaritalStatus.adoptedChildren.${index}.adoptionAge`}
                   control={control}
                   render={({ field }) => (
                     <input

@@ -1,12 +1,12 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 
 const RatingFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   return (
     <>
@@ -17,7 +17,7 @@ const RatingFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="health.healthRating"
+          name="profile.health.healthRating"
           rules={{ required: true }}
           control={control}
           render={({ field }) => (
@@ -32,7 +32,7 @@ const RatingFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.health?.healthRating && (
+      {errors.profile?.health?.healthRating && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="immunityRating">
@@ -42,7 +42,7 @@ const RatingFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="health.immunityRating"
+          name="profile.health.immunityRating"
           rules={{ required: true }}
           control={control}
           render={({ field }) => (
@@ -57,7 +57,7 @@ const RatingFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.health?.immunityRating && (
+      {errors.profile?.health?.immunityRating && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

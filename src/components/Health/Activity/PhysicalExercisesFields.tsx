@@ -1,12 +1,12 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 
 const PhysicalExercisesFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
   return (
     <>
       <h4>Физические упражнения: </h4>
@@ -15,7 +15,7 @@ const PhysicalExercisesFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="health.physicalExercises.exerciseHours"
+          name="profile.health.physicalExercises.exerciseHours"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -28,7 +28,7 @@ const PhysicalExercisesFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.health?.physicalExercises?.exerciseHours && (
+      {errors.profile?.health?.physicalExercises?.exerciseHours && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="physicalExercises.walkingHours">
@@ -36,7 +36,7 @@ const PhysicalExercisesFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="health.physicalExercises.walkingHours"
+          name="profile.health.physicalExercises.walkingHours"
           control={control}
           render={({ field }) => (
             <input
@@ -53,7 +53,7 @@ const PhysicalExercisesFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="health.physicalExercises.stepsPerDay"
+          name="profile.health.physicalExercises.stepsPerDay"
           control={control}
           render={({ field }) => (
             <input

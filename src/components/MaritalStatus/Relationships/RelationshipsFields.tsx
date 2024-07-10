@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import {
   RelationshipDurationOptions,
   RelationshipEndReasonOptions,
@@ -12,7 +12,7 @@ const RelationshipsFields: React.FC = () => {
     control,
     formState: { errors },
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [relationshipEndReasonOther, setRelationshipEndReasonOther] =
     useState(false);
@@ -22,7 +22,10 @@ const RelationshipsFields: React.FC = () => {
   ) => {
     const selectedValue = event.target.value;
     setRelationshipEndReasonOther(selectedValue === "свой вариант");
-    setValue("currentMaritalStatus.relationshipEndReason", event.target.value);
+    setValue(
+      "profile.currentMaritalStatus.relationshipEndReason",
+      event.target.value
+    );
   };
   return (
     <>
@@ -30,7 +33,7 @@ const RelationshipsFields: React.FC = () => {
         Как долго в последних отношениях:
       </label>
       <Controller
-        name="currentMaritalStatus.relationshipDuration"
+        name="profile.currentMaritalStatus.relationshipDuration"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -43,14 +46,14 @@ const RelationshipsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.currentMaritalStatus?.relationshipDuration && (
+      {errors.profile?.currentMaritalStatus?.relationshipDuration && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="relationshipQuality">
         Как вы оцениваете ваши последние отношения?
       </label>
       <Controller
-        name="currentMaritalStatus.relationshipQuality"
+        name="profile.currentMaritalStatus.relationshipQuality"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -63,7 +66,7 @@ const RelationshipsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.currentMaritalStatus?.relationshipQuality && (
+      {errors.profile?.currentMaritalStatus?.relationshipQuality && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="longestRelationshipDuration">
@@ -72,7 +75,7 @@ const RelationshipsFields: React.FC = () => {
       </label>
       <div className="form-age">
         <Controller
-          name="currentMaritalStatus.longestRelationshipDuration"
+          name="profile.currentMaritalStatus.longestRelationshipDuration"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -86,14 +89,14 @@ const RelationshipsFields: React.FC = () => {
         />
         <span className="span-age"> лет</span>
       </div>
-      {errors.currentMaritalStatus?.longestRelationshipDuration && (
+      {errors.profile?.currentMaritalStatus?.longestRelationshipDuration && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="relationshipEndReason">
         В случае, если они завершились, то по какой причине?
       </label>
       <Controller
-        name="currentMaritalStatus.relationshipEndReason"
+        name="profile.currentMaritalStatus.relationshipEndReason"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -112,7 +115,7 @@ const RelationshipsFields: React.FC = () => {
       />
       {relationshipEndReasonOther && (
         <Controller
-          name="currentMaritalStatus.otherMaritalStatus"
+          name="profile.currentMaritalStatus.otherMaritalStatus"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -120,7 +123,7 @@ const RelationshipsFields: React.FC = () => {
           )}
         />
       )}
-      {errors.currentMaritalStatus?.relationshipEndReason && (
+      {errors.profile?.currentMaritalStatus?.relationshipEndReason && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="numberOfRelationships">
@@ -128,7 +131,7 @@ const RelationshipsFields: React.FC = () => {
         браку?
       </label>
       <Controller
-        name="currentMaritalStatus.numberOfRelationships"
+        name="profile.currentMaritalStatus.numberOfRelationships"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -140,7 +143,7 @@ const RelationshipsFields: React.FC = () => {
           />
         )}
       />
-      {errors.currentMaritalStatus?.numberOfRelationships && (
+      {errors.profile?.currentMaritalStatus?.numberOfRelationships && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

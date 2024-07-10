@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 
 const MedicatiosFields: React.FC = () => {
@@ -8,13 +8,13 @@ const MedicatiosFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
-  const hasTakingMedication = watch("health.hasTakingMedication");
+  const hasTakingMedication = watch("profile.health.hasTakingMedication");
 
   useEffect(() => {
     if (hasTakingMedication === "нет") {
-      setValue("health.takingMedication", undefined);
+      setValue("profile.health.takingMedication", undefined);
     }
   }, [hasTakingMedication, setValue]);
 
@@ -28,7 +28,7 @@ const MedicatiosFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasTakingMedication"
+          name="profile.health.hasTakingMedication"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -67,7 +67,7 @@ const MedicatiosFields: React.FC = () => {
             Принимаемые в настоящее время лекарства:
           </label>
           <Controller
-            name="health.takingMedication"
+            name="profile.health.takingMedication"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -78,7 +78,7 @@ const MedicatiosFields: React.FC = () => {
               />
             )}
           />
-          {errors.health?.takingMedication && (
+          {errors.profile?.health?.takingMedication && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

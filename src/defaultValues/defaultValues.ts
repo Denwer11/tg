@@ -1,29 +1,6 @@
-import { defaultDivorce, defaultFather, defaultFatherRelationship, defaultMother, defaultMotherRelationship, defaultStepfather, defaultStepmother } from './parentFamily';
-
-export const defaultContacts = {
-  phone: undefined,
-  telegram: undefined,
-  email: undefined,
-};
-
-export const defaultCountryCity = {
-  country: undefined,
-  city: undefined,
-};
-
-export const defaultGeneralInfo = {
-  fullName: undefined,
-  gender: "мужской",
-  dateOfBirth: undefined,
-  countryCity: defaultCountryCity,
-  contacts: defaultContacts,
-};
-
 export const allValues = {
   generalInfo: {
     gender: "мужской" as "мужской" | "женский",
-    countryCity: defaultCountryCity,
-    contacts: defaultContacts,
   },
 
   currentMaritalStatus: {
@@ -33,21 +10,27 @@ export const allValues = {
     relationshipEndReason: "разрыв по инициативе партнера",
     hasChildren: "нет",
     children: [{ gender: "сын" as "сын" | "дочь" }],
+    adoptedChildren: [{ gender: "сын" as "сын" | "дочь" }],
   },
 
   parentFamily: {
-    mother: defaultMother,
-    motherRelationship: defaultMotherRelationship,
-    father: defaultFather,
-    fatherRelationship: defaultFatherRelationship,
+    motherRelationship: {
+      rating: "не жила со мной, я воспитывался другим человеком",
+    },
+    fatherRelationship: {
+      rating: "не жил со мной, я воспитывался другим человеком",
+    },
     hasStepmother: "нет",
-    stepmother: defaultStepmother,
+    stepmother: {
+      rating:
+        "в моем детстве жили вместе, но громко ругались или имело место эмоциональное или физическое насилие",
+    },
     hasStepfather: "нет",
-    stepfather: defaultStepfather,
     hasDivorce: "нет",
-    divorce: defaultDivorce,
+    divorce: { whoLivedWith: "отцом", emotionalState: 1 },
     hasSiblings: "нет",
     siblings: {
+      siblingsInfo: [{ relation: "брат" as "брат" | "сестра" }],
       childhoodRelationship: "чаще жертвой агрессии братьев/сестер",
       currentRelationship: "не общаемся, в конфликте",
     },

@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { educationOptions, professionSatisfactionOptions } from "../Options";
 import IsCurrentlyLearningFields from "./IsCurrentlyLearningFields";
 
@@ -8,14 +8,14 @@ const ProfessioFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   return (
     <>
       <label htmlFor="education">Образование:</label>
       <div className="checkbox-container">
         <Controller
-          name="educationAndHobbies.education"
+          name="profile.educationAndHobbies.education"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -53,42 +53,42 @@ const ProfessioFields: React.FC = () => {
           )}
         />
       </div>
-      {errors.educationAndHobbies?.education && (
+      {errors.profile?.educationAndHobbies?.education && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="qualification">
         Квалификация (профессия), специализация:
       </label>
       <Controller
-        name="educationAndHobbies.qualification"
+        name="profile.educationAndHobbies.qualification"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
           <input type="text" {...field} id="qualification" />
         )}
       />
-      {errors.educationAndHobbies?.qualification && (
+      {errors.profile?.educationAndHobbies?.qualification && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="currentProfession">
         Кем вы работаете (какие ваши профессии приносят доход):
       </label>
       <Controller
-        name="educationAndHobbies.currentProfession"
+        name="profile.educationAndHobbies.currentProfession"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
           <input type="text" {...field} id="currentProfession" />
         )}
       />
-      {errors.educationAndHobbies?.currentProfession && (
+      {errors.profile?.educationAndHobbies?.currentProfession && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="currentProfessionSatisfaction">
         Насколько вы удовлетворены своей текущей профессиональной деятельностью?
       </label>
       <Controller
-        name="educationAndHobbies.currentProfessionSatisfaction"
+        name="profile.educationAndHobbies.currentProfessionSatisfaction"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -101,7 +101,7 @@ const ProfessioFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.educationAndHobbies?.currentProfessionSatisfaction && (
+      {errors.profile?.educationAndHobbies?.currentProfessionSatisfaction && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="longestProfession">
@@ -109,21 +109,21 @@ const ProfessioFields: React.FC = () => {
         специальности Вы работали наиболее долго:
       </label>
       <Controller
-        name="educationAndHobbies.longestProfession"
+        name="profile.educationAndHobbies.longestProfession"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
           <input type="text" {...field} id="longestProfession" />
         )}
       />
-      {errors.educationAndHobbies?.longestProfession && (
+      {errors.profile?.educationAndHobbies?.longestProfession && (
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="longestProfessionSatisfaction">
         Насколько вы удовлетворены своей текущей профессиональной деятельностью?
       </label>
       <Controller
-        name="educationAndHobbies.longestProfessionSatisfaction"
+        name="profile.educationAndHobbies.longestProfessionSatisfaction"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -136,7 +136,7 @@ const ProfessioFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.educationAndHobbies?.longestProfessionSatisfaction && (
+      {errors.profile?.educationAndHobbies?.longestProfessionSatisfaction && (
         <span>Поле обязательно для заполнения</span>
       )}
 

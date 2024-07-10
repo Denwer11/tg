@@ -7,20 +7,7 @@ import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.
 import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
 import { ParentFamily } from "../components/ParentFamily/ParentFamily.types";
 import ParentFamilyForm from "../components/ParentFamily/ParentFamilyForm";
-import {
-  allValues,
-  defaultContacts,
-  defaultCountryCity,
-} from "../defaultValues/generalInfo";
-import {
-  defaultDivorce,
-  defaultFather,
-  defaultFatherRelationship,
-  defaultMother,
-  defaultMotherRelationship,
-  defaultStepfather,
-  defaultStepmother,
-} from "../defaultValues/parentFamily";
+import { allValues } from "../defaultValues/defaultValues";
 import { EducationAndHobbies } from "../components/EducationAndHobbies/EducationAndHobbies.types";
 import { PreferencesAndEnvironment } from "../components/PreferencesAndEnvironment/PreferencesAndEnvironment.types";
 import PreferencesAndEnvironmentForm from "../components/PreferencesAndEnvironment/PreferencesAndEnvironmentForm";
@@ -53,8 +40,6 @@ export type FormData = {
 
 const UserProfileForm: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({} as UserData);
-
-
 
   const methods = useForm<UserData>({
     defaultValues: {
@@ -113,12 +98,12 @@ const UserProfileForm: React.FC = () => {
         </ul>
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <FormProvider {...methods}>
-              <GeneralInfoForm />
-              <MaritalStatusForm />
-              <ParentFamilyForm />
-              <EducationAndHobbiesForm />
-              <PreferencesAndEnvironmentForm />
-              <HealthForm />
+            <GeneralInfoForm />
+            <MaritalStatusForm />
+            <ParentFamilyForm />
+            <EducationAndHobbiesForm />
+            <PreferencesAndEnvironmentForm />
+            <HealthForm />
             <FactorsForm />
             <PrinciplesForm />
             <ConsentCheckbox />

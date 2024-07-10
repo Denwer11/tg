@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Surgery } from "../Health.types";
 import IlnessFields from "./IlnessFields";
 
@@ -10,13 +10,13 @@ const SurgeryFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
-  const hasSurgery = watch("health.hasSurgery");
+  const hasSurgery = watch("profile.health.hasSurgery");
 
   useEffect(() => {
     if (hasSurgery === "нет") {
-      setValue("health.surgery", undefined);
+      setValue("profile.health.surgery", undefined);
     }
   }, [hasSurgery, setValue]);
 
@@ -26,7 +26,7 @@ const SurgeryFields: React.FC = () => {
 
   useEffect(() => {
     if (hasSurgery === "да") {
-      setValue("health.surgery", [
+      setValue("profile.health.surgery", [
         {
           surgeryName: "",
           age: 0,
@@ -69,7 +69,7 @@ const SurgeryFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasSurgery"
+          name="profile.health.hasSurgery"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -110,7 +110,7 @@ const SurgeryFields: React.FC = () => {
             <div key={index}>
               <label htmlFor={`surgeryName-${index}`}>Пол:</label>
               <Controller
-                name={`health.surgery.${index}.surgeryName`}
+                name={`profile.health.surgery.${index}.surgeryName`}
                 control={control}
                 render={({ field }) => (
                   <input
@@ -120,12 +120,12 @@ const SurgeryFields: React.FC = () => {
                   ></input>
                 )}
               />
-              {errors.health?.surgery?.[index]?.surgeryName && (
+              {errors.profile?.health?.surgery?.[index]?.surgeryName && (
                 <span>Поле обязательно для заполнения</span>
               )}
               <label htmlFor={`surgery.age-${index}`}>Возраст:</label>
               <Controller
-                name={`health.surgery.${index}.age`}
+                name={`profile.health.surgery.${index}.age`}
                 control={control}
                 render={({ field }) => (
                   <input
@@ -137,7 +137,7 @@ const SurgeryFields: React.FC = () => {
                 )}
               />
               <span className="span-age"> лет</span>
-              {errors.health?.surgery?.[index]?.age && (
+              {errors.profile?.health?.surgery?.[index]?.age && (
                 <span>Поле обязательно для заполнения</span>
               )}
               <button
@@ -152,7 +152,7 @@ const SurgeryFields: React.FC = () => {
           <button type="button" onClick={addSurgery}>
             Добавить операцию
           </button>
-          {errors.parentFamily?.siblings?.siblingsInfo && (
+          {errors.profile?.parentFamily?.siblings?.siblingsInfo && (
             <span>Поле обязательно для заполнения</span>
           )}
         </>

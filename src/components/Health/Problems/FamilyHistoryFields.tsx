@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 
 const FamilyHistoryFields: React.FC = () => {
@@ -8,16 +8,16 @@ const FamilyHistoryFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showFamilyHistoryDetails, setShowFamilyHistoryDetails] =
     useState(false);
 
-  const hasFamilyHistory = watch("health.hasFamilyHistory");
+  const hasFamilyHistory = watch("profile.health.hasFamilyHistory");
 
   useEffect(() => {
     if (hasFamilyHistory === "нет") {
-      setValue("health.familyHistory", undefined);
+      setValue("profile.health.familyHistory", undefined);
     }
   }, [hasFamilyHistory, setValue]);
 
@@ -29,7 +29,7 @@ const FamilyHistoryFields: React.FC = () => {
       </label>
       <div className="radio-container">
         <Controller
-          name="health.hasFamilyHistory"
+          name="profile.health.hasFamilyHistory"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -80,7 +80,7 @@ const FamilyHistoryFields: React.FC = () => {
             Отец, если да, напишете диагноз или то, что знаете:
           </label>
           <Controller
-            name="health.familyHistory.fatherDiagnosis"
+            name="profile.health.familyHistory.fatherDiagnosis"
             control={control}
             render={({ field }) => (
               <input
@@ -95,7 +95,7 @@ const FamilyHistoryFields: React.FC = () => {
             Mать, если да, напишете диагноз или то, что знаете:
           </label>
           <Controller
-            name="health.familyHistory.motherDiagnosis"
+            name="profile.health.familyHistory.motherDiagnosis"
             control={control}
             render={({ field }) => (
               <input
@@ -110,7 +110,7 @@ const FamilyHistoryFields: React.FC = () => {
             Сестры/Братья, если да, напишете диагноз или то, что знаете:
           </label>
           <Controller
-            name="health.familyHistory.siblingsDiagnosis"
+            name="profile.health.familyHistory.siblingsDiagnosis"
             control={control}
             render={({ field }) => (
               <input
@@ -125,7 +125,7 @@ const FamilyHistoryFields: React.FC = () => {
             Бабушка/Дедушка, если да, напишете диагноз или то, что знаете:
           </label>
           <Controller
-            name="health.familyHistory.grandparentsDiagnosis"
+            name="profile.health.familyHistory.grandparentsDiagnosis"
             control={control}
             render={({ field }) => (
               <input
@@ -137,7 +137,7 @@ const FamilyHistoryFields: React.FC = () => {
           />
         </>
       )}
-      {errors.health?.familyHistory && (
+      {errors.profile?.health?.familyHistory && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

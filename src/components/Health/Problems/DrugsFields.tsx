@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
 import { otherDrugsDynamicOptions } from '../Options';
 
@@ -9,7 +9,7 @@ const DrugsFields: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
 
   const [showOtherDrugsDetails, setShowOtherDrugsDetails] = useState(false);
 
@@ -22,14 +22,14 @@ const DrugsFields: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setShowOtherDrugsDynamicCustomField(event.target.value === "свой вариант");
-    setValue("health.otherDrugs.otherDrugsDynamic", event.target.value);
+    setValue("profile.health.otherDrugs.otherDrugsDynamic", event.target.value);
   };
 
-  const hasOtherDrugs = watch("health.hasOtherDrugs");
+  const hasOtherDrugs = watch("profile.health.hasOtherDrugs");
 
   useEffect(() => {
     if (hasOtherDrugs === "нет") {
-      setValue("health.otherDrugs", undefined);
+      setValue("profile.health.otherDrugs", undefined);
     }
   }, [hasOtherDrugs, setValue]);
 
@@ -38,7 +38,7 @@ const DrugsFields: React.FC = () => {
       <label htmlFor="hasOtherDrugs">Другие наркотики и зависимости</label>
       <div className="radio-container">
         <Controller
-          name="health.hasOtherDrugs"
+          name="profile.health.hasOtherDrugs"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -77,7 +77,7 @@ const DrugsFields: React.FC = () => {
             Другие наркотики (что, когда):
           </label>
           <Controller
-            name="health.otherDrugs.otherDrugsDetails"
+            name="profile.health.otherDrugs.otherDrugsDetails"
             rules={{ required: true }}
             control={control}
             render={({ field }) => (
@@ -89,7 +89,7 @@ const DrugsFields: React.FC = () => {
             За последние 5 лет какая динамика?:
           </label>
           <Controller
-            name="health.otherDrugs.otherDrugsDynamic"
+            name="profile.health.otherDrugs.otherDrugsDynamic"
             rules={{ required: true }}
             control={control}
             render={({ field }) => (
@@ -112,7 +112,7 @@ const DrugsFields: React.FC = () => {
                 Ваш вариант:
               </label>
               <Controller
-                name="health.otherDrugs.otherDrugsDynamic"
+                name="profile.health.otherDrugs.otherDrugsDynamic"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -123,7 +123,7 @@ const DrugsFields: React.FC = () => {
                   />
                 )}
               />
-              {errors.health?.otherDrugs?.otherDrugsDynamic && (
+              {errors.profile?.health?.otherDrugs?.otherDrugsDynamic && (
                 <span>Поле обязательно для заполнения</span>
               )}
             </>
