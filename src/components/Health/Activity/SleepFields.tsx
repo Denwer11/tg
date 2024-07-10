@@ -1,7 +1,7 @@
 import React from "react";
 import { FormData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from 'react-hook-form';
-import { sleepLatencyOptions, timeOptions } from '../Options';
+import { sleepLatencyOptions } from '../Options';
 
 const SleepFields: React.FC = () => {
       const {
@@ -20,13 +20,12 @@ const SleepFields: React.FC = () => {
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
-          <select {...field} id="sleep.wakeUpTimePreferred">
-            {timeOptions.map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
+          <input
+            {...field}
+            type="time"
+            id="sleep.wakeUpTimePreferred"
+            className="input-age"
+          />
         )}
       />
       {errors.health?.sleep?.wakeUpTimePreferred && (
@@ -41,13 +40,12 @@ const SleepFields: React.FC = () => {
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
-          <select {...field} id="sleep.wakeUpTimeActual">
-            {timeOptions.map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
+          <input
+            {...field}
+            type="time"
+            id="sleep.wakeUpTimeActual"
+            className="input-age"
+          />
         )}
       />
       {errors.health?.sleep?.wakeUpTimeActual && (
@@ -62,13 +60,12 @@ const SleepFields: React.FC = () => {
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
-          <select {...field} id="sleep.sleepTimePreferred">
-            {timeOptions.map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
+          <input
+            {...field}
+            type="time"
+            id="sleep.sleepTimePreferred"
+            className="input-age"
+          />
         )}
       />
       {errors.health?.sleep?.sleepTimePreferred && (
@@ -83,13 +80,12 @@ const SleepFields: React.FC = () => {
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
-          <select {...field} id="sleep.sleepTimeActual">
-            {timeOptions.map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
+          <input
+            {...field}
+            type="time"
+            id="sleep.sleepTimeActual"
+            className="input-age"
+          />
         )}
       />
       {errors.health?.sleep?.sleepTimeActual && (

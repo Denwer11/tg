@@ -8,6 +8,7 @@ import MaritalStatusForm from "../components/MaritalStatus/MaritalStatusForm";
 import { ParentFamily } from "../components/ParentFamily/ParentFamily.types";
 import ParentFamilyForm from "../components/ParentFamily/ParentFamilyForm";
 import {
+  allValues,
   defaultContacts,
   defaultCountryCity,
 } from "../defaultValues/generalInfo";
@@ -31,7 +32,7 @@ import PrinciplesForm from "../components/Principles/PrinciplesForm";
 import { TestData } from "../components/Factors/Factors.types";
 import { PrinciplesData } from "../components/Principles/Principles.types";
 import { questions } from "../components/Principles/PrinciplesQuestions";
-import ConsentCheckbox from '../components/Consent/ConsentCheckbox';
+import ConsentCheckbox from "../components/Consent/ConsentCheckbox";
 
 export type UserData = {
   profile: FormData;
@@ -53,118 +54,11 @@ export type FormData = {
 const UserProfileForm: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({} as UserData);
 
+
+
   const methods = useForm<UserData>({
     defaultValues: {
-      profile: {
-        generalInfo: {
-          gender: "мужской",
-          countryCity: defaultCountryCity,
-          contacts: defaultContacts,
-        },
-
-        currentMaritalStatus: {
-          maritalStatus: "живу без партнера",
-          relationshipDuration: "меньше года",
-          relationshipQuality: "очень хорошие",
-          relationshipEndReason: "разрыв по инициативе партнера",
-          hasChildren: "нет",
-          children: [{ gender: "сын" }],
-        },
-
-        parentFamily: {
-          mother: defaultMother,
-          motherRelationship: defaultMotherRelationship,
-          father: defaultFather,
-          fatherRelationship: defaultFatherRelationship,
-          hasStepmother: "нет",
-          stepmother: defaultStepmother,
-          hasStepfather: "нет",
-          stepfather: defaultStepfather,
-          hasDivorce: "нет",
-          divorce: defaultDivorce,
-          hasSiblings: "нет",
-          siblings: {
-            childhoodRelationship: "чаще жертвой агрессии братьев/сестер",
-            currentRelationship: "не общаемся, в конфликте",
-          },
-          hasParentalOverprotection: "нет",
-          parentalOverprotection:
-            "очень негативно, как сильное давление, ограничение свободы",
-          relationshipParentsChildhood: {
-            relationshipParents: "жили отдельно и не встречались",
-          },
-          relationshipParentsNow: {
-            relationshipParents:
-              "Я зависим от их мнения, они активно участвуют в моей жизни (я согласую свои решения, они принимают участие в моих семейных делах, например решениях об отпуске, тратах, детях, я с ними советуюсь по большинству вопросов и нуждаюсь в их одобрении и т.д.)",
-          },
-          communication: "ежедневно",
-          hasDeaths: "нет",
-          deaths: {
-            whoDied: "брат",
-            myAge: 0,
-            copingWithLoss: "получали поддержку от семьи и друзей",
-          },
-        },
-
-        educationAndHobbies: {
-          currentProfessionSatisfaction: "очень удовлетворен",
-          longestProfessionSatisfaction: "очень удовлетворен",
-          isCurrentlyLearning: "нет",
-          hobbyFrequency: "ежедневно",
-          expertiseFrequency: "ежедневно",
-          restFrequency: "ежедневно",
-          booksAt10: "0-9",
-          readingFrequencyAt10: "ежедневно",
-          currentReadingFrequency: "ежедневно",
-        },
-
-        preferencesAndEnvironment: {
-          wallDecor: "Искусство (картины, художественные фотографии)",
-          preferredFurniture: "Классическую",
-          dominantColors: "Яркие и насыщенные",
-          adviceSource: "Интернет",
-          transportAudio: "Свой плейлист",
-          preferredChannels: "Новости",
-          aloneTimeActivities:
-            "Полежать на диване, принять ванну и т.п. релакс",
-          preferredSports: "Индивидуальные виды спорта (бег, плавание)",
-          socialMediaFrequency: "Каждый день",
-          socialMediaDetox:
-            "Это помогает мне быть постоянно на связи и в курсе событий и мне это не мешает",
-        },
-
-        health: {
-          height: 170,
-          weight: 80,
-          bloodType: "I",
-          hand: "П",
-          birthConditions: "естественным путем",
-          hasSurgery: "нет",
-          hasIlness: "нет",
-          feelingHelplessFrequency: "почти никогда",
-          hasDietRestrictions: "нет",
-          hasTakingMedication: "нет",
-          hasLostConsciousness: "нет",
-          hasPsychiatricHelp: "нет",
-          hasAlcoholConsumption: "нет",
-          alcoholConsumption: {
-            alcoholConsumptionWeekly: 0,
-            alcoholConsumptionDynamic: "увеличилось",
-          },
-          hasSmoking: "нет",
-          smoking: { smokingDynamic: "увеличилось" },
-          hasOtherDrugs: "нет",
-          otherDrugs: {
-            otherDrugsDynamic: "увеличилось / добавилось",
-          },
-          hasFamilyHistory: "нет",
-          physicalExercises: {},
-          hasDietRegimen: "нет",
-          dietRegimen: { biggestMeal: 0 },
-          healthRating: 0,
-          immunityRating: 0,
-        },
-      },
+      profile: allValues,
 
       principlesTest: questions.reduce((acc, _question, index) => {
         acc[`question-${index + 1}`] = 1;
@@ -219,15 +113,15 @@ const UserProfileForm: React.FC = () => {
         </ul>
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <FormProvider {...methods}>
-            <GeneralInfoForm />
-            <MaritalStatusForm />
-            <ParentFamilyForm />
-            <EducationAndHobbiesForm />
-            <PreferencesAndEnvironmentForm />
-            <HealthForm />
+              <GeneralInfoForm />
+              <MaritalStatusForm />
+              <ParentFamilyForm />
+              <EducationAndHobbiesForm />
+              <PreferencesAndEnvironmentForm />
+              <HealthForm />
             <FactorsForm />
             <PrinciplesForm />
-            <ConsentCheckbox/>
+            <ConsentCheckbox />
             <button type="submit">Отправить</button>
           </FormProvider>
         </form>

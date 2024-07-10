@@ -104,17 +104,6 @@ export const alcoholConsumptionWeeklyOptions = [
   41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
 ];
 
-export const timeOptions = Array.from({ length: 24 }, (_, i) => i)
-  .map((hour) =>
-    Array.from({ length: 60 }, (_, j) => j).map(
-      (minute) =>
-        `${hour.toString().padStart(2, "0")}:${minute
-          .toString()
-          .padStart(2, "0")}`
-    )
-  )
-  .flat();
-
 export const sleepLatencyOptions = [
   ...Array.from({ length: 60 }, (_, i) => i).map((minute) => `${minute} минут`),
   ...Array.from({ length: 12 }, (_, i) => i + 1).map(

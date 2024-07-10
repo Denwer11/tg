@@ -8,7 +8,7 @@ export type CurrentMaritalStatus = {
   relationshipDuration: string;
   relationshipQuality: string;
   longestRelationshipDuration: number;
-  relationshipEndReason?: string;
+  relationshipEndReason: string;
   numberOfRelationships: number;
   hasChildren: string;
   children?: Child[];
