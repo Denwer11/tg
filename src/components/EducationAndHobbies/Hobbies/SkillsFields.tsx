@@ -1,42 +1,42 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormData } from "../../../pages/UserProfileForm";
+import { UserData } from "../../../pages/UserProfileForm";
 import { frequencyOptions } from "../Options";
 
 const SkillsFields: React.FC = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<FormData>();
+  } = useFormContext<UserData>();
   return (
     <>
       <label htmlFor="hobbiesBefore16">Хобби до 16 лет:</label>
       <Controller
-        name="educationAndHobbies.hobbiesBefore16"
+        name="profile.educationAndHobbies.hobbiesBefore16"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
           <input type="text" {...field} id="hobbiesBefore16" />
         )}
       />
-      {errors.educationAndHobbies?.hobbiesBefore16 && (
+      {errors.profile?.educationAndHobbies?.hobbiesBefore16 && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="hobbiesBefore16">Хобби сейчас:</label>
       <Controller
-        name="educationAndHobbies.hobbiesNow"
+        name="profile.educationAndHobbies.hobbiesNow"
         control={control}
         rules={{ required: true }}
         render={({ field }) => <input type="text" {...field} id="hobbiesNow" />}
       />
-      {errors.educationAndHobbies?.hobbiesNow && (
+      {errors.profile?.educationAndHobbies?.hobbiesNow && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="hobbyFrequency">Как часто вы занимаетесь Хобби?</label>
       <Controller
-        name="educationAndHobbies.hobbyFrequency"
+        name="profile.educationAndHobbies.hobbyFrequency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -49,7 +49,7 @@ const SkillsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.educationAndHobbies?.hobbyFrequency && (
+      {errors.profile?.educationAndHobbies?.hobbyFrequency && (
         <span>Поле обязательно для заполнения</span>
       )}
 
@@ -58,18 +58,18 @@ const SkillsFields: React.FC = () => {
         пою, рисую и т.д. и.т.п.)
       </label>
       <Controller
-        name="educationAndHobbies.expertise"
+        name="profile.educationAndHobbies.expertise"
         control={control}
         rules={{ required: true }}
         render={({ field }) => <input type="text" {...field} id="expertise" />}
       />
-      {errors.educationAndHobbies?.expertise && (
+      {errors.profile?.educationAndHobbies?.expertise && (
         <span>Поле обязательно для заполнения</span>
       )}
 
       <label htmlFor="expertiseFrequency">Как часто вы этим занимаетесь?</label>
       <Controller
-        name="educationAndHobbies.expertiseFrequency"
+        name="profile.educationAndHobbies.expertiseFrequency"
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
@@ -82,7 +82,7 @@ const SkillsFields: React.FC = () => {
           </select>
         )}
       />
-      {errors.educationAndHobbies?.expertiseFrequency && (
+      {errors.profile?.educationAndHobbies?.expertiseFrequency && (
         <span>Поле обязательно для заполнения</span>
       )}
     </>

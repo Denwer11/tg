@@ -40,7 +40,6 @@ export type FormData = {
 
 const UserProfileForm: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({} as UserData);
-
   const methods = useForm<UserData>({
     defaultValues: {
       profile: allValues,
@@ -56,7 +55,6 @@ const UserProfileForm: React.FC = () => {
   });
 
   const onSubmit: (data: UserData) => void = (data) => {
-    console.log(data.principlesTest);
     const result = {
       emotional: data.factorsTest?.emotional.map((val) => Boolean(val)),
       cognitive: data.factorsTest?.cognitive.map((val) => Boolean(val)),
