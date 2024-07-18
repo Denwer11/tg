@@ -13,6 +13,10 @@ export function useTelegram() {
     const button = tg.MainButton;
     button.isVisible ? button.hide() : button.show();
   };
+  
+  const onSend = (message: string) => {
+    tg.sendData(message);
+  };
 
   return {
     onClose,
@@ -20,5 +24,6 @@ export function useTelegram() {
     user: tg.initDataUnsafe?.user,
     onToggleButton,
     onReady,
+    onSend,
   };
 }

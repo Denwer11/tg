@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import ReactJson from "react-json-pretty";
+// import ReactJson from "react-json-pretty";
 import GeneralInfoForm from "../components/GeneralInfo/GeneralInfoForm";
 import { GeneralInfo } from "../components/GeneralInfo/GeneralInfo.types";
 import { CurrentMaritalStatus } from "../components/MaritalStatus/MaritalStatus.types";
@@ -20,6 +20,7 @@ import { TestData } from "../components/Factors/Factors.types";
 import { PrinciplesData } from "../components/Principles/Principles.types";
 import { questions } from "../components/Principles/PrinciplesQuestions";
 import ConsentCheckbox from "../components/Consent/ConsentCheckbox";
+import { useTelegram } from '../hooks/useTelegram';
 
 export type UserData = {
   profile: FormData;
@@ -39,6 +40,7 @@ export type FormData = {
 };
 
 const UserProfileForm: React.FC = () => {
+  const { onSend } = useTelegram();
   const [userData, setUserData] = useState<UserData>({} as UserData);
   const methods = useForm<UserData>({
     defaultValues: {
@@ -69,6 +71,9 @@ const UserProfileForm: React.FC = () => {
       consentForPersonalDataProcessing: data.consentForPersonalDataProcessing,
       consentForResearchUse: data.consentForResearchUse,
     });
+
+     const jsonData = JSON.stringify(userData);
+     onSend(jsonData);
   };
 
   return (
@@ -109,7 +114,7 @@ const UserProfileForm: React.FC = () => {
           </FormProvider>
         </form>
 
-        {userData && <div>{<ReactJson data={userData} />}</div>}
+        {/* {userData && <div>{<ReactJson data={userData} />}</div>} */}
       </div>
     </>
   );
