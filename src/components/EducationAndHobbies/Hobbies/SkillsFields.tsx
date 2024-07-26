@@ -55,7 +55,7 @@ const SkillsFields: React.FC = () => {
 
       <label htmlFor="expertise">
         В чем вы считаете себя экспертом, кроме профессии? (кулинар, водитель,
-        пою, рисую и т.д. и.т.п.)
+        пою, рисую и т.д. и т.п.)
       </label>
       <Controller
         name="profile.educationAndHobbies.expertise"
