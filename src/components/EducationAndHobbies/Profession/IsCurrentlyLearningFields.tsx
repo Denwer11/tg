@@ -56,38 +56,40 @@ const IsCurrentlyLearningFields: React.FC = () => {
       {showIsCurrentlyLearningDetails && (
         <>
           <label htmlFor="learningField">В какой сфере?</label>
-          <Controller
-            name="profile.educationAndHobbies.learningField"
-            control={control}
-            render={({ field }) => (
-              <div>
-                <input
-                  type="radio"
-                  {...field}
-                  value="в своей профессиональной сфере"
-                  checked={field.value === "в своей профессиональной сфере"}
-                  onChange={() => {
-                    field.onChange("в своей профессиональной сфере");
-                    setShowLearningComment(false);
-                  }}
-                />
-                <label htmlFor="в своей профессиональной сфере">
-                  в своей профессиональной сфере
-                </label>
-                <input
-                  type="radio"
-                  {...field}
-                  value="в иной сфере"
-                  checked={field.value === "в иной сфере"}
-                  onChange={() => {
-                    field.onChange("в иной сфере");
-                    setShowLearningComment(true);
-                  }}
-                />
-                <label htmlFor="в иной сфере">в иной сфере</label>
-              </div>
-            )}
-          />
+          <div className="radio-container">
+            <Controller
+              name="profile.educationAndHobbies.learningField"
+              control={control}
+              render={({ field }) => (
+                <>
+                  <input
+                    type="radio"
+                    {...field}
+                    value="в своей профессиональной сфере"
+                    checked={field.value === "в своей профессиональной сфере"}
+                    onChange={() => {
+                      field.onChange("в своей профессиональной сфере");
+                      setShowLearningComment(false);
+                    }}
+                  />
+                  <label htmlFor="в своей профессиональной сфере">
+                    в своей профессиональной сфере
+                  </label>
+                  <input
+                    type="radio"
+                    {...field}
+                    value="в иной сфере"
+                    checked={field.value === "в иной сфере"}
+                    onChange={() => {
+                      field.onChange("в иной сфере");
+                      setShowLearningComment(true);
+                    }}
+                  />
+                  <label htmlFor="в иной сфере">в иной сфере</label>
+                </>
+              )}
+            />
+          </div>
           {showLearningComment && (
             <>
               <label htmlFor="learningComment">

@@ -1,7 +1,6 @@
 import React from "react";
 import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from 'react-hook-form';
-import { sleepLatencyOptions } from '../Options';
 
 const SleepFields: React.FC = () => {
       const {
@@ -100,13 +99,12 @@ const SleepFields: React.FC = () => {
         control={control}
         rules={{ required: true }}
         render={({ field }) => (
-          <select {...field} id="sleep.sleepLatency">
-            {sleepLatencyOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+          <input
+            {...field}
+            type="time"
+            id="sleep.sleepLatency"
+            className="input-age"
+          />
         )}
       />
       {errors.profile?.health?.sleep?.sleepLatency && (

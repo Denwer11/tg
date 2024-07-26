@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UserData } from "../../../pages/UserProfileForm";
 import { Controller, useFormContext } from "react-hook-form";
-import { regularActivitiesOptions, transportAudioOptions } from "../Options";
+import { adviceSourceOptions, regularActivitiesOptions, transportAudioOptions } from "../Options";
 
 const LifestyleSurveyFields: React.FC = () => {
   const {
@@ -121,7 +121,7 @@ const LifestyleSurveyFields: React.FC = () => {
             {...field}
             onChange={handleOptionChangeAdviceSource}
           >
-            {regularActivitiesOptions.map((option) => (
+            {adviceSourceOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
