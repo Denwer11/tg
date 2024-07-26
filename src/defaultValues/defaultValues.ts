@@ -11,6 +11,8 @@ export const allValues = {
     hasChildren: "нет",
     children: [{ gender: "сын" as "сын" | "дочь" }],
     adoptedChildren: [{ gender: "сын" as "сын" | "дочь" }],
+    livingConditions: "у своих родителей",
+    livingConditionsSatisfaction: "очень удовлетворен",
   },
 
   parentFamily: {

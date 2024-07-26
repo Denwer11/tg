@@ -105,8 +105,8 @@ const ProfessioFields: React.FC = () => {
         <span>Поле обязательно для заполнения</span>
       )}
       <label htmlFor="longestProfession">
-        Независимо от того, кем Вы работаете сейчас, укажите по какой
-        специальности Вы работали наиболее долго:
+        Насколько вы были удовлетворены своей самой длительной профессиональной
+        деятельностью?
       </label>
       <Controller
         name="profile.educationAndHobbies.longestProfession"
@@ -117,26 +117,6 @@ const ProfessioFields: React.FC = () => {
         )}
       />
       {errors.profile?.educationAndHobbies?.longestProfession && (
-        <span>Поле обязательно для заполнения</span>
-      )}
-      <label htmlFor="longestProfessionSatisfaction">
-        Насколько вы удовлетворены своей текущей профессиональной деятельностью?
-      </label>
-      <Controller
-        name="profile.educationAndHobbies.longestProfessionSatisfaction"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => (
-          <select id="longestProfessionSatisfaction" {...field}>
-            {professionSatisfactionOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        )}
-      />
-      {errors.profile?.educationAndHobbies?.longestProfessionSatisfaction && (
         <span>Поле обязательно для заполнения</span>
       )}
 

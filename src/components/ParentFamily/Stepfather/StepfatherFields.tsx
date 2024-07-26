@@ -79,7 +79,7 @@ const StepfatherFields: React.FC = () => {
       {showStepfatherDetails && (
         <>
           <label htmlFor="stepfather.rating">
-            Как бы Вы в целом оценили в детстве отношения между Вами и отчимом
+            Как бы Вы в целом оценили в детстве отношения между Вами и отчимом:
           </label>
           <Controller
             name="profile.parentFamily.stepfather.rating"
@@ -117,7 +117,7 @@ const StepfatherFields: React.FC = () => {
           )}
 
           <label htmlFor="stepfather.comment">
-            При необходимости Ваш комментарий
+            При необходимости Ваш комментарий:
           </label>
           <Controller
             name="profile.parentFamily.stepfather.comment"
@@ -129,20 +129,22 @@ const StepfatherFields: React.FC = () => {
           <label htmlFor="stepfather.yearsTogether">
             Сколько лет вы жили вместе с отчимом?
           </label>
-          <Controller
-            name="profile.parentFamily.stepfather.yearsTogether"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <input
-                id="stepfather.yearsTogether"
-                type="number"
-                {...field}
-                className="input-age"
-              />
-            )}
-          />
-          <span className="span-age"> лет</span>
+          <div className="form-age">
+            <Controller
+              name="profile.parentFamily.stepfather.yearsTogether"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <input
+                  id="stepfather.yearsTogether"
+                  type="number"
+                  {...field}
+                  className="input-age"
+                />
+              )}
+            />
+            <span className="span-age"> лет</span>
+          </div>
           {errors.profile?.parentFamily?.stepfather?.yearsTogether && (
             <span>Поле обязательно для заполнения</span>
           )}

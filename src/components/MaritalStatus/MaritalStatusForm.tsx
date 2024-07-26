@@ -4,8 +4,9 @@ import { Controller, useFormContext } from "react-hook-form";
 import PartnerFields from "./Partner/PartnerFields";
 import { UserData } from "../../pages/UserProfileForm";
 import RelationshipsFields from "./Relationships/RelationshipsFields";
-import { MaritalStatusOptions } from './Options';
-import ChildrenFields from './Children/ChildrenFields';
+import { MaritalStatusOptions } from "./Options";
+import ChildrenFields from "./Children/ChildrenFields";
+import LivingConditionsFields from "./LivingConditions/LivingConditionsFields";
 
 const MaritalStatusForm: React.FC = () => {
   const {
@@ -79,6 +80,7 @@ const MaritalStatusForm: React.FC = () => {
       {showPartnerFields && <PartnerFields />}
       <RelationshipsFields />
       <ChildrenFields />
+      <LivingConditionsFields />
     </>
   );
 };

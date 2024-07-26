@@ -87,6 +87,7 @@ const PartnerFields: React.FC = () => {
         />
       )}
 
+      <label htmlFor="partnerProfession">Профессия партнера:</label>
       <Controller
         name="profile.currentMaritalStatus.partnerProfession"
         control={control}

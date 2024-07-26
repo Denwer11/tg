@@ -109,7 +109,7 @@ const MotherFields: React.FC = () => {
       />
 
       <label htmlFor="motherRelationship.rating">
-        Как бы Вы в целом оценили в детстве отношения между Вами и мамой
+        Как бы Вы в целом оценили в детстве отношения между Вами и мамой:
       </label>
       <Controller
         name="profile.parentFamily.motherRelationship.rating"
@@ -130,7 +130,7 @@ const MotherFields: React.FC = () => {
       )}
 
       <label htmlFor="motherRelationship.comment">
-        При необходимости Ваш комментарий
+        При необходимости Ваш комментарий:
       </label>
       <Controller
         name="profile.parentFamily.motherRelationship.comment"

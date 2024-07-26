@@ -69,7 +69,7 @@ const GeneralInfoForm: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="country">Страна: </label>
+        <label htmlFor="country">Страна рождения: </label>
         <Controller
           name="profile.generalInfo.countryCity.country"
           control={control}
@@ -82,7 +82,7 @@ const GeneralInfoForm: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="city">Город (регион): </label>
+        <label htmlFor="city">Город (регион) рождения: </label>
         <Controller
           name="profile.generalInfo.countryCity.city"
           control={control}

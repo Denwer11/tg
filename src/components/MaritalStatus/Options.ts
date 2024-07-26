@@ -62,5 +62,4 @@ export const LivingConditionsSatisfactionOptions = [
   "средне удовлетворен",
   "неудовлетворен",
   "очень неудовлетворен",
-  "ваш вариант",
 ];
